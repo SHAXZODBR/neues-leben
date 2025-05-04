@@ -1,109 +1,88 @@
 "use client"
 
-import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { Heart, Shield, Users } from "lucide-react"
 
 export default function MissionSection() {
   const { t } = useLanguage()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
 
   return (
-    <section id="mission" className="w-full py-12 md:py-24 lg:py-32">
+    <section id="mission" className="w-full py-16 sm:py-20">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
-              {t("mission.title")}
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {t("mission.description")}
-            </p>
-          </div>
-        </div>
-        <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-          <div className="flex flex-col justify-center space-y-4">
-            <ul className="grid gap-6">
-              <li className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5 text-primary dark:text-primary-400"
-                  >
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <motion.div
+            className="order-2 md:order-1"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            ref={ref}
+          >
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
+                {t("mission.title")}
+              </h2>
+
+              <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md">
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {t("mission.paragraph1")}
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md">
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {t("mission.paragraph2")}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center flex-shrink-0">
+                  <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-300" />
                 </div>
-                <div className="space-y-1">
-                  <h3 className="text-xl font-bold">{t("mission.approach.title")}</h3>
-                  <p className="text-muted-foreground">{t("mission.approach.description")}</p>
+                <p className="text-base sm:text-lg font-medium text-primary-800 dark:text-primary-300">
+                  {t("mission.healthFocus")}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="order-1 md:order-2 relative h-[350px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700 flex items-center justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 p-4 sm:p-8 w-full max-w-md sm:max-w-lg">
+                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                    {t("mission.protection")}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.protectionDesc")}</p>
                 </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5 text-primary dark:text-primary-400"
-                  >
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
+                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Users className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                    {t("mission.community")}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.communityDesc")}</p>
                 </div>
-                <div className="space-y-1">
-                  <h3 className="text-xl font-bold">{t("mission.care.title")}</h3>
-                  <p className="text-muted-foreground">{t("mission.care.description")}</p>
+                <div className="col-span-1 sm:col-span-2 bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Heart className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                    {t("mission.care")}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.careDesc")}</p>
                 </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5 text-primary dark:text-primary-400"
-                  >
-                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                    <path d="m7 10 2 2 6-6"></path>
-                  </svg>
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-xl font-bold">{t("mission.quality.title")}</h3>
-                  <p className="text-muted-foreground">{t("mission.quality.description")}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="mx-auto flex items-center justify-center">
-            <Image
-              src="/placeholder.svg?height=400&width=400"
-              width={400}
-              height={400}
-              alt="Mission Image"
-              className="rounded-lg object-cover"
-            />
-          </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

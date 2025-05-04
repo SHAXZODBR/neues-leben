@@ -12,9 +12,9 @@ type LanguageOption = {
 }
 
 const languages: LanguageOption[] = [
+  { code: "ru", name: "Russian", nativeName: "Русский" },
   { code: "en", name: "English", nativeName: "English" },
   { code: "uz", name: "Uzbek", nativeName: "O'zbek" },
-  { code: "ru", name: "Russian", nativeName: "Русский" },
 ]
 
 export default function LanguageSelector() {

@@ -8,14 +8,12 @@ import Logo from "@/components/logo"
 import LanguageSelector from "@/components/language-selector"
 import { useLanguage } from "@/contexts/language-context"
 import ThemeToggle from "@/components/theme-toggle"
-import { useRouter, usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { t } = useLanguage()
-  const router = useRouter()
-  const pathname = usePathname()
 
   const handleScroll = () => {
     const offset = window.scrollY
@@ -33,79 +31,66 @@ export default function Navbar() {
     }
   }, [])
 
-  const navigateToHome = () => {
-    if (pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    } else {
-      router.push("/")
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" })
+      setIsOpen(false)
     }
   }
 
-  const scrollToSection = (sectionId: string) => {
-    // First check if we're on the home page
-    if (pathname !== "/") {
-      // If not, navigate to home page first, then scroll to section after a delay
-      router.push("/")
-      setTimeout(() => {
-        const section = document.getElementById(sectionId)
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" })
-          setIsOpen(false)
-        }
-      }, 100)
-    } else {
-      // If already on home page, just scroll to section
-      const section = document.getElementById(sectionId)
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" })
-        setIsOpen(false)
-      }
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+    setIsOpen(false)
   }
+
+  const navItems = [
+    { key: "nav.about", id: "about" },
+    { key: "nav.mission", id: "mission" },
+    { key: "nav.values", id: "values" },
+    { key: "nav.team", id: "team" },
+    { key: "nav.culture", id: "culture" },
+    { key: "nav.achievements", id: "achievements" },
+    { key: "nav.partners", id: "partners" },
+    { key: "nav.infrastructure", id: "infrastructure" },
+    { key: "nav.coverage", id: "coverage" },
+    { key: "nav.contact", id: "contact" },
+  ]
 
   return (
-    <header
+    <motion.header
       className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-shadow ${scrolled ? "shadow-md" : ""}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <button onClick={navigateToHome} className="flex items-center gap-2">
-            <Logo className="h-8 w-8" />
-            <span className="font-josefin-sans text-xl font-semibold tracking-tight">NEUES LEBEN</span>
+          <button onClick={scrollToTop} className="flex items-center gap-2">
+            <Logo className="h-6 w-6 sm:h-8 sm:w-8" />
+            <span className="font-josefin-sans text-base sm:text-xl font-semibold tracking-tight">NEUES LEBEN</span>
           </button>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <button onClick={navigateToHome} className="text-sm font-medium transition-colors hover:text-primary">
+        <nav className="hidden md:flex items-center gap-2 lg:gap-4 overflow-x-auto">
+          <button
+            onClick={scrollToTop}
+            className="text-xs lg:text-sm whitespace-nowrap font-medium transition-colors hover:text-primary"
+          >
             {t("nav.home")}
           </button>
-          <button
-            onClick={() => scrollToSection("mission")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            {t("nav.mission")}
-          </button>
-          <button
-            onClick={() => scrollToSection("values")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            {t("nav.values")}
-          </button>
-          <button
-            onClick={() => scrollToSection("team")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            {t("nav.team")}
-          </button>
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            {t("nav.contact")}
-          </button>
+          {navItems.map((item) => (
+            <button
+              key={item.key}
+              onClick={() => scrollToSection(item.id)}
+              className="text-xs lg:text-sm whitespace-nowrap font-medium transition-colors hover:text-primary"
+            >
+              {t(item.key)}
+            </button>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <ThemeToggle />
           <LanguageSelector />
 
@@ -116,38 +101,23 @@ export default function Navbar() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="overflow-y-auto">
               <div className="flex flex-col gap-6 pt-6">
                 <button
                   className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={navigateToHome}
+                  onClick={scrollToTop}
                 >
                   {t("nav.home")}
                 </button>
-                <button
-                  className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={() => scrollToSection("mission")}
-                >
-                  {t("nav.mission")}
-                </button>
-                <button
-                  className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={() => scrollToSection("values")}
-                >
-                  {t("nav.values")}
-                </button>
-                <button
-                  className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={() => scrollToSection("team")}
-                >
-                  {t("nav.team")}
-                </button>
-                <button
-                  className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={() => scrollToSection("contact")}
-                >
-                  {t("nav.contact")}
-                </button>
+                {navItems.map((item) => (
+                  <button
+                    key={item.key}
+                    className="text-sm font-medium transition-colors hover:text-primary text-left"
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {t(item.key)}
+                  </button>
+                ))}
                 <div className="flex items-center gap-4 pt-2">
                   <ThemeToggle />
                   <LanguageSelector />
@@ -157,6 +127,6 @@ export default function Navbar() {
           </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   )
 }

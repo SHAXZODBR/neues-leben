@@ -15,8 +15,9 @@ const josefinSans = Josefin_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Neues Leben | Health & Wellness",
-  description: "Improving health and quality of life through information about effective and accessible treatment.",
+  title: "Neues Leben | Фармацевтическая дистрибьюторская компания",
+  description:
+    "Дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана.",
     generator: 'v0.dev'
 }
 
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="ru" suppressHydrationWarning className="scroll-smooth">
       <body className={`${inter.variable} ${josefinSans.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <LanguageProvider>

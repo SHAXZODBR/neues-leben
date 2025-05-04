@@ -1,154 +1,125 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MapPin, Phone, Mail } from "lucide-react"
+import Logo from "@/components/logo"
 
 export default function ContactSection() {
   const { t } = useLanguage()
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log(formData)
-    // Reset form
-    setFormData({ name: "", email: "", message: "" })
-    // Show success message
-    alert("Thank you for your message. We'll get back to you soon!")
-  }
-
   return (
-    <section id="contact" className="w-full py-12 md:py-24 lg:py-32">
+    <section id="contact" className="w-full py-16 sm:py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <motion.div
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-8 sm:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          ref={ref}
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
               {t("contact.title")}
             </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {t("contact.description")}
-            </p>
+            <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-400">{t("contact.subtitle")}</p>
           </div>
-        </div>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 py-12 lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Card>
               <CardHeader>
-                <CardTitle>{t("contact.info.title")}</CardTitle>
-                <CardDescription>{t("contact.info.description")}</CardDescription>
-              </CardHeader>
-              <CardContent className="grid gap-6">
-                <div className="flex items-center gap-4">
-                  <MapPin className="h-6 w-6 text-primary dark:text-primary-400" />
-                  <div>
-                    <h3 className="font-semibold">{t("contact.address.title")}</h3>
-                    <p className="text-sm text-muted-foreground">{t("contact.address.value")}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Phone className="h-6 w-6 text-primary dark:text-primary-400" />
-                  <div>
-                    <h3 className="font-semibold">{t("contact.phone.title")}</h3>
-                    <p className="text-sm text-muted-foreground">{t("contact.phone.value")}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Mail className="h-6 w-6 text-primary dark:text-primary-400" />
-                  <div>
-                    <h3 className="font-semibold">{t("contact.email.title")}</h3>
-                    <p className="text-sm text-muted-foreground">{t("contact.email.value")}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>{t("contact.hours.title")}</CardTitle>
-                <CardDescription>{t("contact.hours.description")}</CardDescription>
+                <CardTitle className="text-xl sm:text-2xl">{t("contact.form.title")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-2">
-                  <div className="flex justify-between">
-                    <span className="font-medium">{t("contact.hours.weekdays")}</span>
-                    <span>{t("contact.hours.weekdays.time")}</span>
+                <form className="space-y-4 sm:space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">
+                      {t("contact.form.name")}
+                    </label>
+                    <Input id="name" placeholder={t("contact.form.namePlaceholder")} />
                   </div>
-                  <div className="flex justify-between">
-                    <span className="font-medium">{t("contact.hours.saturday")}</span>
-                    <span>{t("contact.hours.saturday.time")}</span>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">
+                      {t("contact.form.email")}
+                    </label>
+                    <Input id="email" type="email" placeholder={t("contact.form.emailPlaceholder")} />
                   </div>
-                  <div className="flex justify-between">
-                    <span className="font-medium">{t("contact.hours.sunday")}</span>
-                    <span>{t("contact.hours.sunday.time")}</span>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      {t("contact.form.message")}
+                    </label>
+                    <Textarea
+                      id="message"
+                      placeholder={t("contact.form.messagePlaceholder")}
+                      className="min-h-[100px] sm:min-h-[120px]"
+                    />
+                  </div>
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+                    {t("contact.form.submit")}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            className="space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl sm:text-2xl">{t("contact.info.title")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-4">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-gray-800 dark:text-gray-200">{t("contact.info.address.title")}</h3>
+                    <p className="text-gray-600 dark:text-gray-400">{t("contact.info.address.value")}</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-gray-800 dark:text-gray-200">{t("contact.info.phone.title")}</h3>
+                    <p className="text-gray-600 dark:text-gray-400">{t("contact.info.phone.value")}</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-gray-800 dark:text-gray-200">{t("contact.info.email.title")}</h3>
+                    <p className="text-gray-600 dark:text-gray-400">{t("contact.info.email.value")}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("contact.message.title")}</CardTitle>
-              <CardDescription>{t("contact.message.description")}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="grid gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="name">{t("contact.form.name")}</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder={t("contact.form.name.placeholder")}
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">{t("contact.form.email")}</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder={t("contact.form.email.placeholder")}
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="message">{t("contact.form.message")}</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder={t("contact.form.message.placeholder")}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="min-h-[150px]"
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  {t("contact.form.submit")}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+
+            <div className="flex items-center justify-center p-4 sm:p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+              <Logo size="large" className="h-12 w-12 sm:h-16 sm:w-16 text-primary-600 dark:text-primary-400" />
+              <div className="ml-4 text-center">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200">NEUES LEBEN</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("contact.info.tagline")}</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

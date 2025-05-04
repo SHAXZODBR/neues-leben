@@ -1,89 +1,137 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Heart, Scale, Target, Users2, ClipboardCheck, GraduationCap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { Heart, Award, Compass, Target, Headphones } from "lucide-react"
 
 export default function ValuesSection() {
   const { t } = useLanguage()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const values = [
+    {
+      icon: <Heart className="h-12 w-12 text-primary" />,
+      title: t("values.honesty.title"),
+      description: t("values.honesty.description"),
+    },
+    {
+      icon: <Award className="h-12 w-12 text-primary" />,
+      title: t("values.professionalism.title"),
+      description: t("values.professionalism.description"),
+    },
+    {
+      icon: <Compass className="h-12 w-12 text-primary" />,
+      title: t("values.leadership.title"),
+      description: t("values.leadership.description"),
+    },
+    {
+      icon: <Target className="h-12 w-12 text-primary" />,
+      title: t("values.aspiration.title"),
+      description: t("values.aspiration.description"),
+    },
+    {
+      icon: <Headphones className="h-12 w-12 text-primary" />,
+      title: t("values.support.title"),
+      description: t("values.support.description"),
+    },
+  ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  }
 
   return (
-    <section id="values" className="w-full py-12 md:py-24 lg:py-32 bg-primary-50 dark:bg-primary-950/20">
+    <section id="values" className="w-full py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <motion.div
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          ref={ref}
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
               {t("values.title")}
             </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {t("values.description")}
-            </p>
+            <p className="max-w-[900px] text-gray-500 dark:text-gray-400 text-xl">{t("values.subtitle")}</p>
           </div>
-        </div>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <Users className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.people")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.people.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <Heart className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.openness")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.openness.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <Scale className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.fairness")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.fairness.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <Target className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.ambition")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.ambition.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <Users2 className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.teamwork")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.teamwork.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <ClipboardCheck className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.responsibility")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.responsibility.description")}</CardDescription>
-            </CardContent>
-          </Card>
-          <Card className="md:col-span-2 lg:col-span-3">
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <GraduationCap className="h-8 w-8 text-primary dark:text-primary-400" />
-              <CardTitle className="text-xl">{t("values.improvement")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{t("values.improvement.description")}</CardDescription>
-            </CardContent>
-          </Card>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            className="relative h-[600px] rounded-2xl overflow-hidden shadow-xl"
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700 flex items-center justify-center">
+              <div className="relative w-3/4 h-3/4">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full border-4 border-white/30 dark:border-gray-700/30 rounded-full animate-pulse"></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-3/4 h-3/4 border-4 border-white/50 dark:border-gray-700/50 rounded-full animate-pulse"
+                    style={{ animationDelay: "1s" }}
+                  ></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-1/2 h-1/2 border-4 border-white/70 dark:border-gray-700/70 rounded-full animate-pulse"
+                    style={{ animationDelay: "2s" }}
+                  ></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white dark:bg-gray-800 p-8 rounded-full shadow-lg">
+                    <Heart className="h-24 w-24 text-primary-600 dark:text-primary-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="space-y-6">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                className="relative"
+                initial={{ opacity: 0, x: 30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className={`flex-shrink-0 w-64 h-12 bg-gradient-to-r from-green-500 to-green-700 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md`}
+                  >
+                    {value.title}
+                  </div>
+                  <div className="flex-grow bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                    <p className="text-gray-700 dark:text-gray-300">{value.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

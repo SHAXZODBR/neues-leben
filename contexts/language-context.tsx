@@ -20,384 +20,553 @@ const translations = {
   en: {
     // Navigation
     "nav.home": "Home",
+    "nav.about": "About",
     "nav.mission": "Mission",
     "nav.values": "Values",
-    "nav.services": "Services",
     "nav.team": "Team",
+    "nav.culture": "Culture",
+    "nav.achievements": "Achievements",
+    "nav.partners": "Partners",
+    "nav.infrastructure": "Infrastructure",
+    "nav.coverage": "Coverage",
     "nav.contact": "Contact",
 
     // Hero section
-    "hero.title": "Neues Leben",
+    "hero.tagline": "We believe that health is the foundation of a happy life!",
     "hero.description":
-      "Ensuring health protection and improving the quality of life for the population by informing consumers about new trends in effective and accessible treatment. We are an informant in the healthcare industry committed to improving the nation's quality of life.",
+      "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. The company was founded in 2018, starting its history with wholesale sales of medicines throughout the Republic of Uzbekistan.",
+    "hero.description2":
+      "Today, our business direction is direct distribution of medicines through our own sales department. Since 2019, the company has moved to a new level by signing direct contracts with foreign manufacturers.",
     "hero.learnMore": "Learn More",
     "hero.contactUs": "Contact Us",
+    "hero.established": "Established in 2018",
+    "hero.quality": "Quality, Timely Delivery, Reliable Partnership",
+
+    // About section
+    "about.title": "About Us",
+    "about.subtitle": "Your reliable partner in the pharmaceutical industry",
+    "about.founded": "Founded in 2018",
+    "about.warehouse":
+      "The warehouse received the highest rating for compliance with quality standards for warehouse facilities.",
+    "about.paragraph1":
+      "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. The company was founded in 2018, starting its history with wholesale sales of medicines throughout the Republic of Uzbekistan.",
+    "about.paragraph2":
+      "Since 2019, the company has moved to a new level by signing direct contracts with foreign manufacturers, which allowed us to import and promote high-quality medicines. NEUES LEBEN has a warehouse where quality storage of medicines is carried out.",
+    "about.conclusion":
+      "The main principles of our work are product quality, timely delivery, and reliable partnership!",
 
     // Mission section
     "mission.title": "Our Mission",
-    "mission.description":
-      "Ensuring health protection and improving the quality of life for the population of the country by informing consumers about new trends in effective and accessible treatment. The company applies modern approaches in its work and uses the latest developments to improve the health and well-being of patients.",
-    "mission.approach.title": "Modern Approaches",
-    "mission.approach.description":
+    "mission.paragraph1":
+      "Ensuring the protection of health and improving the quality of life of the country's population by informing consumers about new trends in effective and affordable treatment.",
+    "mission.paragraph2":
       "The company applies modern approaches in its work and uses the latest developments to improve the health and well-being of patients.",
-    "mission.care.title": "Patient-Centered Care",
-    "mission.care.description":
-      "We focus on providing information that puts patients first, ensuring they have access to the best treatment options.",
-    "mission.quality.title": "Quality Assurance",
-    "mission.quality.description":
-      "We maintain high standards in all our information, ensuring accuracy and reliability for healthcare professionals and patients.",
+    "mission.healthFocus": "We strive to improve the quality of life of the nation",
+    "mission.protection": "Health Protection",
+    "mission.protectionDesc": "We ensure access to quality medicines",
+    "mission.community": "Community Focus",
+    "mission.communityDesc": "We work for the benefit of society",
+    "mission.care": "Patient Care",
+    "mission.careDesc": "We use modern approaches to improve well-being",
 
     // Values section
     "values.title": "Our Values",
-    "values.description": "The professional standards and principles that guide every employee of our company.",
-    "values.people": "People",
-    "values.people.description": "Healthy, energetic, self-developing, and happy individuals.",
-    "values.openness": "Openness",
-    "values.openness.description": "The sincere ability to adapt and receive new information for mutual development.",
-    "values.fairness": "Fairness",
-    "values.fairness.description": "Openness, honesty, and objectivity.",
-    "values.ambition": "Ambition",
-    "values.ambition.description": "Competitiveness and diligence.",
-    "values.teamwork": "Teamwork",
-    "values.teamwork.description": "Respect, cohesion, friendliness, mutual understanding, and tolerance.",
-    "values.responsibility": "Responsibility",
-    "values.responsibility.description": "Flexibility and discipline.",
-    "values.improvement": "Self-Improvement",
-    "values.improvement.description": "Professional and personal growth, engagement in sports.",
-
-    // Services section
-    "services.title": "Our Services",
-    "services.description":
-      "We provide comprehensive information and resources to help improve health and quality of life.",
-    "services.health.title": "Health Information",
-    "services.health.description": "Access to the latest research and information on health trends and treatments.",
-    "services.wellness.title": "Wellness Programs",
-    "services.wellness.description":
-      "Comprehensive programs designed to improve overall wellness and quality of life through holistic approaches.",
-    "services.education.title": "Educational Resources",
-    "services.education.description":
-      "Educational materials and resources to help patients understand their health conditions.",
-    "services.learnMore": "Learn More",
+    "values.subtitle": "The principles that guide our company",
+    "values.honesty.title": "Honesty",
+    "values.honesty.description":
+      "The fundamental value of our company. We believe in openness, transparency, and truthfulness in all our relationships - with clients, partners, employees, and society.",
+    "values.professionalism.title": "Professionalism",
+    "values.professionalism.description":
+      "We constantly develop our skills and knowledge to provide quality services to clients and promptly respond to their requests.",
+    "values.leadership.title": "Leadership",
+    "values.leadership.description": "We focus on achieving ambitious goals and encourage leadership aimed at results.",
+    "values.aspiration.title": "Aspiration",
+    "values.aspiration.description":
+      "We strive for success in business and help our clients and partners achieve success.",
+    "values.support.title": "Support",
+    "values.support.description":
+      "We are a reliable partner and provide comprehensive support to achieve joint success.",
 
     // Team section
     "team.title": "Our Team",
-    "team.description": "Meet the dedicated professionals who make our mission possible.",
-    "team.viewProfile": "View Profile",
-    "team.management": "Management Team",
-    "team.organization": "Organization Structure",
-    "team.director": "Director",
-    "team.medicalDirector": "Medical Director",
-    "team.researchDirector": "Research Director",
-    "team.communicationsManager": "Communications Manager",
-    "team.financeManager": "Finance Manager",
-    "team.chiefAccountant": "Chief Accountant",
-    "team.marketingSpecialist": "Marketing Specialist",
-    "team.productManager": "Product Manager",
-    "team.legalConsultant": "Legal Consultant",
+    "team.companyPrefix": "At",
+    "team.employeeCount": "work more than",
+    "team.employeeSuffix": "highly qualified employees",
+    "team.departmentsTitle": "Our departments include:",
+    "team.departments.medical": "Team of medical representatives",
+    "team.departments.foreign": "Foreign economic activity department",
+    "team.departments.legal": "Legal department",
+    "team.departments.sales": "Sales and marketing department",
+    "team.departments.registration": "Medicine registration department",
+    "team.departments.hr": "HR department",
+    "team.departments.logistics": "Logistics department",
+    "team.departments.customs": "Team of customs declarants",
+    "team.departments.admin": "Administrative department",
+    "team.teamSpirit":
+      "Each employee strengthens the company's image as a reliable pharmaceutical distributor, ensuring high-quality service and a professional approach to work.",
+    "team.gallery.title": "Meet Our Team",
+    "team.gallery.memberDescription":
+      "A dedicated professional with extensive experience in the pharmaceutical industry. Committed to our mission of improving health and quality of life through innovative solutions and reliable partnerships.",
+
+    // Culture section
+    "culture.title": "Corporate Culture",
+    "culture.paragraph1":
+      "Our corporate culture is based on proven values and traditions. We support family values, healthy lifestyle, development, and learning.",
+    "culture.paragraph2":
+      "We are proud of our achievements in the market and the fact that our employees undergo internships abroad. Joint holidays, competitions, and modern forms of communication make us a cohesive team.",
+    "culture.paragraph3": "Each employee strengthens the company's image as a reliable pharmaceutical distributor.",
+    "culture.family.title": "Family Values",
+    "culture.family.description": "We support and promote family values and healthy lifestyle",
+    "culture.achievements.title": "Market Achievements",
+    "culture.achievements.description": "We are proud of our accomplishments in the pharmaceutical market",
+    "culture.internships.title": "International Experience",
+    "culture.internships.description": "Our employees undergo internships abroad to enhance their skills",
+    "culture.events.title": "Team Building",
+    "culture.events.description": "Joint holidays and events make us a cohesive team",
+
+    // Achievements section
+    "achievements.title": "Our Achievements",
+    "achievements.award": "Sales Leader of the Year",
+    "achievements.description":
+      "For the past four years, our team has held leading positions in the pharmaceutical industry, annually receiving the 'Sales Leader of the Year' award in the INSO group of companies.",
+    "achievements.growth": "Team Growth",
+    "achievements.growthDescription":
+      "The growth of our team from 14 to 135 people is clear evidence of the success of our activities in the pharmaceutical industry and the growing demand for our products.",
+    "achievements.growthChart": "Team Growth Dynamics",
+    "achievements.award1.title": "Sales Leader 2022",
+    "achievements.award1.year": "INSO Group",
+    "achievements.award2.title": "Best Distributor 2023",
+    "achievements.award2.year": "Pharmaceutical Association",
+    "achievements.award3.title": "Quality Excellence 2024",
+    "achievements.award3.year": "Industry Recognition",
+
+    // Partners section
+    "partners.title": "Our Partners",
+    "partners.subtitle": "We collaborate with leading pharmaceutical manufacturers worldwide",
+    "partners.countries": "We collaborate with:",
+    "partners.southKorea": "South Korea",
+    "partners.poland": "Poland",
+    "partners.china": "China",
+    "partners.india": "India",
+    "partners.products": "Exclusive Products",
+    "partners.productsDescription": "More than 50 types of exclusive drugs from foreign and local production",
+    "partners.product": "Product",
+
+    // Infrastructure section
+    "infrastructure.title": "Our Infrastructure",
+    "infrastructure.subtitle": "NEUES LEBEN has a modern logistics infrastructure",
+    "infrastructure.warehouse.title": "Modern Warehouse",
+    "infrastructure.warehouse.description":
+      "The company has a warehouse that meets GDP (Good Distribution Practice) standards.",
+    "infrastructure.warehouse.standards": "Highest quality standards compliance",
+    "infrastructure.warehouse.size": "Warehouse area: 10,000 square meters (10,000 m²)",
+    "infrastructure.logistics.title": "Advanced Logistics",
+    "infrastructure.logistics.description":
+      "Vehicles are equipped with modern refrigeration units to ensure safe and quality transportation of products with the required temperature regime.",
+    "infrastructure.logistics.temperature": "Temperature control at all stages",
+    "infrastructure.logistics.modern": "Modern Fleet",
+    "infrastructure.logistics.efficient": "Efficient delivery across the country",
+
+    // Coverage section
+    "coverage.title": "Our Coverage",
+    "coverage.subtitle": "We carry out sales throughout Uzbekistan",
+    "coverage.description":
+      "We carry out sales throughout Uzbekistan, ensuring reliable supply of medicines to all regions of the country.",
+    "coverage.offices": "Regional Offices",
+    "coverage.officesDescription":
+      "In all regions of the country, we have distribution offices under the leadership of regional managers.",
+    "coverage.mapTitle": "Nationwide Distribution",
+    "coverage.mapDescription": "Ensuring access to quality medicines across Uzbekistan",
+    "coverage.cooperation": "We are open for mutually beneficial and long-term cooperation",
 
     // Contact section
     "contact.title": "Contact Us",
-    "contact.description": "Have questions or need more information? Get in touch with our team.",
-    "contact.info.title": "Contact Information",
-    "contact.info.description": "Reach out to us through any of these channels.",
-    "contact.address.title": "Address",
-    "contact.address.value": "123 Health Avenue, Medical District, Tashkent, Uzbekistan",
-    "contact.phone.title": "Phone",
-    "contact.phone.value": "+998 71 123 4567",
-    "contact.email.title": "Email",
-    "contact.email.value": "info@neuesleben.com",
-    "contact.hours.title": "Office Hours",
-    "contact.hours.description": "When you can reach us.",
-    "contact.hours.weekdays": "Monday - Friday",
-    "contact.hours.weekdays.time": "9:00 AM - 6:00 PM",
-    "contact.hours.saturday": "Saturday",
-    "contact.hours.saturday.time": "10:00 AM - 4:00 PM",
-    "contact.hours.sunday": "Sunday",
-    "contact.hours.sunday.time": "Closed",
-    "contact.message.title": "Send Us a Message",
-    "contact.message.description": "Fill out the form below and we'll get back to you as soon as possible.",
+    "contact.subtitle": "We are open for mutually beneficial and long-term cooperation",
+    "contact.form.title": "Send Us a Message",
     "contact.form.name": "Name",
-    "contact.form.name.placeholder": "Your name",
+    "contact.form.namePlaceholder": "Your name",
     "contact.form.email": "Email",
-    "contact.form.email.placeholder": "Your email",
+    "contact.form.emailPlaceholder": "Your email",
     "contact.form.message": "Message",
-    "contact.form.message.placeholder": "Your message",
+    "contact.form.messagePlaceholder": "Your message",
     "contact.form.submit": "Send Message",
-
-    // Footer
-    "footer.description":
-      "Neues Leben - an informant in the healthcare industry in the Republic of Uzbekistan, informing consumers about new trends in effective and accessible treatment to improve the quality of life of the nation.",
-    "footer.company": "Company",
-    "footer.mission": "Mission",
-    "footer.values": "Values",
-    "footer.team": "Team",
-    "footer.careers": "Careers",
-    "footer.services": "Services",
-    "footer.health": "Health Information",
-    "footer.wellness": "Wellness Programs",
-    "footer.education": "Educational Resources",
-    "footer.partnerships": "Partnerships",
-    "footer.legal": "Legal",
-    "footer.privacy": "Privacy Policy",
-    "footer.terms": "Terms of Service",
-    "footer.cookie": "Cookie Policy",
-    "footer.rights": "All rights reserved.",
+    "contact.info.title": "Contact Information",
+    "contact.info.address.title": "Address",
+    "contact.info.address.value": "Tashkent, Uzbekistan",
+    "contact.info.phone.title": "Phone",
+    "contact.info.phone.value": "+998 71 123 4567",
+    "contact.info.email.title": "Email",
+    "contact.info.email.value": "info@neuesleben.com",
+    "contact.info.tagline": "Your reliable partner in the pharmaceutical industry",
   },
   uz: {
     // Navigation
-    "nav.home": "Asosiy",
-    "nav.mission": "Maqsadimiz",
-    "nav.values": "Qadriyatlarimiz",
-    "nav.services": "Xizmatlar",
+    "nav.home": "Bosh sahifa",
+    "nav.about": "Biz haqimizda",
+    "nav.mission": "Missiya",
+    "nav.values": "Qadriyatlar",
     "nav.team": "Jamoa",
+    "nav.culture": "Madaniyat",
+    "nav.achievements": "Yutuqlar",
+    "nav.partners": "Hamkorlar",
+    "nav.infrastructure": "Infratuzilma",
+    "nav.coverage": "Qamrov",
     "nav.contact": "Aloqa",
 
     // Hero section
-    "hero.title": "Neues Leben",
+    "hero.tagline": "Biz sog'liq baxtli hayotning asosi deb ishonamiz!",
     "hero.description":
-      "Iste'molchilarni samarali va qulay davolash usullari haqida xabardor qilish orqali aholining salomatligini himoya qilish va hayot sifatini yaxshilash. Biz sog'liqni saqlash sohasida millat hayot sifatini yaxshilashga sodiq axborot beruvchimiz.",
-    "hero.learnMore": "Ko'proq ma'lumot",
-    "hero.contactUs": "Biz bilan bog'lanish",
+      "'NEUES LEBEN' MChJ – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
+    "hero.description2":
+      "Bugungi kunda faoliyat yo'nalishi - o'z savdo bo'limi orqali dori vositalarini to'g'ridan-to'g'ri distribyutsiya qilish. 2019 yildan boshlab kompaniya xorijiy ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri shartnomalar tuzib, yangi darajaga ko'tarildi.",
+    "hero.learnMore": "Batafsil",
+    "hero.contactUs": "Biz bilan bog'laning",
+    "hero.established": "2018 yilda tashkil etilgan",
+    "hero.quality": "Sifat, O'z vaqtida yetkazib berish, Ishonchli hamkorlik",
+
+    // About section
+    "about.title": "Biz haqimizda",
+    "about.subtitle": "Farmatsevtika sohasidagi ishonchli hamkoringiz",
+    "about.founded": "2018 yilda tashkil etilgan",
+    "about.warehouse":
+      "Ombor ombor binolarining sifat standartlariga muvofiqligining eng yuqori baholanishiga erishdi.",
+    "about.paragraph1":
+      "'NEUES LEBEN' MChJ – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
+    "about.paragraph2":
+      "2019 yildan boshlab kompaniya xorijiy ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri shartnomalar tuzib, yangi darajaga ko'tarildi, bu esa yuqori sifatli dori vositalarini import qilish va targ'ib qilish imkonini berdi. 'NEUES LEBEN' kompaniyasi dori vositalarini sifatli saqlash amalga oshiriladigan omborga ega.",
+    "about.conclusion":
+      "Ishimizning asosiy tamoyillari - biz taklif qiladigan mahsulot sifati, o'z vaqtida yetkazib berish va ishonchli hamkorlik!",
 
     // Mission section
-    "mission.title": "Maqsadimiz",
-    "mission.description":
-      "Iste'molchilarni samarali va qulay davolash tendentsiyalari haqida xabardor qilish orqali mamlakat aholisining sog'lig'ini himoya qilish va hayot sifatini yaxshilash. Kompaniya o'z ishida zamonaviy yondashuvlarni qo'llaydi va bemorlarning sog'lig'i va farovonligini yaxshilash uchun eng so'nggi ishlanmalardan foydalanadi.",
-    "mission.approach.title": "Zamonaviy yondashuvlar",
-    "mission.approach.description":
+    "mission.title": "Bizning missiyamiz",
+    "mission.paragraph1":
+      "Mamlakatimiz aholisining sog'lig'ini himoya qilish va hayot sifatini oshirish, iste'molchilarni samarali va arzon davolanish bo'yicha yangi tendensiyalar haqida xabardor qilish orqali.",
+    "mission.paragraph2":
       "Kompaniya o'z ishida zamonaviy yondashuvlarni qo'llaydi va bemorlarning sog'lig'i va farovonligini yaxshilash uchun eng so'nggi ishlanmalardan foydalanadi.",
-    "mission.care.title": "Bemorga yo'naltirilgan g'amxo'rlik",
-    "mission.care.description":
-      "Biz bemorlarni birinchi o'ringa qo'yadigan ma'lumotlarni taqdim etishga, ularga eng yaxshi davolanish imkoniyatlariga ega bo'lishiga e'tibor qaratamiz.",
-    "mission.quality.title": "Sifat kafolati",
-    "mission.quality.description":
-      "Biz barcha ma'lumotlarimizda yuqori standartlarni saqlaymiz, sog'liqni saqlash bo'yicha mutaxassislar va bemorlar uchun aniqlik va ishonchlilikni ta'minlaymiz.",
+    "mission.healthFocus": "Biz millatning hayot sifatini yaxshilashga intilamiz",
+    "mission.protection": "Sog'liqni saqlash",
+    "mission.protectionDesc": "Biz sifatli dori vositalariga kirishni ta'minlaymiz",
+    "mission.community": "Jamiyatga yo'naltirilganlik",
+    "mission.communityDesc": "Biz jamiyat manfaati uchun ishlaymiz",
+    "mission.care": "Bemorga g'amxo'rlik",
+    "mission.careDesc": "Farovonlikni yaxshilash uchun zamonaviy yondashuvlardan foydalanamiz",
 
     // Values section
     "values.title": "Qadriyatlarimiz",
-    "values.description": "Kompaniyamizning har bir xodimiga yo'l ko'rsatadigan kasbiy standartlar va tamoyillar.",
-    "values.people": "Insonlar",
-    "values.people.description": "Sog'lom, energiyaga to'la, o'zini rivojlantiruvchi va baxtli insonlar.",
-    "values.openness": "Ochiqlik",
-    "values.openness.description":
-      "O'zaro rivojlanish uchun moslashish va yangi ma'lumotlarni qabul qilish qobiliyati.",
-    "values.fairness": "Adolat",
-    "values.fairness.description": "Ochiqlik, halollik va xolislik.",
-    "values.ambition": "Intilish",
-    "values.ambition.description": "Raqobatbardoshlik va tirishqoqlik.",
-    "values.teamwork": "Jamoaviy ish",
-    "values.teamwork.description": "Hurmat, yaxlitlik, do'stlik, o'zaro tushunish va bag'rikenglik.",
-    "values.responsibility": "Mas'uliyat",
-    "values.responsibility.description": "Moslashuvchanlik va intizom.",
-    "values.improvement": "O'zini takomillashtirish",
-    "values.improvement.description": "Kasbiy va shaxsiy o'sish, sport bilan shug'ullanish.",
-
-    // Services section
-    "services.title": "Xizmatlarimiz",
-    "services.description":
-      "Biz sog'liq va hayot sifatini yaxshilashga yordam berish uchun keng qamrovli ma'lumot va resurslarni taqdim etamiz.",
-    "services.health.title": "Sog'liq haqida ma'lumot",
-    "services.health.description":
-      "Sog'liq tendentsiyalari va davolanish usullari bo'yicha eng so'nggi tadqiqotlar va ma'lumotlarga kirish.",
-    "services.wellness.title": "Sog'lomlashtirish dasturlari",
-    "services.wellness.description":
-      "Umumiy salomatlik va hayot sifatini yaxlit yondashuvlar orqali yaxshilash uchun mo'ljallangan dasturlar.",
-    "services.education.title": "Ta'lim resurslari",
-    "services.education.description":
-      "Bemorlarga o'z sog'liq holatlarini tushunishga yordam beruvchi ta'lim materiallari va resurslar.",
-    "services.learnMore": "Ko'proq ma'lumot",
+    "values.subtitle": "Kompaniyamizga yo'l ko'rsatadigan tamoyillar",
+    "values.honesty.title": "Halollik",
+    "values.honesty.description":
+      "Kompaniyamizning asosiy qadriyati. Biz mijozlar, hamkorlar, xodimlar va jamiyat bilan barcha munosabatlarda ochiqlik, shaffoflik va rostgo'ylikka ishonamiz.",
+    "values.professionalism.title": "Professionallik",
+    "values.professionalism.description":
+      "Biz mijozlarga sifatli xizmat ko'rsatish va ularning so'rovlariga tezkor javob berish uchun o'z ko'nikmalarimiz va bilimlarimizni doimiy ravishda rivojlantiramiz.",
+    "values.leadership.title": "Yetakchilik",
+    "values.leadership.description":
+      "Biz kundalik faoliyatimizda yuqori maqsadlarga erishishga intilamiz va natijaga yo'naltirilgan yetakchilikni rag'batlantiramiz.",
+    "values.aspiration.title": "Intilish",
+    "values.aspiration.description":
+      "Biz biznesdagi muvaffaqiyatga intilamiz va mijozlarimiz hamda hamkorlarimizga muvaffaqiyatga erishishga yordam beramiz.",
+    "values.support.title": "Qo'llab-quvvatlash",
+    "values.support.description":
+      "Biz ishonchli hamkormiz va birgalikdagi muvaffaqiyatga erishish uchun har tomonlama qo'llab-quvvatlashni ta'minlaymiz.",
 
     // Team section
     "team.title": "Jamoamiz",
-    "team.description": "Maqsadimizni amalga oshirishga hissa qo'shadigan fidoyi mutaxassislar bilan tanishing.",
-    "team.viewProfile": "Profilni ko'rish",
-    "team.management": "Boshqaruv guruhi",
-    "team.organization": "Tashkiliy tuzilma",
-    "team.director": "Direktor",
-    "team.medicalDirector": "Tibbiyot direktori",
-    "team.researchDirector": "Tadqiqot direktori",
-    "team.communicationsManager": "Aloqa menejeri",
-    "team.financeManager": "Moliya menejeri",
-    "team.chiefAccountant": "Bosh buxgalter",
-    "team.marketingSpecialist": "Marketing mutaxassisi",
-    "team.productManager": "Mahsulot menejeri",
-    "team.legalConsultant": "Yuridik maslahatchi",
+    "team.companyPrefix": "",
+    "team.employeeCount": "NEUES LEBEN kompaniyasida",
+    "team.employeeSuffix": "dan ortiq yuqori malakali xodimlar ishlaydi",
+    "team.departmentsTitle": "Bizning bo'limlarimiz:",
+    "team.departments.medical": "Tibbiy vakillari jamoasi",
+    "team.departments.foreign": "Tashqi iqtisodiy faoliyat bo'limi",
+    "team.departments.legal": "Yuridik bo'lim",
+    "team.departments.sales": "Sotish va marketing bo'limi",
+    "team.departments.registration": "Dori vositalarini ro'yxatga olish bo'limi",
+    "team.departments.hr": "HR-bo'limi (xodimlarni boshqarish bo'limi)",
+    "team.departments.logistics": "Logistika bo'limi",
+    "team.departments.customs": "Deklarantlar jamoasi",
+    "team.departments.admin": "Ma'muriy boshqaruv bo'limi",
+    "team.teamSpirit":
+      "Har bir xodim yuqori sifatli xizmat va ishga professional yondashuvni ta'minlab, kompaniyaning ishonchli farmatsevtika distribyutori sifatidagi obro'sini mustahkamlaydi.",
+    "team.gallery.title": "Jamoamiz bilan tanishing",
+    "team.gallery.memberDescription":
+      "Farmatsevtika sohasida katta tajribaga ega bo'lgan fidoyi mutaxassis. Innovatsion yechimlar va ishonchli hamkorlik orqali sog'liqni saqlash va hayot sifatini yaxshilash missiyamizga sodiq.",
+
+    // Culture section
+    "culture.title": "Korporativ madaniyat",
+    "culture.paragraph1":
+      "Bizning korporativ madaniyatimiz sinovdan o'tgan qadriyatlar va an'analarga asoslangan. Biz oilaviy qadriyatlarni, sog'lom turmush tarzini qo'llab-quvvatlaymiz, rivojlanamiz va o'rganamiz.",
+    "culture.paragraph2":
+      "Biz bozordagi yutuqlarimiz va xodimlarimiz chet ellarda stajirovka o'tayotgani bilan faxrlanamiz. Birgalikdagi bayramlar, tanlovlar va muloqotning zamonaviy shakllari bizni jipslashgan jamoaga aylantiradi.",
+    "culture.paragraph3":
+      "Har bir xodim kompaniyaning ishonchli farmatsevtika distribyutori sifatidagi obro'sini mustahkamlaydi.",
+    "culture.family.title": "Oilaviy qadriyatlar",
+    "culture.family.description":
+      "Biz oilaviy qadriyatlarni va sog'lom turmush tarzini qo'llab-quvvatlaymiz va targ'ib qilamiz",
+    "culture.achievements.title": "Bozordagi yutuqlar",
+    "culture.achievements.description": "Biz farmatsevtika bozoridagi yutuqlarimiz bilan faxrlanamiz",
+    "culture.internships.title": "Xalqaro tajriba",
+    "culture.internships.description":
+      "Xodimlarimiz o'z ko'nikmalarini oshirish uchun chet ellarda stajirovka o'taydilar",
+    "culture.events.title": "Jamoa qurish",
+    "culture.events.description": "Birgalikdagi bayramlar va tadbirlar bizni jipslashgan jamoaga aylantiradi",
+
+    // Achievements section
+    "achievements.title": "Yutuqlarimiz",
+    "achievements.award": "Yilning sotish lideri",
+    "achievements.description":
+      "So'nggi to'rt yil davomida jamoamiz farmatsevtika sohasida yetakchi o'rinlarni egallab, INSO kompaniyalar guruhida har yili 'Yilning sotish lideri' mukofotini olmoqda.",
+    "achievements.growth": "Jamoa o'sishi",
+    "achievements.growthDescription":
+      "Jamoamizning 14 dan 135 kishigacha o'sishi farmatsevtika sohasidagi faoliyatimiz muvaffaqiyati va mahsulotlarimizga bo'lgan talabning o'sib borayotganining yaqqol dalilidir.",
+    "achievements.growthChart": "Jamoa o'sishi dinamikasi",
+    "achievements.award1.title": "Sotish lideri 2022",
+    "achievements.award1.year": "INSO guruhi",
+    "achievements.award2.title": "Eng yaxshi distribyutor 2023",
+    "achievements.award2.year": "Farmatsevtika uyushmasi",
+    "achievements.award3.title": "Sifat mukammalligi 2024",
+    "achievements.award3.year": "Soha e'tirofi",
+
+    // Partners section
+    "partners.title": "Hamkorlarimiz",
+    "partners.subtitle": "Biz dunyoning yetakchi farmatsevtika ishlab chiqaruvchilari bilan hamkorlik qilamiz",
+    "partners.countries": "Biz quyidagilar bilan hamkorlik qilamiz:",
+    "partners.southKorea": "Janubiy Koreya",
+    "partners.poland": "Polsha",
+    "partners.china": "Xitoy",
+    "partners.india": "Hindiston",
+    "partners.products": "Eksklyuziv mahsulotlar",
+    "partners.productsDescription":
+      "Xorijiy va mahalliy ishlab chiqarishdan 50 dan ortiq turdagi eksklyuziv dori vositalari",
+    "partners.product": "Mahsulot",
+
+    // Infrastructure section
+    "infrastructure.title": "Infratuzilmamiz",
+    "infrastructure.subtitle": "NEUES LEBEN zamonaviy logistika infratuzilmasiga ega",
+    "infrastructure.warehouse.title": "Zamonaviy ombor",
+    "infrastructure.warehouse.description":
+      "Kompaniya GDP (Yaxshi distribyutsiya amaliyoti) standartlariga javob beradigan omborga ega.",
+    "infrastructure.warehouse.standards": "Eng yuqori sifat standartlariga muvofiqlik",
+    "infrastructure.warehouse.size": "Ombor maydoni: 10 ming kvadrat metr (10 000 m²)",
+    "infrastructure.logistics.title": "Ilg'or logistika",
+    "infrastructure.logistics.description":
+      "Transport vositalari zamonaviy sovutish qurilmalari bilan jihozlangan bo'lib, talab qilinadigan harorat rejimida mahsulotlarni xavfsiz va sifatli tashishni ta'minlaydi.",
+    "infrastructure.logistics.temperature": "Barcha bosqichlarda haroratni nazorat qilish",
+    "infrastructure.logistics.modern": "Zamonaviy avtoparkimiz",
+    "infrastructure.logistics.efficient": "Butun mamlakat bo'ylab samarali yetkazib berish",
+
+    // Coverage section
+    "coverage.title": "Qamrovimiz",
+    "coverage.subtitle": "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz",
+    "coverage.description":
+      "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz, mamlakatning barcha hududlariga dori vositalarini ishonchli yetkazib berishni ta'minlaymiz.",
+    "coverage.offices": "Mintaqaviy ofislar",
+    "coverage.officesDescription":
+      "Mamlakatning barcha hududlarida mintaqaviy menejerlar rahbarligida distribyutsiya ofislarimiz mavjud.",
+    "coverage.mapTitle": "Butun mamlakat bo'ylab distribyutsiya",
+    "coverage.mapDescription": "O'zbekiston bo'ylab sifatli dori vositalariga kirishni ta'minlash",
+    "coverage.cooperation": "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
 
     // Contact section
-    "contact.title": "Biz bilan bog'lanish",
-    "contact.description": "Savollaringiz bormi yoki qo'shimcha ma'lumot kerakmi? Jamoamiz bilan bog'laning.",
-    "contact.info.title": "Aloqa ma'lumotlari",
-    "contact.info.description": "Biz bilan quyidagi kanallar orqali bog'lanishingiz mumkin.",
-    "contact.address.title": "Manzil",
-    "contact.address.value": "Sog'liq ko'chasi 123, Tibbiyot tumani, Toshkent, O'zbekiston",
-    "contact.phone.title": "Telefon",
-    "contact.phone.value": "+998 71 123 4567",
-    "contact.email.title": "Email",
-    "contact.email.value": "info@neuesleben.com",
-    "contact.hours.title": "Ish vaqtlari",
-    "contact.hours.description": "Biz bilan qachon bog'lanishingiz mumkin.",
-    "contact.hours.weekdays": "Dushanba - Juma",
-    "contact.hours.weekdays.time": "9:00 - 18:00",
-    "contact.hours.saturday": "Shanba",
-    "contact.hours.saturday.time": "10:00 - 16:00",
-    "contact.hours.sunday": "Yakshanba",
-    "contact.hours.sunday.time": "Dam olish kuni",
-    "contact.message.title": "Bizga xabar yuboring",
-    "contact.message.description": "Quyidagi formani to'ldiring va biz sizga imkon qadar tezroq javob beramiz.",
+    "contact.title": "Biz bilan bog'laning",
+    "contact.subtitle": "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
+    "contact.form.title": "Bizga xabar yuboring",
     "contact.form.name": "Ism",
-    "contact.form.name.placeholder": "Ismingiz",
+    "contact.form.namePlaceholder": "Ismingiz",
     "contact.form.email": "Email",
-    "contact.form.email.placeholder": "Elektron pochtangiz",
+    "contact.form.emailPlaceholder": "Emailingiz",
     "contact.form.message": "Xabar",
-    "contact.form.message.placeholder": "Xabaringiz",
+    "contact.form.messagePlaceholder": "Xabaringiz",
     "contact.form.submit": "Xabar yuborish",
-
-    // Footer
-    "footer.description":
-      "Neues Leben - O'zbekiston Respublikasidagi sog'liqni saqlash sohasida axborot beruvchi, iste'molchilarni samarali va qulay davolash bo'yicha yangi tendentsiyalar haqida xabardor qilish orqali millat hayot sifatini yaxshilash.",
-    "footer.company": "Kompaniya",
-    "footer.mission": "Maqsadimiz",
-    "footer.values": "Qadriyatlarimiz",
-    "footer.team": "Jamoa",
-    "footer.careers": "Karyera",
-    "footer.services": "Xizmatlar",
-    "footer.health": "Sog'liq haqida ma'lumot",
-    "footer.wellness": "Sog'lomlashtirish dasturlari",
-    "footer.education": "Ta'lim resurslari",
-    "footer.partnerships": "Hamkorlik",
-    "footer.legal": "Huquqiy",
-    "footer.privacy": "Maxfiylik siyosati",
-    "footer.terms": "Xizmat ko'rsatish shartlari",
-    "footer.cookie": "Kuki siyosati",
-    "footer.rights": "Barcha huquqlar himoyalangan.",
+    "contact.info.title": "Aloqa ma'lumotlari",
+    "contact.info.address.title": "Manzil",
+    "contact.info.address.value": "Toshkent, O'zbekiston",
+    "contact.info.phone.title": "Telefon",
+    "contact.info.phone.value": "+998 71 123 4567",
+    "contact.info.email.title": "Email",
+    "contact.info.email.value": "info@neuesleben.com",
+    "contact.info.tagline": "Farmatsevtika sohasidagi ishonchli hamkoringiz",
   },
   ru: {
     // Navigation
     "nav.home": "Главная",
+    "nav.about": "О нас",
     "nav.mission": "Миссия",
     "nav.values": "Ценности",
-    "nav.services": "Услуги",
     "nav.team": "Команда",
+    "nav.culture": "Культура",
+    "nav.achievements": "Достижения",
+    "nav.partners": "Партнеры",
+    "nav.infrastructure": "Инфраструктура",
+    "nav.coverage": "Покрытие",
     "nav.contact": "Контакты",
 
     // Hero section
-    "hero.title": "Neues Leben",
+    "hero.tagline": "Мы верим, что здоровье — основа счастливой жизни!",
     "hero.description":
-      "Обеспечение защиты здоровья и улучшение качества жизни населения путем информирования потребителей о новых тенденциях в эффективном и доступном лечении. Мы являемся информатором в сфере здравоохранения, стремящимся улучшить качество жизни нации.",
+      "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
+    "hero.description2":
+      "На сегодняшний день направление деятельности - прямая дистрибуция лекарственных средств через собственный торговый отдел. С 2019 года компания перешла на новый уровень, заключив прямые договора с зарубежными производителями.",
     "hero.learnMore": "Узнать больше",
     "hero.contactUs": "Связаться с нами",
+    "hero.established": "Основано в 2018",
+    "hero.quality": "Качество, Своевременность, Надежное партнерство",
+
+    // About section
+    "about.title": "О компании",
+    "about.subtitle": "Ваш надежный партнер в фармацевтической индустрии",
+    "about.founded": "Основано в 2018",
+    "about.warehouse": "Склад получил наивысшую оценку соответствия стандартам качества складских помещений.",
+    "about.paragraph1":
+      "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
+    "about.paragraph2":
+      "С 2019 года компания перешла на новый уровень, заключив прямые договора с зарубежными производителями, что позволило осуществлять ввоз и промоцию лекарственных средств высокого качества. Компания 'NEUES LEBEN' располагает складом, на котором осуществляется качественное хранение лекарственных препаратов.",
+    "about.conclusion":
+      "Основными принципами нашей работы является качество продукта который мы предлагаем, своевременность доставки и надежное партнерство!",
 
     // Mission section
     "mission.title": "Наша миссия",
-    "mission.description":
-      "Обеспечение защиты здоровья и улучшение качества жизни населения страны путем информирования потребителей о новых тенденциях в эффективном и доступном лечении. Компания применяет современные подходы в своей работе и использует новейшие разработки для улучшения здоровья и благополучия пациентов.",
-    "mission.approach.title": "Современные подходы",
-    "mission.approach.description":
-      "Компания применяет современные подходы в своей работе и использует новейшие разработки для улучшения здоровья и благополучия пациентов.",
-    "mission.care.title": "Пациентоориентированная забота",
-    "mission.care.description":
-      "Мы фокусируемся на предоставлении информации, которая ставит пациентов на первое место, обеспечивая им доступ к лучшим вариантам лечения.",
-    "mission.quality.title": "Гарантия качества",
-    "mission.quality.description":
-      "Мы поддерживаем высокие стандарты во всей нашей информации, обеспечивая точность и надежность для медицинских работников и пациентов.",
+    "mission.paragraph1":
+      "Обеспечение защиты здоровья и повышение качества жизни населения страны, путем информирования потребителей о новых тенденциях по эффективному и доступному лечению.",
+    "mission.paragraph2":
+      'Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоров  "Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоровья и самочувствия пациентов.',
+    "mission.healthFocus": "Мы стремимся к улучшению качества жизни нации",
+    "mission.protection": "Защита здоровья",
+    "mission.protectionDesc": "Мы обеспечиваем доступ к качественным лекарствам",
+    "mission.community": "Фокус на сообщество",
+    "mission.communityDesc": "Мы работаем на благо общества",
+    "mission.care": "Забота о пациентах",
+    "mission.careDesc": "Мы используем современные подходы для улучшения благополучия",
 
     // Values section
     "values.title": "Наши ценности",
-    "values.description":
-      "Профессиональные стандарты и принципы, которыми руководствуется каждый сотрудник нашей компании.",
-    "values.people": "Люди",
-    "values.people.description": "Здоровые, энергичные, саморазвивающиеся и счастливые личности.",
-    "values.openness": "Открытость",
-    "values.openness.description":
-      "Искренняя способность адаптироваться и воспринимать новую информацию для взаимного развития.",
-    "values.fairness": "Справедливость",
-    "values.fairness.description": "Открытость, честность и объективность.",
-    "values.ambition": "Амбициозность",
-    "values.ambition.description": "Конкурентоспособность и усердие.",
-    "values.teamwork": "Командная работа",
-    "values.teamwork.description": "Уважение, сплоченность, дружелюбие, взаимопонимание и толерантность.",
-    "values.responsibility": "Ответственность",
-    "values.responsibility.description": "Гибкость и дисциплина.",
-    "values.improvement": "Самосовершенствование",
-    "values.improvement.description": "Профессиональный и личностный рост, занятия спортом.",
-
-    // Services section
-    "services.title": "Наши услуги",
-    "services.description":
-      "Мы предоставляем комплексную информацию и ресурсы для улучшения здоровья и качества жизни.",
-    "services.health.title": "Информация о здоровье",
-    "services.health.description": "Доступ к новейшим исследованиям и информации о тенденциях и методах лечения.",
-    "services.wellness.title": "Программы благополучия",
-    "services.wellness.description":
-      "Комплексные программы, разработанные для улучшения общего благополучия и качества жизни через целостные подходы.",
-    "services.education.title": "Образовательные ресурсы",
-    "services.education.description":
-      "Образовательные материалы и ресурсы, помогающие пациентам понять свои состояния здоровья.",
-    "services.learnMore": "Узнать больше",
+    "values.subtitle": "Принципы, которыми руководствуется наша компания",
+    "values.honesty.title": "Честность",
+    "values.honesty.description":
+      "основополагающая ценность нашей компании. Мы верим в открытость, прозрачность и правдивость во всех наших взаимоотношениях – с клиентами, партнерами, сотрудниками и обществом",
+    "values.professionalism.title": "Профессионализм",
+    "values.professionalism.description":
+      "мы постоянно развиваем свои навыки и знания, чтобы предоставлять клиентам качественные услуги и оперативно отвечать на их запросы",
+    "values.leadership.title": "Лидерство",
+    "values.leadership.description":
+      "мы фокусируемся на достижении амбициозных целей и поощряем лидерство, направленное на результат",
+    "values.aspiration.title": "Стремление",
+    "values.aspiration.description":
+      "мы стремимся к успеху в бизнесе и помогаем достигать успеха нашим клиентам и партнерам",
+    "values.support.title": "Поддержка",
+    "values.support.description":
+      "мы являемся надежным партнером и предоставляем всестороннюю поддержку для достижениястижения совместного успеха",
 
     // Team section
     "team.title": "Наша команда",
-    "team.description": "Познакомьтесь с преданными профессионалами, которые делают нашу миссию возможной.",
-    "team.viewProfile": "Просмотреть профиль",
-    "team.management": "Группа управления",
-    "team.organization": "Организационная структура",
-    "team.director": "Директор",
-    "team.medicalDirector": "Медицинский директор",
-    "team.researchDirector": "Директор по исследованиям",
-    "team.communicationsManager": "Менеджер по коммуникациям",
-    "team.financeManager": "Менеджер по финансам",
-    "team.chiefAccountant": "Главный бухгалтер",
-    "team.marketingSpecialist": "Специалист по маркетингу",
-    "team.productManager": "Менеджер по продукту",
-    "team.legalConsultant": "Юридический консультант",
+    "team.companyPrefix": "В компании",
+    "team.employeeCount": "работают более",
+    "team.employeeSuffix": "высококвалифицированных сотрудников",
+    "team.departmentsTitle": "Наши отделы:",
+    "team.departments.medical": "Команда медицинских представителей",
+    "team.departments.foreign": "Отдел внешнеэкономической деятельности",
+    "team.departments.legal": "Юридический отдел",
+    "team.departments.sales": "Отдел продаж и маркетинга",
+    "team.departments.registration": "Отдел регистрации ЛС",
+    "team.departments.hr": "HR-отдел (отдел по управлению персоналом)",
+    "team.departments.logistics": "Отдел логистики",
+    "team.departments.customs": "Команда декларантов",
+    "team.departments.admin": "Отдел АУП",
+    "team.teamSpirit":
+      "Каждый сотрудник укрепляет имидж компании как надёжного фармдистрибьютора, обеспечивая высокое качество обслуживания и профессиональный подход к работе.",
+    "team.gallery.title": "Познакомьтесь с нашей командой",
+    "team.gallery.memberDescription":
+      "Преданный профессионал с обширным опытом работы в фармацевтической отрасли. Привержен нашей миссии по улучшению здоровья и качества жизни через инновационные решения и надежные партнерские отношения.",
+
+    // Culture section
+    "culture.title": "Корпоративная культура",
+    "culture.paragraph1":
+      "Наша корпоративная культура основана на проверенных ценностях и традициях. Мы поддерживаем семейные ценности, здоровый образ жизни, развиваемся и учимся.",
+    "culture.paragraph2":
+      "Гордимся достижениями на рынке и тем, что наши сотрудники проходят стажировки за рубежом. Совместные праздники, конкурсы и современные формы общения делают нас сплочённой командой.",
+    "culture.paragraph3": "Каждый сотрудник укрепляет имидж компании как надёжного фармдистрибьютора.",
+    "culture.family.title": "Семейные ценности",
+    "culture.family.description": "Мы поддерживаем и продвигаем семейные ценности и здоровый образ жизни",
+    "culture.achievements.title": "Достижения на рынке",
+    "culture.achievements.description": "Мы гордимся нашими достижениями на фармацевтическом рынке",
+    "culture.internships.title": "Международный опыт",
+    "culture.internships.description": "Наши сотрудники проходят стажировки за рубежом для повышения квалификации",
+    "culture.events.title": "Командообразование",
+    "culture.events.description": "Совместные праздники и мероприятия делают нас сплоченной командой",
+
+    // Achievements section
+    "achievements.title": "Наши достижения",
+    "achievements.award": "Лидер года по продажам",
+    "achievements.description":
+      "На протяжении последних четырёх лет наша команда занимает лидирующие позиции в фармацевтической отрасли, ежегодно получая награду «Лидер года по продажам» в группе компаний INSO",
+    "achievements.growth": "Рост нашей команды",
+    "achievements.growthDescription":
+      "Рост нашей команды с 14 до 135 человек – наглядное подтверждение успеха нашей деятельности в фармацевтической отрасли и растущего спроса на наши продукты.",
+    "achievements.growthChart": "Динамика роста команды",
+    "achievements.award1.title": "Лидер продаж 2022",
+    "achievements.award1.year": "Группа INSO",
+    "achievements.award2.title": "Лучший дистрибьютор 2023",
+    "achievements.award2.year": "Фармацевтическая ассоциация",
+    "achievements.award3.title": "Превосходство качества 2024",
+    "achievements.award3.year": "Признание отрасли",
+
+    // Partners section
+    "partners.title": "Наши партнеры",
+    "partners.subtitle": "Мы сотрудничаем с ведущими фармацевтическими производителями по всему миру",
+    "partners.countries": "Мы сотрудничаем с:",
+    "partners.southKorea": "Южная Корея",
+    "partners.poland": "Польша",
+    "partners.china": "Китай",
+    "partners.india": "Индия",
+    "partners.products": "Эксклюзивные препараты",
+    "partners.productsDescription": "Более 50 видов эксклюзивных препаратов зарубежного и местного производства",
+    "partners.product": "Продукт",
+
+    // Infrastructure section
+    "infrastructure.title": "Инфраструктура",
+    "infrastructure.subtitle": "Компания NEUES LEBEN обладает современной логистической инфраструктурой",
+    "infrastructure.warehouse.title": "Современный склад",
+    "infrastructure.warehouse.description":
+      "В распоряжении компании имеется склад, соответствующий стандартам GDP (Good Distribution Practice).",
+    "infrastructure.warehouse.standards": "Соответствие высочайшим стандартам качества",
+    "infrastructure.warehouse.size": "Площадь склада 10 тысяч квадратных метров (10 000 м²)",
+    "infrastructure.logistics.title": "Передовая логистика",
+    "infrastructure.logistics.description":
+      "Автотранспортные средства оснащены современными холодильными установками, что обеспечивает безопасную и качественную перевозку продукции с соблюдением требуемого температурного режима.",
+    "infrastructure.logistics.temperature": "Контроль температурного режима на всех этапах",
+    "infrastructure.logistics.modern": "Современный автопарк",
+    "infrastructure.logistics.efficient": "Эффективная доставка по всей стране",
+
+    // Coverage section
+    "coverage.title": "Наше покрытие",
+    "coverage.subtitle": "Мы осуществляем продажи по всему Узбекистану",
+    "coverage.description":
+      "Мы осуществляем продажи по всему Узбекистану, обеспечивая надежные поставки лекарственных средств во все регионы страны.",
+    "coverage.offices": "Региональные офисы",
+    "coverage.officesDescription":
+      "Во всех регионах страны у нас действуют дистрибьюторские офисы под руководством региональных менеджеров.",
+    "coverage.mapTitle": "Общенациональная дистрибуция",
+    "coverage.mapDescription": "Обеспечение доступа к качественным лекарствам по всему Узбекистану",
+    "coverage.cooperation": "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
 
     // Contact section
     "contact.title": "Связаться с нами",
-    "contact.description": "Есть вопросы или нужна дополнительная информация? Свяжитесь с нашей командой.",
-    "contact.info.title": "Контактная информация",
-    "contact.info.description": "Связаться с нами можно через любой из этих каналов.",
-    "contact.address.title": "Адрес",
-    "contact.address.value": "Проспект Здоровья 123, Медицинский район, Ташкент, Узбекистан",
-    "contact.phone.title": "Телефон",
-    "contact.phone.value": "+998 71 123 4567",
-    "contact.email.title": "Email",
-    "contact.email.value": "info@neuesleben.com",
-    "contact.hours.title": "Часы работы",
-    "contact.hours.description": "Когда вы можете с нами связаться.",
-    "contact.hours.weekdays": "Понедельник - Пятница",
-    "contact.hours.weekdays.time": "9:00 - 18:00",
-    "contact.hours.saturday": "Суббота",
-    "contact.hours.saturday.time": "10:00 - 16:00",
-    "contact.hours.sunday": "Воскресенье",
-    "contact.hours.sunday.time": "Выходной",
-    "contact.message.title": "Отправьте нам сообщение",
-    "contact.message.description": "Заполните форму ниже, и мы свяжемся с вами как можно скорее.",
+    "contact.subtitle": "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
+    "contact.form.title": "Отправьте нам сообщение",
     "contact.form.name": "Имя",
-    "contact.form.name.placeholder": "Ваше имя",
+    "contact.form.namePlaceholder": "Ваше имя",
     "contact.form.email": "Email",
-    "contact.form.email.placeholder": "Ваш email",
+    "contact.form.emailPlaceholder": "Ваш email",
     "contact.form.message": "Сообщение",
-    "contact.form.message.placeholder": "Ваше сообщение",
+    "contact.form.messagePlaceholder": "Ваше сообщение",
     "contact.form.submit": "Отправить сообщение",
-
-    // Footer
-    "footer.description":
-      "Neues Leben - информатор в сфере здравоохранения в Республике Узбекистан, информирующий потребителей о новых тенденциях в эффективном и доступном лечении для повышения качества жизни нации.",
-    "footer.company": "Компания",
-    "footer.mission": "Миссия",
-    "footer.values": "Ценности",
-    "footer.team": "Команда",
-    "footer.careers": "Карьера",
-    "footer.services": "Услуги",
-    "footer.health": "Информация о здоровье",
-    "footer.wellness": "Программы благополучия",
-    "footer.education": "Образовательные ресурсы",
-    "footer.partnerships": "Партнерства",
-    "footer.legal": "Правовая информация",
-    "footer.privacy": "Политика конфиденциальности",
-    "footer.terms": "Условия использования",
-    "footer.cookie": "Политика использования файлов cookie",
-    "footer.rights": "Все права защищены.",
+    "contact.info.title": "Контактная информация",
+    "contact.info.address.title": "Адрес",
+    "contact.info.address.value": "Ташкент, Узбекистан",
+    "contact.info.phone.title": "Телефон",
+    "contact.info.phone.value": "+998 71 123 4567",
+    "contact.info.email.title": "Email",
+    "contact.info.email.value": "info@neuesleben.com",
+    "contact.info.tagline": "Ваш надежный партнер в фармацевтической индустрии",
   },
 }
 
@@ -409,7 +578,7 @@ interface LanguageProviderProps {
 // Create the provider component
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   // Initialize the language state from localStorage if available
-  const [language, setLanguageState] = useState<Language>("en")
+  const [language, setLanguageState] = useState<Language>("ru")
 
   // Effect to load language preference from localStorage on mount
   useEffect(() => {
