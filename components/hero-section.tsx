@@ -47,7 +47,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl font-medium text-primary-700 dark:text-primary-300 max-w-3xl"
+            className="text-xl sm:text-2xl md:text-3xl font-medium text-primary-700 dark:text-primary-300 max-w-3xl whitespace-nowrap  text-ellipsis"
           >
             {t("hero.tagline")}
           </motion.p>

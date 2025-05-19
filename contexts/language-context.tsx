@@ -49,9 +49,9 @@ const translations = {
     "about.warehouse":
       "The warehouse received the highest rating for compliance with quality standards for warehouse facilities.",
     "about.paragraph1":
-      "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. The company was founded in 2018, starting its history with wholesale sales of medicines throughout the Republic of Uzbekistan.",
+      "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
     "about.paragraph2":
-      "Since 2019, the company has moved to a new level by signing direct contracts with foreign manufacturers, which allowed us to import and promote high-quality medicines. NEUES LEBEN has a warehouse where quality storage of medicines is carried out.",
+      "С 2019 года компания перешла на новый уровень, заключив прямые договора с зарубежными производителями, что позволило осуществлять ввоз и промоцию лекарственных средств высокого качества. Компания 'NEUES LEBEN' располагает складом, на котором осуществляется качественное хранение лекарственных препаратов.",
     "about.conclusion":
       "The main principles of our work are product quality, timely delivery, and reliable partnership!",
 
@@ -107,6 +107,8 @@ const translations = {
     "team.gallery.title": "Meet Our Team",
     "team.gallery.memberDescription":
       "A dedicated professional with extensive experience in the pharmaceutical industry. Committed to our mission of improving health and quality of life through innovative solutions and reliable partnerships.",
+    "team.gallery.showMore": "Show More",
+    "team.gallery.showLess": "Show Less",
 
     // Culture section
     "culture.title": "Corporate Culture",
@@ -231,7 +233,7 @@ const translations = {
     "about.warehouse":
       "Ombor ombor binolarining sifat standartlariga muvofiqligining eng yuqori baholanishiga erishdi.",
     "about.paragraph1":
-      "'NEUES LEBEN' MChJ – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
+      "ООО 'NEUES LEBEN' – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
     "about.paragraph2":
       "2019 yildan boshlab kompaniya xorijiy ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri shartnomalar tuzib, yangi darajaga ko'tarildi, bu esa yuqori sifatli dori vositalarini import qilish va targ'ib qilish imkonini berdi. 'NEUES LEBEN' kompaniyasi dori vositalarini sifatli saqlash amalga oshiriladigan omborga ega.",
     "about.conclusion":
@@ -290,6 +292,8 @@ const translations = {
     "team.gallery.title": "Jamoamiz bilan tanishing",
     "team.gallery.memberDescription":
       "Farmatsevtika sohasida katta tajribaga ega bo'lgan fidoyi mutaxassis. Innovatsion yechimlar va ishonchli hamkorlik orqali sog'liqni saqlash va hayot sifatini yaxshilash missiyamizga sodiq.",
+    "team.gallery.showMore": "Ko'proq ko'rsatish",
+    "team.gallery.showLess": "Kamroq ko'rsatish",
 
     // Culture section
     "culture.title": "Korporativ madaniyat",
@@ -314,7 +318,7 @@ const translations = {
     "achievements.title": "Yutuqlarimiz",
     "achievements.award": "Yilning sotish lideri",
     "achievements.description":
-      "So'nggi to'rt yil davomida jamoamiz farmatsevtika sohasida yetakchi o'rinlarni egallab, INSO kompaniyalar guruhida har yili 'Yilning sotish lideri' mukofotini olmoqda.",
+      "So'nggi to'rt yil davomida jamoamiz farmatsevtika sohasida yetakchi o'rinlarni egallab, INSO kompaniyalari guruhida har yili 'Yilning sotish lideri' mukofotini olmoqda.",
     "achievements.growth": "Jamoa o'sishi",
     "achievements.growthDescription":
       "Jamoamizning 14 dan 135 kishigacha o'sishi farmatsevtika sohasidagi faoliyatimiz muvaffaqiyati va mahsulotlarimizga bo'lgan talabning o'sib borayotganining yaqqol dalilidir.",
@@ -428,7 +432,7 @@ const translations = {
     "mission.paragraph1":
       "Обеспечение защиты здоровья и повышение качества жизни населения страны, путем информирования потребителей о новых тенденциях по эффективному и доступному лечению.",
     "mission.paragraph2":
-      'Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоров  "Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоровья и самочувствия пациентов.',
+      "Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоровья и самочувствия пациентов.",
     "mission.healthFocus": "Мы стремимся к улучшению качества жизни нации",
     "mission.protection": "Защита здоровья",
     "mission.protectionDesc": "Мы обеспечиваем доступ к качественным лекарствам",
@@ -476,6 +480,8 @@ const translations = {
     "team.gallery.title": "Познакомьтесь с нашей командой",
     "team.gallery.memberDescription":
       "Преданный профессионал с обширным опытом работы в фармацевтической отрасли. Привержен нашей миссии по улучшению здоровья и качества жизни через инновационные решения и надежные партнерские отношения.",
+    "team.gallery.showMore": "Показать больше",
+    "team.gallery.showLess": "Показать меньше",
 
     // Culture section
     "culture.title": "Корпоративная культура",
@@ -497,7 +503,7 @@ const translations = {
     "achievements.title": "Наши достижения",
     "achievements.award": "Лидер года по продажам",
     "achievements.description":
-      "На протяжении последних четырёх лет наша команда занимает лидирующие позиции в фармацевтической отрасли, ежегодно получая награду «Лидер года по продажам» в группе компаний INSO",
+      "На протяжении последних четырех лет наша команда занимает лидирующие позиции по продажам в фармацевтической отрасли в группе холдинга ООО «Inso Farm Deluxe», ежегодно получая награду «Лидер года по продажам».",
     "achievements.growth": "Рост нашей команды",
     "achievements.growthDescription":
       "Рост нашей команды с 14 до 135 человек – наглядное подтверждение успеха нашей деятельности в фармацевтической отрасли и растущего спроса на наши продукты.",

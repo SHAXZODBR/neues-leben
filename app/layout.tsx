@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Neues Leben | Фармацевтическая дистрибьюторская компания",
   description:
     "Дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана.",
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({

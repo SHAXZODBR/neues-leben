@@ -39,7 +39,7 @@ export default function LanguageSelector() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className={currentLanguage.code === lang.code ? "bg-muted" : ""}
+            className={language === lang.code ? "bg-muted" : ""}
           >
             {lang.nativeName}
           </DropdownMenuItem>

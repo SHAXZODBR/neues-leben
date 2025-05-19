@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/contexts/language-context"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
+import { useLanguage } from "@/contexts/language-context";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   Users,
   UserPlus,
@@ -13,27 +13,51 @@ import {
   Truck,
   FileCheck,
   Building,
-} from "lucide-react"
-import TeamGallery from "./team-gallery"
+} from "lucide-react";
+import TeamGallery from "./team-gallery";
 
 export default function TeamSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   const departments = [
-    { name: t("team.departments.medical"), icon: <Users className="h-6 w-6" /> },
-    { name: t("team.departments.foreign"), icon: <Briefcase className="h-6 w-6" /> },
-    { name: t("team.departments.legal"), icon: <FileText className="h-6 w-6" /> },
-    { name: t("team.departments.sales"), icon: <ChartBar className="h-6 w-6" /> },
-    { name: t("team.departments.registration"), icon: <FileCheck className="h-6 w-6" /> },
+    {
+      name: t("team.departments.medical"),
+      icon: <Users className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.foreign"),
+      icon: <Briefcase className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.legal"),
+      icon: <FileText className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.sales"),
+      icon: <ChartBar className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.registration"),
+      icon: <FileCheck className="h-6 w-6" />,
+    },
     { name: t("team.departments.hr"), icon: <UserCog className="h-6 w-6" /> },
-    { name: t("team.departments.logistics"), icon: <Truck className="h-6 w-6" /> },
-    { name: t("team.departments.customs"), icon: <UserPlus className="h-6 w-6" /> },
-    { name: t("team.departments.admin"), icon: <Building className="h-6 w-6" /> },
-  ]
+    {
+      name: t("team.departments.logistics"),
+      icon: <Truck className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.customs"),
+      icon: <UserPlus className="h-6 w-6" />,
+    },
+    {
+      name: t("team.departments.admin"),
+      icon: <Building className="h-6 w-6" />,
+    },
+  ];
 
   return (
     <section id="team" className="w-full py-20">
@@ -53,11 +77,15 @@ export default function TeamSection() {
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.companyPrefix")}
               </span>
-              <span className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-400">NEUES LEBEN</span>
+              <span className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
+                NEUES LEBEN
+              </span>
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.employeeCount")}
               </span>
-              <span className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">135</span>
+              <span className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">
+                135
+              </span>
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.employeeSuffix")}
               </span>
@@ -86,7 +114,9 @@ export default function TeamSection() {
                       <div className="p-1 sm:p-2 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-1 sm:mb-2">
                         {dept.icon}
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 line-clamp-2">{dept.name}</p>
+                      <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
+                        {dept.name}
+                      </p>
                     </motion.div>
                   ))}
                 </div>
@@ -115,14 +145,18 @@ export default function TeamSection() {
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                   >
                     <div className="h-2 w-2 bg-primary-600 dark:bg-primary-400 rounded-full"></div>
-                    <span className="text-base sm:text-lg text-gray-700 dark:text-gray-300">{department.name}</span>
+                    <span className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
+                      {department.name}
+                    </span>
                   </motion.li>
                 ))}
               </ul>
             </div>
 
             <div className="bg-primary-50 dark:bg-primary-900/30 p-6 rounded-xl shadow-md border-l-4 border-primary">
-              <p className="text-lg font-medium text-primary-800 dark:text-primary-300">{t("team.teamSpirit")}</p>
+              <p className="text-lg font-medium text-primary-800 dark:text-primary-300">
+                {t("team.teamSpirit")}
+              </p>
             </div>
           </motion.div>
         </div>
@@ -137,5 +171,5 @@ export default function TeamSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

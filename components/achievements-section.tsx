@@ -110,22 +110,27 @@ export default function AchievementsSection() {
 
             <div className="absolute bottom-20 left-6 right-6 h-px bg-gray-200 dark:bg-gray-700"></div>
 
-            <div className="absolute bottom-20 left-0 right-0 flex justify-between px-6">
+            <div className="absolute bottom-20 left-0 right-0 flex justify-between px-6 items-end">
               {employees.map((count, index) => {
                 const height = (count / 135) * 250
                 return (
-                  <motion.div
-                    key={index}
-                    className="w-8 bg-primary-600 dark:bg-primary-500 rounded-t-sm relative group"
-                    style={{ height: `${height}px` }}
-                    initial={{ height: 0 }}
-                    animate={inView ? { height: `${height}px` } : {}}
-                    transition={{ duration: 0.8, delay: 0.1 * index }}
-                  >
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-primary-700 text-white px-2 py-1 rounded text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      {count}
-                    </div>
-                  </motion.div>
+                  <div key={index} className="flex items-end justify-center w-8">
+                    <motion.div
+                      className="w-full bg-primary-600 dark:bg-primary-500 rounded-t-sm relative group"
+                      style={{ height: `${height}px` }}
+                      initial={{ height: 0 }}
+                      animate={inView ? { height: `${height}px` } : {}}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.1 * index,
+                        ease: "easeOut",
+                      }}
+                    >
+                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-primary-700 text-white px-2 py-1 rounded text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        {count}
+                      </div>
+                    </motion.div>
+                  </div>
                 )
               })}
             </div>

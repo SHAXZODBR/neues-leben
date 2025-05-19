@@ -62,17 +62,12 @@ export default function InfrastructureSection() {
             </div>
 
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700 flex items-center justify-center">
-                <div className="relative w-3/4 h-3/4">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Warehouse className="h-32 w-32 text-primary-600 dark:text-primary-400" />
-                  </div>
-                  <div className="absolute inset-0 flex items-end justify-center pb-8">
-                    <div className="text-center">
-                      <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200">GDP</h4>
-                      <p className="text-gray-600 dark:text-gray-400">{t("infrastructure.warehouse.standards")}</p>
-                    </div>
-                  </div>
+              <img src="/images/warehouse.png" alt="Modern Warehouse" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div className="bg-white/90 dark:bg-gray-800/90 p-4 rounded-lg shadow-lg max-w-xs text-center">
+                  <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                    {t("infrastructure.warehouse.standards")}
+                  </h4>
                 </div>
               </div>
             </div>

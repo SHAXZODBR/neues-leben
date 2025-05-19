@@ -1,132 +1,268 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { useLanguage } from "@/contexts/language-context"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/language-context";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type TeamMember = {
-  id: number
-  name: string
+  id: number;
+  name: string;
   position: {
-    en: string
-    uz: string
-    ru: string
-  }
-  image: string
-}
+    en: string;
+    uz: string;
+    ru: string;
+  };
+  image: string;
+};
 
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Alex Johnson",
+    name: "Ахтамов Озот Азимбоевич ",
     position: {
       en: "CEO",
       uz: "Bosh direktor",
-      ru: "Генеральный директор",
+      ru: "Директор",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Ахтамов Озот Азимбоевич  Директор.jpg",
   },
   {
     id: 2,
-    name: "Maria Rodriguez",
+    name: "Равшанов Зафар Зойир угли",
     position: {
-      en: "Medical Director",
-      uz: "Tibbiyot direktori",
-      ru: "Медицинский директор",
+      en: "Chief Accountant",
+      uz: "Bosh hisobchi",
+      ru: "Гл. Бухгалтер",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Равшанов Зафар Зойир угли  Гл. Бухгалтер.jpg",
   },
   {
     id: 3,
-    name: "David Kim",
+    name: "Шатемирова Дилфуза Каюмовна",
     position: {
-      en: "Head of Sales",
-      uz: "Sotish bo'limi boshlig'i",
-      ru: "Руководитель отдела продаж",
+      en: "Quality Control Manager",
+      uz: "Sifat nazorati menejeri",
+      ru: "менеджер по контролю качества",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Шатемирова Дилфуза Каюмовна  менеджер по контролю кач.jpg",
   },
   {
     id: 4,
-    name: "Elena Petrova",
+    name: "Мавланов Самад Хайитбоевич  ",
     position: {
-      en: "Marketing Manager",
-      uz: "Marketing menejeri",
-      ru: "Менеджер по маркетингу",
+      en: "Legal Consultant",
+      uz: "Huquqiy maslahatchi",
+      ru: "юрист конкусльтант",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Мавланов Самад Хайитбоевич  юристконкусльт.jpg",
   },
   {
     id: 5,
-    name: "Akmal Karimov",
+    name: "Умаров Зафар Рашидович",
     position: {
-      en: "Logistics Director",
-      uz: "Logistika direktori",
-      ru: "Директор по логистике",
+      en: "Head of Foreign Economic Activity",
+      uz: "Tashqi iqtisodiy faoliyat bo'limi boshlig'i",
+      ru: "Начальник отдела ВЭД",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Умаров Зафар Рашидович  Начальник отдела ВЭД.jpg",
   },
   {
     id: 6,
-    name: "Sarah Wilson",
+    name: "Якубходжаев Саидкамол Саидакбарович",
     position: {
-      en: "HR Manager",
-      uz: "HR menejeri",
-      ru: "HR менеджер",
+      en: "Warehouse Manager",
+      uz: "Ombor mudiri",
+      ru: "Зав. склада",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image: "/Team/Якубходжаев Саидкамол Саидакбарович  Зав. склада.jpg",
   },
   {
     id: 7,
-    name: "Timur Aliyev",
+    name: "Полвонова Парвина Рахматуллаевна  ",
     position: {
-      en: "Regional Manager",
-      uz: "Mintaqaviy menejer",
-      ru: "Региональный менеджер",
+      en: "Regional Manager for Tashkent",
+      uz: "Toshkent shahri bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по г. Ташкента",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image:
+      "/Team/Полвонова Парвина Рахматуллаевна  Региональный менеджер по г. Ташкента.jpg",
   },
   {
     id: 8,
-    name: "Olga Ivanova",
+    name: "Сайдуллаев Абдулхай Абдишукир угли  ",
     position: {
-      en: "Quality Control Specialist",
-      uz: "Sifat nazorati mutaxassisi",
-      ru: "Специалист по контролю качества",
+      en: "Pharmacovigilance Specialist",
+      uz: "Farmakonazor bo'yicha mutaxassis",
+      ru: "Специалист по фармаконадзора",
     },
-    image: "/placeholder.svg?height=400&width=300",
+    image:
+      "/Team/Сайдуллаев Абдулхай Абдишукир угли  Специалист по фармаконадзора.jpg",
   },
-]
+  {
+    id: 9,
+    name: "Ачилов Толмас Тоштемирович  ",
+    position: {
+      en: "Regional Manager for Jizzakh Region",
+      uz: "Jizzax viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Джизакской области",
+    },
+    image:
+      "/Team/Ачилов Толмас Тоштемирович  Региональный менеджер по Джизакской области.jpg",
+  },
+  {
+    id: 10,
+    name: "Санақулова Малика Умаровна  ",
+    position: {
+      en: "Regional Manager for Navoi Region",
+      uz: "Navoiy viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Навоийской области",
+    },
+    image:
+      "/Team/Санақулова Малика Умаровна  Региональный менеджер по Навоийской области.jpg",
+  },
+  {
+    id: 11,
+    name: "Юлдошева Гулмира Жонимкуловна  ",
+    position: {
+      en: "Regional Manager for Kashkadarya Region",
+      uz: "Qashqadaryo viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Кашкадарьинской области",
+    },
+    image:
+      "/Team/Юлдошева Гулмира Жонимкуловна  Региональный менеджер по Кашкадарьинской области.jpg",
+  },
+  {
+    id: 12,
+    name: "Абдулазизова Нозима Машрабовна  ",
+    position: {
+      en: "Regional Manager for Namangan Region",
+      uz: "Namangan viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Наманганской области",
+    },
+    image: "/Team/Абдулазизова Нозима Машрабовна.jpg",
+  },
+  {
+    id: 13,
+    name: "Уразалиев Орзубек Данабой ўғли  ",
+    position: {
+      en: "Regional Manager for Samarkand Region",
+      uz: "Samarqand viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Самаркандской области",
+    },
+    image:
+      "/Team/Уразалиев Орзубек Данабой ўғли  Региональный менеджер по Самаркандской области.jpg",
+  },
+  {
+    id: 14,
+    name: "Алибаев Камолиддин Абдузокирович  ",
+    position: {
+      en: "HDM",
+      uz: "HDM",
+      ru: "HDM",
+    },
+    image: "/Team/Алибаев Камолиддин Абдузокирович  HDM.jpg",
+  },
+  {
+    id: 15,
+    name: "Шодманов Бунёд Хамдамович    ",
+    position: {
+      en: "Regional Manager for Surkhandarya Region",
+      uz: "Surxondaryo viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Сурхандарьинской области",
+    },
+    image:
+      "/Team/Шодманов Бунёд Хамдамович  Региональный менеджер по Сурхандарьинской области.jpg",
+  },
+  {
+    id: 16,
+    name: "Хожимуродов Акмал Абдумаликович    ",
+    position: {
+      en: "Regional Manager for Tashkent Region",
+      uz: "Toshkent viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Тошкентской области",
+    },
+    image:
+      "/Team/Хожимуродов Акмал Абдумаликович  Региональный менеджер по Тошкентской области.jpg",
+  },
+  {
+    id: 17,
+    name: "Абдурахмонов Акмалжон Абдуллажонович     ",
+    position: {
+      en: "Regional Manager for Fergana and Andijan Regions",
+      uz: "Farg'ona va Andijon viloyatlari bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Ферганской и Андижанской области",
+    },
+    image: "/Team/Абдурахмонов Акмалжон Абдуллажонович .jpg",
+  },
+  {
+    id: 18,
+    name: "Курбонова Мухтабар Рахмжоновна      ",
+    position: {
+      en: "Assistant to Chief Accountant",
+      uz: "Bosh hisobchining yordamchisi",
+      ru: "помощник гл.бухгалтера",
+    },
+    image: "/Team/Курбонова Мухтабар Рахмжоновна  помощник гл.бухгалтера.jpg",
+  },
+  {
+    id: 19,
+    name: "Махкамова Умида Закировна    ",
+    position: {
+      en: "Assistant to Warehouse Manager",
+      uz: "Ombor mudirining yordamchisi",
+      ru: "помощник зав.склада ",
+    },
+    image: "/Team/Махкамова Умида Закировна  помощник зав.склада.jpg",
+  },
+];
 
 export default function TeamGallery() {
-  const { language, t } = useLanguage()
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+  const { language, t } = useLanguage();
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  // Number of team members to show initially
+  const initialDisplayCount = 8;
+
+  // Calculate which members to display based on showAll state
+  const displayedMembers = showAll
+    ? teamMembers
+    : teamMembers.slice(0, initialDisplayCount);
 
   const handleOpenModal = (member: TeamMember) => {
-    setSelectedMember(member)
-  }
+    setSelectedMember(member);
+  };
 
   const handleCloseModal = () => {
-    setSelectedMember(null)
-  }
+    setSelectedMember(null);
+  };
 
   const handlePrevious = () => {
-    if (!selectedMember) return
-    const currentIndex = teamMembers.findIndex((member) => member.id === selectedMember.id)
-    const previousIndex = (currentIndex - 1 + teamMembers.length) % teamMembers.length
-    setSelectedMember(teamMembers[previousIndex])
-  }
+    if (!selectedMember) return;
+    const currentIndex = teamMembers.findIndex(
+      (member) => member.id === selectedMember.id
+    );
+    const previousIndex =
+      (currentIndex - 1 + teamMembers.length) % teamMembers.length;
+    setSelectedMember(teamMembers[previousIndex]);
+  };
 
   const handleNext = () => {
-    if (!selectedMember) return
-    const currentIndex = teamMembers.findIndex((member) => member.id === selectedMember.id)
-    const nextIndex = (currentIndex + 1) % teamMembers.length
-    setSelectedMember(teamMembers[nextIndex])
-  }
+    if (!selectedMember) return;
+    const currentIndex = teamMembers.findIndex(
+      (member) => member.id === selectedMember.id
+    );
+    const nextIndex = (currentIndex + 1) % teamMembers.length;
+    setSelectedMember(teamMembers[nextIndex]);
+  };
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
 
   return (
     <div className="py-8">
@@ -135,7 +271,7 @@ export default function TeamGallery() {
       </h3>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {teamMembers.map((member) => (
+        {displayedMembers.map((member) => (
           <motion.div
             key={member.id}
             className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-800"
@@ -143,16 +279,25 @@ export default function TeamGallery() {
             onClick={() => handleOpenModal(member)}
           >
             <div className="aspect-[3/4] relative">
-              <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+              <Image
+                src={member.image || "/placeholder.svg"}
+                alt={member.name}
+                fill
+                className="object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <div className="text-white">
                   <h4 className="font-bold">{member.name}</h4>
-                  <p className="text-sm text-white/90">{member.position[language as keyof typeof member.position]}</p>
+                  <p className="text-sm text-white/90">
+                    {member.position[language as keyof typeof member.position]}
+                  </p>
                 </div>
               </div>
             </div>
             <div className="p-3 text-center">
-              <h4 className="font-semibold text-gray-800 dark:text-gray-200">{member.name}</h4>
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200">
+                {member.name}
+              </h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 {member.position[language as keyof typeof member.position]}
               </p>
@@ -161,7 +306,18 @@ export default function TeamGallery() {
         ))}
       </div>
 
-      <Dialog open={!!selectedMember} onOpenChange={(open) => !open && handleCloseModal()}>
+      {teamMembers.length > initialDisplayCount && (
+        <div className="mt-8 flex justify-center">
+          <Button onClick={toggleShowAll} variant="outline" className="px-8">
+            {showAll ? t("team.gallery.showLess") : t("team.gallery.showMore")}
+          </Button>
+        </div>
+      )}
+
+      <Dialog
+        open={!!selectedMember}
+        onOpenChange={(open) => !open && handleCloseModal()}
+      >
         <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white dark:bg-gray-900">
           <div className="relative">
             <Button
@@ -188,11 +344,19 @@ export default function TeamGallery() {
               <div className="p-6 w-full md:w-1/2 flex flex-col justify-center">
                 {selectedMember && (
                   <>
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">{selectedMember.name}</h3>
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                      {selectedMember.name}
+                    </h3>
                     <p className="text-lg text-primary-600 dark:text-primary-400 mb-4">
-                      {selectedMember.position[language as keyof typeof selectedMember.position]}
+                      {
+                        selectedMember.position[
+                          language as keyof typeof selectedMember.position
+                        ]
+                      }
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">{t("team.gallery.memberDescription")}</p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {t("team.gallery.memberDescription")}
+                    </p>
                   </>
                 )}
               </div>
@@ -223,5 +387,5 @@ export default function TeamGallery() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
