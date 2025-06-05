@@ -64,18 +64,20 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-14 sm:h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <button onClick={scrollToTop} className="flex items-center gap-2">
             <Logo className="h-6 w-6 sm:h-8 sm:w-8" />
-            <span className="font-josefin-sans text-base sm:text-xl font-semibold tracking-tight">NEUES LEBEN</span>
+            <span className="font-josefin-sans text-sm sm:text-base lg:text-xl font-semibold tracking-tight">
+              NEUES LEBEN
+            </span>
           </button>
         </div>
 
-        <nav className="hidden md:flex items-center gap-2 lg:gap-4 overflow-x-auto">
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-4">
           <button
             onClick={scrollToTop}
-            className="text-xs lg:text-sm whitespace-nowrap font-medium transition-colors hover:text-primary"
+            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
           >
             {t("nav.home")}
           </button>
@@ -83,25 +85,27 @@ export default function Navbar() {
             <button
               key={item.key}
               onClick={() => scrollToSection(item.id)}
-              className="text-xs lg:text-sm whitespace-nowrap font-medium transition-colors hover:text-primary"
+              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
             >
               {t(item.key)}
             </button>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-4">
-          <ThemeToggle />
-          <LanguageSelector />
+        <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSelector />
+          </div>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
+              <Button variant="outline" size="icon" className="lg:hidden h-8 w-8">
+                <Menu className="h-4 w-4" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="overflow-y-auto">
+            <SheetContent side="right" className="overflow-y-auto w-[280px] sm:w-[350px]">
               <div className="flex flex-col gap-6 pt-6">
                 <button
                   className="text-sm font-medium transition-colors hover:text-primary text-left"
@@ -118,7 +122,7 @@ export default function Navbar() {
                     {t(item.key)}
                   </button>
                 ))}
-                <div className="flex items-center gap-4 pt-2">
+                <div className="flex items-center gap-4 pt-4 sm:hidden">
                   <ThemeToggle />
                   <LanguageSelector />
                 </div>

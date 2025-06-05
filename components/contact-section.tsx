@@ -92,14 +92,20 @@ export default function ContactSection() {
                   <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-medium text-gray-800 dark:text-gray-200">{t("contact.info.address.title")}</h3>
-                    <p className="text-gray-600 dark:text-gray-400">{t("contact.info.address.value")}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      100047, Республика Узбекистан г.Ташкент, Яшнабадский район, Ахангаранское шоссе, ул. Паркентская №
+                      333
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-medium text-gray-800 dark:text-gray-200">{t("contact.info.phone.title")}</h3>
-                    <p className="text-gray-600 dark:text-gray-400">{t("contact.info.phone.value")}</p>
+                    <div className="space-y-1">
+                      <p className="text-gray-600 dark:text-gray-400">+998 90 903 03 31</p>
+                      <p className="text-gray-600 dark:text-gray-400">+998 97 769 64 80</p>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">

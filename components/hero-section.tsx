@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center gap-4 mb-6"
           >
             <Logo size="large" className="w-16 h-16 sm:w-24 sm:h-24" />
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tighter text-gray-700 dark:text-gray-200">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter text-gray-700 dark:text-gray-200 text-center sm:text-left">
               NEUES LEBEN
             </h1>
           </motion.div>
@@ -47,7 +47,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl font-medium text-primary-700 dark:text-primary-300 max-w-3xl whitespace-nowrap  text-ellipsis"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary-700 dark:text-primary-300 max-w-4xl text-center leading-relaxed"
           >
             {t("hero.tagline")}
           </motion.p>

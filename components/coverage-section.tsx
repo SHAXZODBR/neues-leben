@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts/language-context"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { MapPin, Building, Globe } from "lucide-react"
+import { MapPin, Building2, Users, Truck } from "lucide-react"
 
 export default function CoverageSection() {
   const { t } = useLanguage()
@@ -12,9 +12,9 @@ export default function CoverageSection() {
     threshold: 0.1,
   })
 
-  // Regions of Uzbekistan
   const regions = [
-    "Tashkent",
+    "Tashkent City",
+    "Tashkent Region",
     "Samarkand",
     "Bukhara",
     "Andijan",
@@ -22,15 +22,14 @@ export default function CoverageSection() {
     "Namangan",
     "Kashkadarya",
     "Surkhandarya",
-    "Khorezm",
-    "Navoi",
     "Jizzakh",
-    "Syrdarya",
+    "Navoi",
+    "Khorezm",
     "Karakalpakstan",
   ]
 
   return (
-    <section id="coverage" className="w-full py-20 bg-primary-900 text-white">
+    <section id="coverage" className="w-full py-20">
       <div className="container px-4 md:px-6">
         <motion.div
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
@@ -40,88 +39,140 @@ export default function CoverageSection() {
           ref={ref}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">{t("coverage.title")}</h2>
-            <p className="max-w-[900px] text-white/80 md:text-xl/relaxed">{t("coverage.subtitle")}</p>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
+              {t("coverage.title")}
+            </h2>
+            <p className="text-xl text-gray-500 dark:text-gray-400">{t("coverage.subtitle")}</p>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <motion.div
             className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Building className="h-8 w-8" />
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+              <h3 className="text-2xl font-bold text-primary-800 dark:text-primary-400 mb-4 flex items-center gap-3">
+                <Building2 className="h-8 w-8" />
                 {t("coverage.offices")}
               </h3>
-              <p className="text-xl text-white/90 mb-8">{t("coverage.officesDescription")}</p>
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                {t("coverage.officesDescription")}
+              </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {regions.map((region, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center gap-2 bg-white/20 rounded-lg p-3 backdrop-blur-sm hover:bg-white/30 transition-colors"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    className="bg-primary-50 dark:bg-primary-900/30 p-3 rounded-lg text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
                   >
-                    <MapPin className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-white text-sm">{region}</span>
+                    <MapPin className="h-4 w-4 text-primary-600 dark:text-primary-400 mx-auto mb-1" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{region}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-md border-l-4 border-primary-400">
-              <p className="text-lg font-medium text-white">{t("coverage.cooperation")}</p>
+            <div className="bg-primary-50 dark:bg-primary-900/30 p-6 rounded-xl shadow-md border-l-4 border-primary">
+              <p className="text-lg font-medium text-primary-800 dark:text-primary-300">{t("coverage.cooperation")}</p>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            className="relative h-[500px] rounded-xl overflow-hidden shadow-lg"
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-800 to-primary-950 flex items-center justify-center">
-                <div className="relative w-full max-w-md">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Globe className="h-64 w-64 text-primary-700/30" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700 flex items-center justify-center">
+              <div className="relative w-full h-full p-8">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-80 h-80 border-4 border-primary-500/30 rounded-full"></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-60 h-60 border-4 border-primary-500/50 rounded-full"></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-40 h-40 border-4 border-primary-500/70 rounded-full"></div>
+                </div>
+
+                {/* Central hub */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg">
+                    <Building2 className="h-12 w-12 text-primary-600 dark:text-primary-400" />
                   </div>
-                  <div className="relative z-10 p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg">
-                    <h3 className="text-2xl font-bold text-white mb-4">{t("coverage.mapTitle")}</h3>
-                    <p className="text-white/90">{t("coverage.mapDescription")}</p>
+                </div>
 
-                    <div className="mt-8 grid grid-cols-1 gap-4">
-                      <div className="flex items-center gap-3 bg-white/20 p-3 rounded-lg">
-                        <div className="h-8 w-8 rounded-full bg-primary-400 flex items-center justify-center">
-                          <MapPin className="h-4 w-4 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-white">Tashkent HQ</h4>
-                          <p className="text-sm text-white/80">Main Office</p>
-                        </div>
-                      </div>
+                {/* Distribution points */}
+                <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+                    <Truck className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                  </div>
+                </div>
+                <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+                    <Truck className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                  </div>
+                </div>
+                <div className="absolute left-16 top-1/2 transform -translate-y-1/2">
+                  <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+                    <Truck className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                  </div>
+                </div>
+                <div className="absolute right-16 top-1/2 transform -translate-y-1/2">
+                  <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+                    <Truck className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                  </div>
+                </div>
 
-                      <div className="flex items-center gap-3 bg-white/20 p-3 rounded-lg">
-                        <div className="h-8 w-8 rounded-full bg-primary-400 flex items-center justify-center">
-                          <Building className="h-4 w-4 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-white">13 Regional Offices</h4>
-                          <p className="text-sm text-white/80">Nationwide Coverage</p>
-                        </div>
-                      </div>
-                    </div>
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-white/90 dark:bg-gray-800/90 p-3 rounded-lg shadow-lg text-center">
+                    <h4 className="text-lg font-bold text-primary-700 dark:text-primary-300">
+                      {t("coverage.mapTitle")}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{t("coverage.mapDescription")}</p>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md text-center">
+            <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
+              <MapPin className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">13+</h3>
+            <p className="text-gray-600 dark:text-gray-400">Regions Covered</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md text-center">
+            <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
+              <Users className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">135+</h3>
+            <p className="text-gray-600 dark:text-gray-400">Team Members</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md text-center">
+            <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
+              <Truck className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">24/7</h3>
+            <p className="text-gray-600 dark:text-gray-400">Distribution Network</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
