@@ -104,15 +104,15 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 9,
-    name: "Ачилов Толмас Тоштемирович  ",
+    name: "Мукаддас Юлдашбаевна ",
     position: {
-      en: "Regional Manager for Jizzakh Region",
-      uz: "Jizzax viloyati bo'yicha mintaqaviy menejer",
-      ru: "Региональный менеджер по Джизакской области",
+      en: "HR",
+      uz: "HR",
+      ru: "HR",
     },
-    image:
-      "/Team/Ачилов Толмас Тоштемирович  Региональный менеджер по Джизакской области.jpg",
+    image: "/Team/Мукаддас Юлдашбаевна HR.jpg",
   },
+
   {
     id: 10,
     name: "Санақулова Малика Умаровна  ",
@@ -217,6 +217,27 @@ const teamMembers: TeamMember[] = [
       ru: "помощник зав.склада ",
     },
     image: "/Team/Махкамова Умида Закировна  помощник зав.склада.jpg",
+  },
+  {
+    id: 20,
+    name: "Баходир Усманов Шамсиевич ",
+    position: {
+      en: "Bukhara PM",
+      uz: "Buxoro PM",
+      ru: "Бухоро РМ",
+    },
+    image: "/Team/Баходир Усманов Шамсиевич Бухоро РМ.jpg",
+  },
+  {
+    id: 21,
+    name: "Ачилов Толмас Тоштемирович  ",
+    position: {
+      en: "Regional Manager for Jizzakh Region",
+      uz: "Jizzax viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Джизакской области",
+    },
+    image:
+      "/Team/Ачилов Толмас Тоштемирович  Региональный менеджер по Джизакской области.jpg",
   },
 ];
 
