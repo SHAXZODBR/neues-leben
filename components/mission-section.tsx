@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/contexts/language-context"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { Heart, Shield, Users } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Heart, Shield, Users } from "lucide-react";
 
 export default function MissionSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   return (
     <section id="mission" className="w-full py-16 sm:py-20">
       <div className="container px-4 md:px-6">
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+          {/* Left side content */}
           <motion.div
             className="order-2 md:order-1"
             initial={{ opacity: 0, y: 30 }}
@@ -51,6 +52,7 @@ export default function MissionSection() {
             </div>
           </motion.div>
 
+          {/* Right side cards with icons */}
           <motion.div
             className="order-1 md:order-2 relative h-[350px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl"
             initial={{ opacity: 0, y: 30 }}
@@ -58,27 +60,38 @@ export default function MissionSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700 flex items-center justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 p-4 sm:p-8 w-full max-w-md sm:max-w-lg">
-                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
-                  <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 p-3 sm:p-6 w-[92%] max-w-[320px] sm:max-w-lg">
+                {/* Protection */}
+                <div className="bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Shield className="h-8 w-8 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-2 sm:mb-4" />
+                  <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-1 sm:mb-2">
                     {t("mission.protection")}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.protectionDesc")}</p>
+                  <p className="text-xs sm:text-base text-gray-600 dark:text-gray-400">
+                    {t("mission.protectionDesc")}
+                  </p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
-                  <Users className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+
+                {/* Community */}
+                <div className="bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Users className="h-8 w-8 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-2 sm:mb-4" />
+                  <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-1 sm:mb-2">
                     {t("mission.community")}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.communityDesc")}</p>
+                  <p className="text-xs sm:text-base text-gray-600 dark:text-gray-400">
+                    {t("mission.communityDesc")}
+                  </p>
                 </div>
-                <div className="col-span-1 sm:col-span-2 bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
-                  <Heart className="h-10 w-10 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+
+                {/* Care */}
+                <div className="col-span-1 sm:col-span-2 bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                  <Heart className="h-8 w-8 sm:h-12 sm:w-12 text-primary-600 dark:text-primary-400 mb-2 sm:mb-4" />
+                  <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-1 sm:mb-2">
                     {t("mission.care")}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{t("mission.careDesc")}</p>
+                  <p className="text-xs sm:text-base text-gray-600 dark:text-gray-400">
+                    {t("mission.careDesc")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -86,5 +99,5 @@ export default function MissionSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

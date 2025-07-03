@@ -90,9 +90,9 @@ export default function InfrastructureSection() {
           >
             <div className="order-2 md:order-1 relative h-[400px] rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://insaat.az/uploads/news/e4b62bc70a5fa196d4d22d16a451f1c3.jpg"
+                src="/images/labis.jpg"
                 alt="Modern Logistics Fleet"
-                className="w-full h-full object-cover"
+                className="w-full h-full"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <div className="bg-white/90 dark:bg-gray-800/90 p-4 rounded-lg shadow-lg max-w-xs text-center">

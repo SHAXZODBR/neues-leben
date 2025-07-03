@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/contexts/language-context"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { MapPin, Building2, Users, Truck } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { MapPin, Building2, Users, Truck } from "lucide-react";
 
 export default function CoverageSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   const regions = [
     "Tashkent City",
@@ -26,7 +26,7 @@ export default function CoverageSection() {
     "Navoi",
     "Khorezm",
     "Karakalpakstan",
-  ]
+  ];
 
   return (
     <section id="coverage" className="w-full py-20">
@@ -42,7 +42,9 @@ export default function CoverageSection() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
               {t("coverage.title")}
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">{t("coverage.subtitle")}</p>
+            <p className="text-xl text-gray-500 dark:text-gray-400">
+              {t("coverage.subtitle")}
+            </p>
           </div>
         </motion.div>
 
@@ -72,14 +74,18 @@ export default function CoverageSection() {
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
                   >
                     <MapPin className="h-4 w-4 text-primary-600 dark:text-primary-400 mx-auto mb-1" />
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{region}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {region}
+                    </span>
                   </motion.div>
                 ))}
               </div>
             </div>
 
             <div className="bg-primary-50 dark:bg-primary-900/30 p-6 rounded-xl shadow-md border-l-4 border-primary">
-              <p className="text-lg font-medium text-primary-800 dark:text-primary-300">{t("coverage.cooperation")}</p>
+              <p className="text-lg font-medium text-primary-800 dark:text-primary-300">
+                {t("coverage.cooperation")}
+              </p>
             </div>
           </motion.div>
 
@@ -135,7 +141,9 @@ export default function CoverageSection() {
                     <h4 className="text-lg font-bold text-primary-700 dark:text-primary-300">
                       {t("coverage.mapTitle")}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t("coverage.mapDescription")}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {t("coverage.mapDescription")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -153,7 +161,9 @@ export default function CoverageSection() {
             <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
               <MapPin className="h-8 w-8 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">13+</h3>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+              13+
+            </h3>
             <p className="text-gray-600 dark:text-gray-400">Regions Covered</p>
           </div>
 
@@ -161,7 +171,9 @@ export default function CoverageSection() {
             <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
               <Users className="h-8 w-8 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">135+</h3>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+              135+
+            </h3>
             <p className="text-gray-600 dark:text-gray-400">Team Members</p>
           </div>
 
@@ -169,11 +181,15 @@ export default function CoverageSection() {
             <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mx-auto mb-4">
               <Truck className="h-8 w-8 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">24/7</h3>
-            <p className="text-gray-600 dark:text-gray-400">Distribution Network</p>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+              24/7
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Distribution Network
+            </p>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

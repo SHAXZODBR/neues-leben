@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/contexts/language-context"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
+import { useLanguage } from "@/contexts/language-context";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   Users,
   UserPlus,
@@ -13,51 +13,51 @@ import {
   Truck,
   FileCheck,
   Building,
-} from "lucide-react"
-import TeamGallery from "./team-gallery"
+} from "lucide-react";
+import TeamGallery from "./team-gallery";
 
 export default function TeamSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   const departments = [
     {
       name: t("team.departments.admin"),
-      icon: <Building className="h-6 w-6" />,
+      icon: <Building className="h-4 w-4" />,
     },
-    { name: t("team.departments.hr"), icon: <UserCog className="h-6 w-6" /> },
+    { name: t("team.departments.hr"), icon: <UserCog className="h-4 w-4" /> },
     {
       name: t("team.departments.legal"),
-      icon: <FileText className="h-6 w-6" />,
+      icon: <FileText className="h-4 w-4" />,
     },
     {
       name: t("team.departments.sales"),
-      icon: <ChartBar className="h-6 w-6" />,
+      icon: <ChartBar className="h-4 w-4" />,
     },
     {
       name: t("team.departments.medical"),
-      icon: <Users className="h-6 w-6" />,
+      icon: <Users className="h-4 w-4" />,
     },
     {
       name: t("team.departments.foreign"),
-      icon: <Briefcase className="h-6 w-6" />,
+      icon: <Briefcase className="h-4 w-4" />,
     },
     {
       name: t("team.departments.registration"),
-      icon: <FileCheck className="h-6 w-6" />,
+      icon: <FileCheck className="h-4 w-4" />,
     },
     {
       name: t("team.departments.logistics"),
-      icon: <Truck className="h-6 w-6" />,
+      icon: <Truck className="h-4 w-4" />,
     },
     {
       name: t("team.departments.customs"),
-      icon: <UserPlus className="h-6 w-6" />,
+      icon: <UserPlus className="h-4 w-4" />,
     },
-  ]
+  ];
 
   return (
     <section id="team" className="w-full py-20">
@@ -77,11 +77,15 @@ export default function TeamSection() {
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.companyPrefix")}
               </span>
-              <span className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-400">NEUES LEBEN</span>
+              <span className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
+                NEUES LEBEN
+              </span>
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.employeeCount")}
               </span>
-              <span className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">135</span>
+              <span className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">
+                135
+              </span>
               <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {t("team.employeeSuffix")}
               </span>
@@ -97,20 +101,20 @@ export default function TeamSection() {
             className="order-2 lg:order-1"
           >
             <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-primary-100 to-primary-300 dark:from-primary-900 dark:to-primary-700">
-              <div className="absolute inset-0 flex items-center justify-center p-4">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 w-full max-w-2xl">
+              <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-3 w-full max-w-2xl">
                   {departments.map((dept, index) => (
                     <motion.div
                       key={index}
-                      className="bg-white dark:bg-gray-800 p-2 sm:p-3 lg:p-4 rounded-lg shadow-md flex flex-col items-center text-center min-h-[80px] sm:min-h-[100px]"
+                      className="bg-white dark:bg-gray-800 p-1 sm:p-2 rounded-md shadow-sm flex flex-col items-center text-center min-h-[60px] sm:min-h-[70px]"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     >
-                      <div className="p-1 sm:p-2 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-1 sm:mb-2 flex-shrink-0">
+                      <div className="p-1 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-1 flex-shrink-0">
                         {dept.icon}
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-gray-700 dark:text-gray-300 leading-tight text-center">
+                      <p className="text-[10px] sm:text-xs lg:text-sm text-gray-700 dark:text-gray-300 leading-tight text-center">
                         {dept.name}
                       </p>
                     </motion.div>
@@ -157,7 +161,6 @@ export default function TeamSection() {
           </motion.div>
         </div>
 
-        {/* Team Gallery */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -167,5 +170,5 @@ export default function TeamSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

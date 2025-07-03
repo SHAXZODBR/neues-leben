@@ -56,7 +56,9 @@ export default function PartnersSection() {
                       animate={inView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     >
-                      <div className="text-4xl mb-2">{getCountryFlag(partner.code)}</div>
+                      <div className="text-4xl mb-2 flex items-center justify-center min-h-[3rem]">
+                        <span className="text-6xl">{getCountryFlag(partner.code)}</span>
+                      </div>
                       <h3 className="text-xl font-bold text-white">{partner.country}</h3>
                     </motion.div>
                   ))}
@@ -86,7 +88,9 @@ export default function PartnersSection() {
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                   >
-                    <div className="text-2xl">{getCountryFlag(partner.code)}</div>
+                    <div className="text-2xl min-w-[2rem] flex items-center justify-center">
+                      <span className="text-3xl">{getCountryFlag(partner.code)}</span>
+                    </div>
                     <span className="text-lg text-white/90">{partner.country}</span>
                   </motion.li>
                 ))}
@@ -128,6 +132,13 @@ export default function PartnersSection() {
 }
 
 function getCountryFlag(countryCode: string) {
-  const codePoints = [...countryCode.toUpperCase()].map((char) => 127397 + char.charCodeAt(0))
-  return String.fromCodePoint(...codePoints)
+  const flags: { [key: string]: string } = {
+    KR: "🇰🇷",
+    PL: "🇵🇱",
+    CN: "🇨🇳",
+    IN: "🇮🇳",
+  }
+
+  // Return the flag emoji if available, otherwise return a styled country code
+  return flags[countryCode] || countryCode
 }

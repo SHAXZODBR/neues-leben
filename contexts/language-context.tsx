@@ -1,19 +1,27 @@
-"use client"
+"use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
 // Define the supported languages
-export type Language = "en" | "uz" | "ru"
+export type Language = "en" | "uz" | "ru";
 
 // Create a context type
 type LanguageContextType = {
-  language: Language
-  setLanguage: (language: Language) => void
-  t: (key: string) => string
-}
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+};
 
 // Create the context with a default value
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 // All translations
 const translations = {
@@ -49,9 +57,10 @@ const translations = {
     "about.warehouse":
       "The warehouse received the highest rating for compliance with quality standards for warehouse facilities.",
     "about.paragraph1":
-      "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
+      "'NEUES LEBEN' LLC is a distribution company operating in the pharmaceutical industry in the Uzbek market. The company 'NEUES LEBEN' was founded in 2018 and began its journey with wholesale sales of medicines, covering the entire territory of the Republic of Uzbekistan.",
+
     "about.paragraph2":
-      "С 2019 года компания перешла на новый уровень, заключив прямые договора с зарубежными производителями, что позволило осуществлять ввоз и промоцию лекарственных средств высокого качества. Компания 'NEUES LEBEN' располагает складом, на котором осуществляется качественное хранение лекарственных препаратов.",
+      "Since 2019, the company has reached a new level by signing direct contracts with foreign manufacturers, which has enabled the import and promotion of high-quality medicines. 'NEUES LEBEN' has a warehouse that ensures proper storage of pharmaceutical products.",
     "about.conclusion":
       "The main principles of our work are product quality, timely delivery, and reliable partnership!",
 
@@ -61,7 +70,8 @@ const translations = {
       "Ensuring the protection of health and improving the quality of life of the country's population by informing consumers about new trends in effective and affordable treatment.",
     "mission.paragraph2":
       "The company applies modern approaches in its work and uses the latest developments to improve the health and well-being of patients.",
-    "mission.healthFocus": "We strive to improve the quality of life of the nation",
+    "mission.healthFocus":
+      "We strive to improve the quality of life of the nation",
     "mission.protection": "Health Protection",
     "mission.protectionDesc": "We ensure access to quality medicines",
     "mission.community": "Community Focus",
@@ -79,7 +89,8 @@ const translations = {
     "values.professionalism.description":
       "We constantly develop our skills and knowledge to provide quality services to clients and promptly respond to their requests.",
     "values.leadership.title": "Leadership",
-    "values.leadership.description": "We focus on achieving ambitious goals and encourage leadership aimed at results.",
+    "values.leadership.description":
+      "We focus on achieving ambitious goals and encourage leadership aimed at results.",
     "values.aspiration.title": "Aspiration",
     "values.aspiration.description":
       "We strive for success in business and help our clients and partners achieve success.",
@@ -116,15 +127,20 @@ const translations = {
       "Our corporate culture is based on proven values and traditions. We support family values, healthy lifestyle, development, and learning.",
     "culture.paragraph2":
       "We are proud of our achievements in the market and the fact that our employees undergo internships abroad. Joint holidays, competitions, and modern forms of communication make us a cohesive team.",
-    "culture.paragraph3": "Each employee strengthens the company's image as a reliable pharmaceutical distributor.",
+    "culture.paragraph3":
+      "Each employee strengthens the company's image as a reliable pharmaceutical distributor.",
     "culture.family.title": "Family Values",
-    "culture.family.description": "We support and promote family values and healthy lifestyle",
+    "culture.family.description":
+      "We support and promote family values and healthy lifestyle",
     "culture.achievements.title": "Market Achievements",
-    "culture.achievements.description": "We are proud of our accomplishments in the pharmaceutical market",
+    "culture.achievements.description":
+      "We are proud of our accomplishments in the pharmaceutical market",
     "culture.internships.title": "International Experience",
-    "culture.internships.description": "Our employees undergo internships abroad to enhance their skills",
+    "culture.internships.description":
+      "Our employees undergo internships abroad to enhance their skills",
     "culture.events.title": "Team Building",
-    "culture.events.description": "Joint holidays and events make us a cohesive team",
+    "culture.events.description":
+      "Joint holidays and events make us a cohesive team",
 
     // Achievements section
     "achievements.title": "Our Achievements",
@@ -144,30 +160,36 @@ const translations = {
 
     // Partners section
     "partners.title": "Our Partners",
-    "partners.subtitle": "We collaborate with leading pharmaceutical manufacturers worldwide",
+    "partners.subtitle":
+      "We collaborate with leading pharmaceutical manufacturers worldwide",
     "partners.countries": "We collaborate with:",
     "partners.southKorea": "South Korea",
     "partners.poland": "Poland",
     "partners.china": "China",
     "partners.india": "India",
     "partners.products": "Exclusive Products",
-    "partners.productsDescription": "More than 50 types of exclusive drugs from foreign and local production",
+    "partners.productsDescription":
+      "More than 50 types of exclusive drugs from foreign and local production",
     "partners.product": "Product",
 
     // Infrastructure section
     "infrastructure.title": "Our Infrastructure",
-    "infrastructure.subtitle": "NEUES LEBEN has a modern logistics infrastructure",
+    "infrastructure.subtitle":
+      "NEUES LEBEN has a modern logistics infrastructure",
     "infrastructure.warehouse.title": "Modern Warehouse",
     "infrastructure.warehouse.description":
       "The company has a warehouse that meets GDP (Good Distribution Practice) standards.",
-    "infrastructure.warehouse.standards": "Highest quality standards compliance",
-    "infrastructure.warehouse.size": "Warehouse area: 10,000 square meters (10,000 m²)",
+    "infrastructure.warehouse.standards":
+      "Highest quality standards compliance",
+    "infrastructure.warehouse.size":
+      "Warehouse area: 10,000 square meters (10,000 m²)",
     "infrastructure.logistics.title": "Advanced Logistics",
     "infrastructure.logistics.description":
       "Vehicles are equipped with modern refrigeration units to ensure safe and quality transportation of products with the required temperature regime.",
     "infrastructure.logistics.temperature": "Temperature control at all stages",
     "infrastructure.logistics.modern": "Modern Fleet",
-    "infrastructure.logistics.efficient": "Efficient delivery across the country",
+    "infrastructure.logistics.efficient":
+      "Efficient delivery across the country",
 
     // Coverage section
     "coverage.title": "Our Coverage",
@@ -178,12 +200,16 @@ const translations = {
     "coverage.officesDescription":
       "In all regions of the country, we have distribution offices under the leadership of regional managers.",
     "coverage.mapTitle": "Nationwide Distribution",
-    "coverage.mapDescription": "Ensuring access to quality medicines across Uzbekistan",
-    "coverage.cooperation": "We are open for mutually beneficial and long-term cooperation",
+    "coverage.mapDescription":
+      "Ensuring access to quality medicines across Uzbekistan",
+    "coverage.cooperation":
+      "We are open for mutually beneficial and long-term cooperation",
 
     // Contact section
+
     "contact.title": "Contact Us",
-    "contact.subtitle": "We are open for mutually beneficial and long-term cooperation",
+    "contact.subtitle":
+      "We are open for mutually beneficial and long-term cooperation",
     "contact.form.title": "Send Us a Message",
     "contact.form.name": "Name",
     "contact.form.namePlaceholder": "Your name",
@@ -195,13 +221,35 @@ const translations = {
     "contact.info.title": "Contact Information",
     "contact.info.address.title": "Address",
     "contact.info.address.value":
-      "100047, Республика Узбекистан г.Ташкент, Яшнабадский район, Ахангаранское шоссе, ул. Паркентская № 333",
+      "100047, Uzbekistan, Tashkent city, Yashnabad district, Akhangaran highway, Parkent street, No. 333",
     "contact.info.phone.title": "Phone",
     "contact.info.phone.value": "+998 90 903 03 31 / +998 97 769 64 80",
     "contact.info.email.title": "Email",
-    "contact.info.email.value": "info@neuesleben.com",
-    "contact.info.tagline": "Your reliable partner in the pharmaceutical industry",
+    "contact.info.email.value":
+      "info@neuesleben.uz, import@neuesleben.uz, sales@neuesleben.uz",
+    "contact.info.tagline":
+      "Your reliable partner in the pharmaceutical industry",
+
+    //Footer section
+    "footer.description":
+      "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry of Uzbekistan.",
+    "footer.about": "About",
+    "footer.aboutUs": "About Us",
+    "footer.mission": "Mission",
+    "footer.values": "Values",
+    "footer.team": "Team",
+    "footer.activities": "Activities",
+    "footer.partners": "Partners",
+    "footer.infrastructure": "Infrastructure",
+    "footer.coverage": "Coverage",
+    "footer.achievements": "Achievements",
+    "footer.contacts": "Contacts",
+    "footer.location": "Tashkent, Uzbekistan",
+    "footer.rights": "All rights reserved.",
+    "footer.openToCooperation":
+      "We are open for mutually beneficial and long-term cooperation.",
   },
+
   uz: {
     // Navigation
     "nav.home": "Bosh sahifa",
@@ -246,13 +294,16 @@ const translations = {
       "Mamlakatimiz aholisining sog'lig'ini himoya qilish va hayot sifatini oshirish, iste'molchilarni samarali va arzon davolanish bo'yicha yangi tendensiyalar haqida xabardor qilish orqali.",
     "mission.paragraph2":
       "Kompaniya o'z ishida zamonaviy yondashuvlarni qo'llaydi va bemorlarning sog'lig'i va farovonligini yaxshilash uchun eng so'nggi ishlanmalardan foydalanadi.",
-    "mission.healthFocus": "Biz millatning hayot sifatini yaxshilashga intilamiz",
+    "mission.healthFocus":
+      "Biz millatning hayot sifatini yaxshilashga intilamiz",
     "mission.protection": "Sog'liqni saqlash",
-    "mission.protectionDesc": "Biz sifatli dori vositalariga kirishni ta'minlaymiz",
+    "mission.protectionDesc":
+      "Biz sifatli dori vositalariga kirishni ta'minlaymiz",
     "mission.community": "Jamiyatga yo'naltirilganlik",
     "mission.communityDesc": "Biz jamiyat manfaati uchun ishlaymiz",
     "mission.care": "Bemorga g'amxo'rlik",
-    "mission.careDesc": "Farovonlikni yaxshilash uchun zamonaviy yondashuvlardan foydalanamiz",
+    "mission.careDesc":
+      "Farovonlikni yaxshilash uchun zamonaviy yondashuvlardan foydalanamiz",
 
     // Values section
     "values.title": "Qadriyatlarimiz",
@@ -283,7 +334,8 @@ const translations = {
     "team.departments.foreign": "Tashqi iqtisodiy faoliyat bo'limi",
     "team.departments.legal": "Yuridik bo'lim",
     "team.departments.sales": "Sotish va marketing bo'limi",
-    "team.departments.registration": "Dori vositalarini ro'yxatga olish bo'limi",
+    "team.departments.registration":
+      "Dori vositalarini ro'yxatga olish bo'limi",
     "team.departments.hr": "HR-bo'limi (xodimlarni boshqarish bo'limi)",
     "team.departments.logistics": "Logistika bo'limi",
     "team.departments.customs": "Deklarantlar jamoasi",
@@ -308,12 +360,14 @@ const translations = {
     "culture.family.description":
       "Biz oilaviy qadriyatlarni va sog'lom turmush tarzini qo'llab-quvvatlaymiz va targ'ib qilamiz",
     "culture.achievements.title": "Bozordagi yutuqlar",
-    "culture.achievements.description": "Biz farmatsevtika bozoridagi yutuqlarimiz bilan faxrlanamiz",
+    "culture.achievements.description":
+      "Biz farmatsevtika bozoridagi yutuqlarimiz bilan faxrlanamiz",
     "culture.internships.title": "Xalqaro tajriba",
     "culture.internships.description":
       "Xodimlarimiz o'z ko'nikmalarini oshirish uchun chet ellarda stajirovka o'taydilar",
     "culture.events.title": "Jamoa qurish",
-    "culture.events.description": "Birgalikdagi bayramlar va tadbirlar bizni jipslashgan jamoaga aylantiradi",
+    "culture.events.description":
+      "Birgalikdagi bayramlar va tadbirlar bizni jipslashgan jamoaga aylantiradi",
 
     // Achievements section
     "achievements.title": "Yutuqlarimiz",
@@ -333,7 +387,8 @@ const translations = {
 
     // Partners section
     "partners.title": "Hamkorlarimiz",
-    "partners.subtitle": "Biz dunyoning yetakchi farmatsevtika ishlab chiqaruvchilari bilan hamkorlik qilamiz",
+    "partners.subtitle":
+      "Biz dunyoning yetakchi farmatsevtika ishlab chiqaruvchilari bilan hamkorlik qilamiz",
     "partners.countries": "Biz quyidagilar bilan hamkorlik qilamiz:",
     "partners.southKorea": "Janubiy Koreya",
     "partners.poland": "Polsha",
@@ -346,34 +401,43 @@ const translations = {
 
     // Infrastructure section
     "infrastructure.title": "Infratuzilmamiz",
-    "infrastructure.subtitle": "NEUES LEBEN zamonaviy logistika infratuzilmasiga ega",
+    "infrastructure.subtitle":
+      "NEUES LEBEN zamonaviy logistika infratuzilmasiga ega",
     "infrastructure.warehouse.title": "Zamonaviy ombor",
     "infrastructure.warehouse.description":
-      "Kompaniya GDP (Yaxshi distribyutsiya amaliyoti) standartlariga javob beradigan omborga ega.",
-    "infrastructure.warehouse.standards": "Eng yuqori sifat standartlariga muvofiqlik",
-    "infrastructure.warehouse.size": "Ombor maydoni: 10 ming kvadrat metr (10 000 m²)",
+      "Kompaniya GDP (Yaxshi tarqatish amaliyoti) standartlariga javob beradigan omborga ega.",
+    "infrastructure.warehouse.standards":
+      "Eng yuqori sifat standartlariga muvofiqlik",
+    "infrastructure.warehouse.size":
+      "Ombor maydoni: 10 ming kvadrat metr (10 000 m²)",
     "infrastructure.logistics.title": "Ilg'or logistika",
     "infrastructure.logistics.description":
       "Transport vositalari zamonaviy sovutish qurilmalari bilan jihozlangan bo'lib, talab qilinadigan harorat rejimida mahsulotlarni xavfsiz va sifatli tashishni ta'minlaydi.",
-    "infrastructure.logistics.temperature": "Barcha bosqichlarda haroratni nazorat qilish",
+    "infrastructure.logistics.temperature":
+      "Barcha bosqichlarda haroratni nazorat qilish",
     "infrastructure.logistics.modern": "Zamonaviy avtoparkimiz",
-    "infrastructure.logistics.efficient": "Butun mamlakat bo'ylab samarali yetkazib berish",
+    "infrastructure.logistics.efficient":
+      "Butun mamlakat bo'ylab samarali yetkazib berish",
 
     // Coverage section
     "coverage.title": "Qamrovimiz",
-    "coverage.subtitle": "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz",
+    "coverage.subtitle":
+      "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz",
     "coverage.description":
       "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz, mamlakatning barcha hududlariga dori vositalarini ishonchli yetkazib berishni ta'minlaymiz.",
     "coverage.offices": "Mintaqaviy ofislar",
     "coverage.officesDescription":
       "Mamlakatning barcha hududlarida mintaqaviy menejerlar rahbarligida distribyutsiya ofislarimiz mavjud.",
     "coverage.mapTitle": "Butun mamlakat bo'ylab distribyutsiya",
-    "coverage.mapDescription": "O'zbekiston bo'ylab sifatli dori vositalariga kirishni ta'minlash",
-    "coverage.cooperation": "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
+    "coverage.mapDescription":
+      "O'zbekiston bo'ylab sifatli dori vositalariga kirishni ta'minlash",
+    "coverage.cooperation":
+      "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
 
     // Contact section
     "contact.title": "Biz bilan bog'laning",
-    "contact.subtitle": "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
+    "contact.subtitle":
+      "Biz o‘zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
     "contact.form.title": "Bizga xabar yuboring",
     "contact.form.name": "Ism",
     "contact.form.namePlaceholder": "Ismingiz",
@@ -385,12 +449,32 @@ const translations = {
     "contact.info.title": "Aloqa ma'lumotlari",
     "contact.info.address.title": "Manzil",
     "contact.info.address.value":
-      "100047, Республика Узбекистан г.Ташкент, Яшнабадский район, Ахангаранское шоссе, ул. Паркентская № 333",
+      "100047, O‘zbekiston Respublikasi, Toshkent shahri, Yashnobod tumani, Ohangaron shossesi, Parkent ko‘chasi, 333-uy",
     "contact.info.phone.title": "Telefon",
     "contact.info.phone.value": "+998 90 903 03 31 / +998 97 769 64 80",
     "contact.info.email.title": "Email",
-    "contact.info.email.value": "info@neuesleben.com",
+    "contact.info.email.value":
+      "info@neuesleben.uz, import@neuesleben.uz, sales@neuesleben.uz",
     "contact.info.tagline": "Farmatsevtika sohasidagi ishonchli hamkoringiz",
+
+    //Footer section
+    "footer.description":
+      "NEUES LEBEN MChJ — O‘zbekiston farmatsevtika sohasida faoliyat yurituvchi distribyutorlik kompaniyasi.",
+    "footer.about": "Kompaniya haqida",
+    "footer.aboutUs": "Biz haqimizda",
+    "footer.mission": "Missiya",
+    "footer.values": "Qadriyatlar",
+    "footer.team": "Jamoa",
+    "footer.activities": "Faoliyat",
+    "footer.partners": "Hamkorlar",
+    "footer.infrastructure": "Infratuzilma",
+    "footer.coverage": "Qamrov",
+    "footer.achievements": "Yutuqlar",
+    "footer.contacts": "Aloqa",
+    "footer.location": "Toshkent, O‘zbekiston",
+    "footer.rights": "Barcha huquqlar himoyalangan.",
+    "footer.openToCooperation":
+      "Biz o‘zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz.",
   },
   ru: {
     // Navigation
@@ -421,7 +505,8 @@ const translations = {
     "about.title": "О компании",
     "about.subtitle": "Ваш надежный партнер в фармацевтической индустрии",
     "about.founded": "Основано в 2018",
-    "about.warehouse": "Склад получил наивысшую оценку соответствия стандартам качества складских помещений.",
+    "about.warehouse":
+      "Склад получил наивысшую оценку соответствия стандартам качества складских помещений.",
     "about.paragraph1":
       "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
     "about.paragraph2":
@@ -437,11 +522,13 @@ const translations = {
       "Компания применяет современные подходы в работе и использует новейшие разработки с целью улучшения здоровья и самочувствия пациентов.",
     "mission.healthFocus": "Мы стремимся к улучшению качества жизни нации",
     "mission.protection": "Защита здоровья",
-    "mission.protectionDesc": "Мы обеспечиваем доступ к качественным лекарствам",
+    "mission.protectionDesc":
+      "Мы обеспечиваем доступ к качественным лекарствам",
     "mission.community": "Фокус на сообщество",
     "mission.communityDesc": "Мы работаем на благо общества",
     "mission.care": "Забота о пациентах",
-    "mission.careDesc": "Мы используем современные подходы для улучшения благополучия",
+    "mission.careDesc":
+      "Мы используем современные подходы для улучшения благополучия",
 
     // Values section
     "values.title": "Наши ценности",
@@ -477,7 +564,6 @@ const translations = {
     "team.departments.registration": "Отдел регистрации ЛС",
     "team.departments.logistics": "Отдел логистики",
     "team.departments.customs": "Команда декларантов",
-    "team.departments.admin": "Отдел АУП",
     "team.teamSpirit":
       "Каждый сотрудник укрепляет имидж компании как надёжного фармдистрибьютора, обеспечивая высокое качество обслуживания и профессиональный подход к работе.",
     "team.gallery.title": "Познакомьтесь с нашей командой",
@@ -492,15 +578,20 @@ const translations = {
       "Наша корпоративная культура основана на проверенных ценностях и традициях. Мы поддерживаем семейные ценности, здоровый образ жизни, развиваемся и учимся.",
     "culture.paragraph2":
       "Гордимся достижениями на рынке и тем, что наши сотрудники проходят стажировки за рубежом. Совместные праздники, конкурсы и современные формы общения делают нас сплочённой командой.",
-    "culture.paragraph3": "Каждый сотрудник укрепляет имидж компании как надёжного фармдистрибьютора.",
+    "culture.paragraph3":
+      "Каждый сотрудник укрепляет имидж компании как надёжного фармдистрибьютора.",
     "culture.family.title": "Семейные ценности",
-    "culture.family.description": "Мы поддерживаем и продвигаем семейные ценности и здоровый образ жизни",
+    "culture.family.description":
+      "Мы поддерживаем и продвигаем семейные ценности и здоровый образ жизни",
     "culture.achievements.title": "Достижения на рынке",
-    "culture.achievements.description": "Мы гордимся нашими достижениями на фармацевтическом рынке",
+    "culture.achievements.description":
+      "Мы гордимся нашими достижениями на фармацевтическом рынке",
     "culture.internships.title": "Международный опыт",
-    "culture.internships.description": "Наши сотрудники проходят стажировки за рубежом для повышения квалификации",
+    "culture.internships.description":
+      "Наши сотрудники проходят стажировки за рубежом для повышения квалификации",
     "culture.events.title": "Командообразование",
-    "culture.events.description": "Совместные праздники и мероприятия делают нас сплоченной командой",
+    "culture.events.description":
+      "Совместные праздники и мероприятия делают нас сплоченной командой",
 
     // Achievements section
     "achievements.title": "Наши достижения",
@@ -520,28 +611,34 @@ const translations = {
 
     // Partners section
     "partners.title": "Наши партнеры",
-    "partners.subtitle": "Мы сотрудничаем с ведущими фармацевтическими производителями по всему миру",
+    "partners.subtitle":
+      "Мы сотрудничаем с ведущими фармацевтическими производителями по всему миру",
     "partners.countries": "Мы сотрудничаем с:",
     "partners.southKorea": "Южная Корея",
     "partners.poland": "Польша",
     "partners.china": "Китай",
     "partners.india": "Индия",
     "partners.products": "Эксклюзивные препараты",
-    "partners.productsDescription": "Более 50 видов эксклюзивных препаратов зарубежного и местного производства",
+    "partners.productsDescription":
+      "Более 50 видов эксклюзивных препаратов зарубежного и местного производства",
     "partners.product": "Продукт",
 
     // Infrastructure section
     "infrastructure.title": "Инфраструктура",
-    "infrastructure.subtitle": "Компания NEUES LEBEN обладает современной логистической инфраструктурой",
+    "infrastructure.subtitle":
+      "Компания NEUES LEBEN обладает современной логистической инфраструктурой",
     "infrastructure.warehouse.title": "Современный склад",
     "infrastructure.warehouse.description":
-      "В распоряжении компании имеется склад, соответствующий стандартам GDP (Good Distribution Practice).",
-    "infrastructure.warehouse.standards": "Соответствие высочайшим стандартам качества",
-    "infrastructure.warehouse.size": "Площадь склада 10 тысяч квадратных метров (10 000 м²)",
+      "В распоряжении компании имеется склад, соответствующий стандартам Надлежащая дистрибьюторская практика (GDP).",
+    "infrastructure.warehouse.standards":
+      "Соответствие высочайшим стандартам качества",
+    "infrastructure.warehouse.size":
+      "Площадь склада 10 тысяч квадратных метров (10 000 м²)",
     "infrastructure.logistics.title": "Передовая логистика",
     "infrastructure.logistics.description":
       "Автотранспортные средства оснащены современными холодильными установками, что обеспечивает безопасную и качественную перевозку продукции с соблюдением требуемого температурного режима.",
-    "infrastructure.logistics.temperature": "Контроль температурного режима на всех этапах",
+    "infrastructure.logistics.temperature":
+      "Контроль температурного режима на всех этапах",
     "infrastructure.logistics.modern": "Современный автопарк",
     "infrastructure.logistics.efficient": "Эффективная доставка по всей стране",
 
@@ -554,12 +651,15 @@ const translations = {
     "coverage.officesDescription":
       "Во всех регионах страны у нас действуют дистрибьюторские офисы под руководством региональных менеджеров.",
     "coverage.mapTitle": "Общенациональная дистрибуция",
-    "coverage.mapDescription": "Обеспечение доступа к качественным лекарствам по всему Узбекистану",
-    "coverage.cooperation": "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
+    "coverage.mapDescription":
+      "Обеспечение доступа к качественным лекарствам по всему Узбекистану",
+    "coverage.cooperation":
+      "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
 
     // Contact section
     "contact.title": "Связаться с нами",
-    "contact.subtitle": "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
+    "contact.subtitle":
+      "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
     "contact.form.title": "Отправьте нам сообщение",
     "contact.form.name": "Имя",
     "contact.form.namePlaceholder": "Ваше имя",
@@ -575,49 +675,77 @@ const translations = {
     "contact.info.phone.title": "Телефон",
     "contact.info.phone.value": "+998 90 903 03 31 / +998 97 769 64 80",
     "contact.info.email.title": "Email",
-    "contact.info.email.value": "info@neuesleben.com",
+    "contact.info.email.value":
+      "info@neuesleben.uz, import@neuesleben.uz, sales@neuesleben.uz",
     "contact.info.tagline": "Ваш надежный партнер в фармацевтической индустрии",
+    //Footer section
+
+    "footer.description":
+      "ООО «NEUES LEBEN» — дистрибьюторская компания, работающая в фармацевтической отрасли Узбекистана.",
+    "footer.about": "О компании",
+    "footer.aboutUs": "О нас",
+    "footer.mission": "Миссия",
+    "footer.values": "Ценности",
+    "footer.team": "Команда",
+    "footer.activities": "Деятельность",
+    "footer.partners": "Партнеры",
+    "footer.infrastructure": "Инфраструктура",
+    "footer.coverage": "Покрытие",
+    "footer.achievements": "Достижения",
+    "footer.contacts": "Контакты",
+    "footer.location": "Ташкент, Узбекистан",
+    "footer.rights": "Все права защищены.",
+    "footer.openToCooperation":
+      "Мы открыты для взаимовыгодного и долгосрочного сотрудничества.",
   },
-}
+};
 
 // Define the provider props
 interface LanguageProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 // Create the provider component
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   // Initialize the language state from localStorage if available
-  const [language, setLanguageState] = useState<Language>("ru")
+  const [language, setLanguageState] = useState<Language>("ru");
 
   // Effect to load language preference from localStorage on mount
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
+    const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && ["en", "uz", "ru"].includes(savedLanguage)) {
-      setLanguageState(savedLanguage)
+      setLanguageState(savedLanguage);
     }
-  }, [])
+  }, []);
 
   // Function to set language and save to localStorage
   const setLanguage = (newLanguage: Language) => {
-    setLanguageState(newLanguage)
-    localStorage.setItem("language", newLanguage)
-  }
+    setLanguageState(newLanguage);
+    localStorage.setItem("language", newLanguage);
+  };
 
   // Translation function
   const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key
-  }
+    return (
+      translations[language][
+        key as keyof (typeof translations)[typeof language]
+      ] || key
+    );
+  };
 
   // Return the provider with the value
-  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
-}
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
 
 // Create a hook for using the language context
 export const useLanguage = () => {
-  const context = useContext(LanguageContext)
+  const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider")
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
-  return context
-}
+  return context;
+};
