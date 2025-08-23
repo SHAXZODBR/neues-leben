@@ -97,10 +97,10 @@ export default function InfrastructureSection() {
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <div className="bg-white/90 dark:bg-gray-800/90 p-4 rounded-lg shadow-lg max-w-xs text-center">
                   <h4 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-                    Современный автопарк
+                    {t("infrastructure.logistics.modern")}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Эффективная доставка по всей стране
+                    {t("infrastructure.logistics.efficient")}
                   </p>
                 </div>
               </div>

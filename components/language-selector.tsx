@@ -15,6 +15,7 @@ const languages: LanguageOption[] = [
   { code: "ru", name: "Russian", nativeName: "Русский" },
   { code: "en", name: "English", nativeName: "English" },
   { code: "uz", name: "Uzbek", nativeName: "O'zbek" },
+  { code: "de", name: "German", nativeName: "Deutsch" },
 ]
 
 export default function LanguageSelector() {
@@ -29,7 +30,7 @@ export default function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button variant="outline" size="sm" className="gap-2 bg-transparent">
           <Globe className="h-4 w-4" />
           <span>{currentLanguage.nativeName}</span>
         </Button>

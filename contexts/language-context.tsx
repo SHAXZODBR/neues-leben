@@ -9,7 +9,7 @@ import {
 } from "react";
 
 // Define the supported languages
-export type Language = "en" | "uz" | "ru";
+export type Language = "en" | "uz" | "ru" | "de";
 
 // Create a context type
 type LanguageContextType = {
@@ -204,6 +204,10 @@ const translations = {
       "Ensuring access to quality medicines across Uzbekistan",
     "coverage.cooperation":
       "We are open for mutually beneficial and long-term cooperation",
+    "coverage.uzbekistanMap": "Uzbekistan Coverage Map",
+    "coverage.stats.regions": "Regions Covered",
+    "coverage.stats.team": "Team Members",
+    "coverage.stats.network": "Distribution Network",
 
     // Contact section
 
@@ -433,6 +437,10 @@ const translations = {
       "O'zbekiston bo'ylab sifatli dori vositalariga kirishni ta'minlash",
     "coverage.cooperation":
       "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
+    "coverage.uzbekistanMap": "O‘zbekiston qamrov xaritasi",
+    "coverage.stats.regions": "Qamrab olingan hududlar",
+    "coverage.stats.team": "Jamoa a’zolari",
+    "coverage.stats.network": "Taqsimot tarmog‘i",
 
     // Contact section
     "contact.title": "Biz bilan bog'laning",
@@ -471,7 +479,7 @@ const translations = {
     "footer.coverage": "Qamrov",
     "footer.achievements": "Yutuqlar",
     "footer.contacts": "Aloqa",
-    "footer.location": "Toshkent, O‘zbekiston",
+    "footer.location": "Tashkent, O‘zbekiston",
     "footer.rights": "Barcha huquqlar himoyalangan.",
     "footer.openToCooperation":
       "Biz o‘zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz.",
@@ -524,7 +532,7 @@ const translations = {
     "mission.protection": "Защита здоровья",
     "mission.protectionDesc":
       "Мы обеспечиваем доступ к качественным лекарствам",
-    "mission.community": "Фокус на сообщество",
+    "mission.community": "Фокус на сообщества",
     "mission.communityDesc": "Мы работаем на благо общества",
     "mission.care": "Забота о пациентах",
     "mission.careDesc":
@@ -655,6 +663,10 @@ const translations = {
       "Обеспечение доступа к качественным лекарствам по всему Узбекистану",
     "coverage.cooperation":
       "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
+    "coverage.uzbekistanMap": "Карта покрытия Узбекистана",
+    "coverage.stats.regions": "Охваченные регионы",
+    "coverage.stats.team": "Сотрудники команды",
+    "coverage.stats.network": "Сеть распределения",
 
     // Contact section
     "contact.title": "Связаться с нами",
@@ -698,6 +710,234 @@ const translations = {
     "footer.openToCooperation":
       "Мы открыты для взаимовыгодного и долгосрочного сотрудничества.",
   },
+
+  de: {
+    // Navigation
+    "nav.home": "Startseite",
+    "nav.about": "Über uns",
+    "nav.mission": "Mission",
+    "nav.values": "Werte",
+    "nav.team": "Team",
+    "nav.culture": "Kultur",
+    "nav.achievements": "Erfolge",
+    "nav.partners": "Partner",
+    "nav.infrastructure": "Infrastruktur",
+    "nav.coverage": "Abdeckung",
+    "nav.contact": "Kontakt",
+
+    // Hero section
+    "hero.tagline":
+      "Wir glauben, dass die Gesundheit die Grundlage für ein glückliches Leben ist!",
+    "hero.description":
+      "NEUES LEBEN LLC ist ein Vertriebsunternehmen der Pharmaindustrie auf dem usbekischen Markt. Das Unternehmen NEUES LEBEN wurde 2018 gegründet und begann seine Geschichte mit dem Großhandelsverkauf von Arzneimitteln in der gesamten Republik Usbekistan.",
+    "hero.description2":
+      "Bis heute konzentriert sich das Unternehmen auf den Direktvertrieb von Arzneimitteln über eine eigene Vertriebsabteilung. Seit 2019 hat das Unternehmen eine neue Dimension erreicht und schließt Direktverträge mit ausländischen Herstellern ab.",
+    "hero.learnMore": "Mehr erfahren",
+    "hero.contactUs": "Kontaktieren Sie uns",
+    "hero.established": "Gegründet 2018",
+    "hero.quality": "Qualität, Pünktlichkeit, zuverlässige Partnerschaft",
+
+    // About section
+    "about.title": "Über das Unternehmen",
+    "about.subtitle": "Ihr zuverlässiger Partner in der Pharmaindustrie",
+    "about.founded": "Gegründet 2018",
+    "about.warehouse":
+      "Das Lager erhielt die höchste Bewertung für die Einhaltung der Lagerqualitätsstandards.",
+    "about.paragraph1":
+      "NEUES LEBEN LLC ist ein Vertriebsunternehmen der Pharmaindustrie auf dem usbekischen Markt. Das Unternehmen NEUES LEBEN wurde 2018 gegründet und begann seine Geschichte mit dem Großhandelsverkauf von Arzneimitteln in der gesamten Republik Usbekistan.",
+    "about.paragraph2":
+      "Seit 2019 hat das Unternehmen eine neue Dimension erreicht und schließt Direktverträge mit ausländischen Herstellern ab, die den Import und die Vermarktung hochwertiger Arzneimittel ermöglichen. Das Unternehmen NEUES LEBEN verfügt über ein Lager, in dem Arzneimittel in höchster Qualität gelagert werden.",
+    "about.conclusion":
+      "Die wichtigsten Grundsätze unserer Arbeit sind die Qualität unserer Produkte, pünktliche Lieferung und zuverlässige Partnerschaft!",
+
+    // Mission section
+    "mission.title": "Unsere Mission",
+    "mission.paragraph1":
+      "Gesundheitsschutz gewährleisten und die Lebensqualität der Bevölkerung des Landes verbessern, indem wir Verbraucher über neue Trends bei wirksamen und erschwinglichen Behandlungen informieren.",
+    "mission.paragraph2":
+      "Das Unternehmen verwendet moderne Ansätze und benutzt die neuesten Entwicklungen, um die Gesundheit und das Wohlbefinden der Patienten zu verbessern.",
+    "mission.healthFocus":
+      "Wir streben danach, die Lebensqualität der Nation zu verbessern.",
+    "mission.protection": "Gesundheitsschutz",
+    "mission.protectionDesc":
+      "Wir ermöglichen Zugang zu hochwertigen Medikamenten",
+    "mission.community": "Fokus auf die Gemeinschaft",
+    "mission.communityDesc": "Wir arbeiten zum Wohle der Gesellschaft",
+    "mission.care": "Patientenbetreuung",
+    "mission.careDesc":
+      "Wir nutzen moderne Ansätze zur Verbesserung des Wohlbefindens",
+
+    // Values section
+    "values.title": "Unsere Werte",
+    "values.subtitle": "Die Prinzipien, die unser Unternehmen leiten",
+    "values.honesty.title": "Ehrlichkeit",
+    "values.honesty.description":
+      "ist der Grundwert unseres Unternehmens. Wir glauben an Offenheit, Transparenz und Wahrhaftigkeit in all unseren Beziehungen – mit Kunden, Partnern, Mitarbeitern und der Gesellschaft.",
+    "values.professionalism.title": "Professionalität",
+    "values.professionalism.description":
+      "Wir entwickeln unsere Fähigkeiten und Kenntnisse ständig weiter, um unseren Kunden qualitativ hochwertige Dienstleistungen zu bieten und ihre Anfragen umgehend zu beantworten.",
+    "values.leadership.title": "Führung",
+    "values.leadership.description":
+      "Wir konzentrieren uns auf das Erreichen ehrgeiziger Ziele und fördern ergebnisorientierte Führung.",
+    "values.aspiration.title": "Streben",
+    "values.aspiration.description":
+      "Wir streben nach geschäftlichem Erfolg und unterstützen unsere Kunden und Partner dabei, erfolgreich zu sein.",
+    "values.support.title": "Unterstützung",
+    "values.support.description":
+      "Wir sind ein zuverlässiger Partner und unterstützen Sie umfassend für den gemeinsamen Erfolg.",
+
+    // Team section
+    "team.title": "Unser Team",
+    "team.companyPrefix": "",
+    "team.employeeCount": "NEUES LEBEN beschäftigt über",
+    "team.employeeSuffix": "hochqualifizierte Mitarbeiter.",
+    "team.departmentsTitle": "Unsere Abteilungen:",
+    "team.departments.admin": "Abteilung für Verwaltungs- und Führungskräfte",
+    "team.departments.hr": "Personalabteilung (Personalmanagement)",
+    "team.departments.legal": "Rechtsabteilung",
+    "team.departments.sales": "Vertriebs- und Marketingabteilung",
+    "team.departments.medical": "Team der Medizinvertreter",
+    "team.departments.foreign": "Abteilung für Außenwirtschaftsaktivitäten",
+    "team.departments.registration": "Abteilung für Arzneimittelregistrierung",
+    "team.departments.logistics": "Logistikabteilung",
+    "team.departments.customs": "Team der Anmelder",
+    "team.teamSpirit":
+      "Jeder Mitarbeiter stärkt das Image des Unternehmens als zuverlässiger Pharmahändler, indem er qualitativ hochwertige Dienstleistungen und eine professionelle Arbeitsweise bietet.",
+    "team.gallery.title": "Lernen Sie unser Team kennen",
+    "team.gallery.memberDescription":
+      "Ein engagierter Fachmann mit umfangreicher Erfahrung in der Pharmaindustrie. Verpflichtet zu unserer Mission, Gesundheit und Lebensqualität durch innovative Lösungen und zuverlässige Partnerschaften zu verbessern.",
+    "team.gallery.showMore": "mehr anzeigen",
+    "team.gallery.showLess": "weniger anzeigen",
+
+    // Culture section
+    "culture.title": "Unternehmenskultur",
+    "culture.paragraph1":
+      "Unsere Unternehmenskultur basiert auf bewährten Werten und Traditionen. Wir fördern Familienwerte und einen gesunden Lebensstil, entwickeln uns weiter und lernen dazu.",
+    "culture.paragraph2":
+      "Wir sind stolz auf unsere Erfolge am Markt und darauf, dass unsere Mitarbeiter Praktika im Ausland absolvieren. Gemeinsame Urlaube, Wettbewerbe und moderne Kommunikationsformen machen uns zu einem eingeschworenen Team.",
+    "culture.paragraph3":
+      "Jeder Mitarbeiter stärkt das Image des Unternehmens als zuverlässiger Pharmahändler.",
+    "culture.family.title": "Familienwerte",
+    "culture.family.description":
+      "Wir unterstützen und fördern Familienwerte und einen gesunden Lebensstil",
+    "culture.achievements.title": "Markterfolge",
+    "culture.achievements.description":
+      "Wir sind stolz auf unsere Erfolge im Pharmamarkt.",
+    "culture.internships.title": "Internationale Erfahrung",
+    "culture.internships.description":
+      "Unsere Mitarbeiter absolvieren Praktika im Ausland, um ihre Qualifikationen zu verbessern.",
+    "culture.events.title": "Teambilding",
+    "culture.events.description":
+      "Gemeinsame Urlaube und Events machen uns zu einem eingeschworenen Team.",
+
+    // Achievements section
+    "achievements.title": "Unsere Erfolge",
+    "achievements.award": "Vertriebsleiter des Jahres",
+    "achievements.description":
+      "In den letzten vier Jahren hatte unser Team führende Positionen im Vertrieb der Pharmaindustrie in der Holdinggruppe Inso Farm Deluxe LLC inne und wurde jährlich mit der Auszeichnung Sales Leader of the Year ausgezeichnet.",
+    "achievements.growth": "Unser Teamwachstum",
+    "achievements.growthDescription":
+      "Unser Teamwachstum von 14 auf 135 Mitarbeiter ist ein klarer Beleg für den Erfolg unserer Aktivitäten in der Pharmaindustrie und die steigende Nachfrage nach unseren Produkten.",
+    "achievements.growthChart": "Teamwachstumsdynamik",
+    "achievements.award1.title": "Vertriebsleiter 2022",
+    "achievements.award1.year": "INSO Group",
+    "achievements.award2.title": "Bester Distributor 2023",
+    "achievements.award2.year": "Pharmazeutischer Verband",
+    "achievements.award3.title": "Qualitätsexzellenz 2024",
+    "achievements.award3.year": "Branchenanerkennung",
+
+    // Partners section
+    "partners.title": "Unsere Partner",
+    "partners.subtitle":
+      "Wir kooperieren mit führenden Pharmaherstellern weltweit.",
+    "partners.countries": "Wir kooperieren mit:",
+    "partners.southKorea": "Südkorea",
+    "partners.poland": "Polen",
+    "partners.china": "China",
+    "partners.india": "Indien",
+    "partners.products": "Exklusive Arzneimittel",
+    "partners.productsDescription":
+      "Mehr als 50 exklusive Arzneimittel aus ausländischer und lokaler Produktion",
+    "partners.product": "Produkt",
+
+    // Infrastructure section
+    "infrastructure.title": "Infrastruktur",
+    "infrastructure.subtitle":
+      "NEUES LEBEN verfügt über eine moderne Logistikinfrastruktur.",
+    "infrastructure.warehouse.title": "Modernes Lager",
+    "infrastructure.warehouse.description":
+      "Das Unternehmen verfügt über ein Lager. Das Unternehmen erfüllt die Standards der Good Distribution Practice (GDP).",
+    "infrastructure.warehouse.standards":
+      "Einhaltung höchster Qualitätsstandards",
+    "infrastructure.warehouse.size": "Lagerfläche: 10.000 m²",
+    "infrastructure.logistics.title": "Moderne Logistik",
+    "infrastructure.logistics.description":
+      "Die Fahrzeuge sind mit modernen Kühlaggregaten ausgestattet, die einen sicheren und qualitativ hochwertigen Transport der Produkte unter Einhaltung der erforderlichen Temperaturbedingungen gewährleisten.",
+    "infrastructure.logistics.temperature":
+      "Temperaturkontrolle in allen Phasen",
+    "infrastructure.logistics.modern": "Moderner Fuhrpark",
+    "infrastructure.logistics.efficient": "Effiziente Lieferung im ganzen Land",
+
+    // Coverage section
+    "coverage.title": "Unsere Reichweite",
+    "coverage.subtitle": "Wir verkaufen in ganz Usbekistan",
+    "coverage.description":
+      "Wir verkaufen in ganz Usbekistan und gewährleisten eine zuverlässige Versorgung mit Arzneimitteln in alle Regionen des Landes.",
+    "coverage.offices": "Regionale Niederlassungen",
+    "coverage.officesDescription":
+      "Wir verfügen über Vertriebsbüros in allen Regionen des Landes unter der Leitung von Regionalmanagern.",
+    "coverage.mapTitle": "Landesweite Verteilung",
+    "coverage.mapDescription":
+      "Sicherung des Zugangs zu hochwertigen Medikamenten in ganz Usbekistan",
+    "coverage.cooperation":
+      "Wir sind offen für eine für beide Seiten vorteilhafte und langfristige Zusammenarbeit.",
+    "coverage.uzbekistanMap": "Abdeckungskarte Usbekistan",
+    "coverage.stats.regions": "Abgedeckte Regionen",
+    "coverage.stats.team": "Teammitglieder",
+    "coverage.stats.network": "Vertriebsnetz",
+
+    // Contact section
+    "contact.title": "Kontaktieren Sie uns",
+    "contact.subtitle":
+      "Wir sind offen für eine für beide Seiten vorteilhafte und langfristige Zusammenarbeit",
+    "contact.form.title": "Senden Sie uns eine Nachricht",
+    "contact.form.name": "Name",
+    "contact.form.namePlaceholder": "Ihr Name",
+    "contact.form.email": "E-Mail",
+    "contact.form.emailPlaceholder": "Ihr E-Mail",
+    "contact.form.message": "Nachricht",
+    "contact.form.messagePlaceholder": "Ihre Nachricht",
+    "contact.form.submit": "Nachricht senden",
+    "contact.info.title": "Kontaktinformationen",
+    "contact.info.address.title": "Adresse",
+    "contact.info.address.value":
+      "100047, Republik Usbekistan, Taschkent, Bezirk Yashnabad, Akhangaran Highway, st. Parkentskaya Nr. 333",
+    "contact.info.phone.title": "Telefon",
+    "contact.info.phone.value": "+998 90 903 03 31 / +998 97 769 64 80",
+    "contact.info.email.title": "E-Mail",
+    "contact.info.email.value":
+      "info@neuesleben.uz, import@neuesleben.uz, sales@neuesleben.uz",
+    "contact.info.tagline": "Ihr zuverlässiger Partner in der Pharmaindustrie",
+
+    //Footer section
+    "footer.description":
+      "OOO NEUES LEBEN ist ein Vertriebsunternehmen, das in der pharmazeutischen Industrie Usbekistans tätig ist.",
+    "footer.about": "Über uns",
+    "footer.aboutUs": "Über uns",
+    "footer.mission": "Mission",
+    "footer.values": "Werte",
+    "footer.team": "Team",
+    "footer.activities": "Aktivitäten",
+    "footer.partners": "Partner",
+    "footer.infrastructure": "Infrastruktur",
+    "footer.coverage": "Abdeckung",
+    "footer.achievements": "Erfolge",
+    "footer.contacts": "Kontakt",
+    "footer.location": "Taschkent, Usbekistan",
+    "footer.rights": "Alle Rechte vorbehalten.",
+    "footer.openToCooperation":
+      "Wir sind offen für eine für beide Seiten vorteilhafte und langfristige Zusammenarbeit.",
+  },
 };
 
 // Define the provider props
@@ -713,7 +953,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   // Effect to load language preference from localStorage on mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && ["en", "uz", "ru"].includes(savedLanguage)) {
+    if (savedLanguage && ["en", "uz", "ru", "de"].includes(savedLanguage)) {
       setLanguageState(savedLanguage);
     }
   }, []);
