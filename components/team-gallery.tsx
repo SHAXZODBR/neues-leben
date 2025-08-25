@@ -16,6 +16,7 @@ type TeamMember = {
     en: string;
     uz: string;
     ru: string;
+    de: string;
   };
   image: string;
 };
@@ -29,6 +30,7 @@ const teamMembers: TeamMember[] = [
       en: "CEO",
       uz: "Bosh direktor",
       ru: "Директор",
+      de: "Geschäftsführer",
     },
     image: "/Team/Ахтамов Озот Азимбоевич  Директор.jpg",
   },
@@ -40,6 +42,7 @@ const teamMembers: TeamMember[] = [
       en: "Quality Control Manager",
       uz: "Sifat nazorati menejeri",
       ru: "менеджер по качеству продукции",
+      de: "Produktqualitätsmanager",
     },
     image: "/Team/Шатемирова Дилфуза Каюмовна  менеджер по контролю кач.jpg",
   },
@@ -51,6 +54,7 @@ const teamMembers: TeamMember[] = [
       en: "HR",
       uz: "HR",
       ru: "HR",
+      de: "HR (Personalwesen)",
     },
     image: "/Team/Мукаддас Юлдашбаевна HR.jpg",
   },
@@ -62,6 +66,7 @@ const teamMembers: TeamMember[] = [
       en: "Product Manager",
       uz: "Mahsulotlar bo‘yicha menejer",
       ru: "Менеджер по продуктам",
+      de: "Produktmanager",
     },
     image: "/Team/Саидова Нигора Азизхановна, Менеджер по продуктам.jpg",
   },
@@ -73,6 +78,7 @@ const teamMembers: TeamMember[] = [
       en: "Financial Director",
       uz: "Moliya direktori",
       ru: "финансовый директор",
+      de: "Finanzdirektor",
     },
     image: "/Team/Равшанов Зафар Зойир угли  Гл. Бухгалтер.jpg",
   },
@@ -84,6 +90,7 @@ const teamMembers: TeamMember[] = [
       en: "Legal Consultant",
       uz: "Huquqiy maslahatchi",
       ru: "Юрисконсульт",
+      de: "Rechtsberater",
     },
     image: "/Team/Мавланов Самад Хайитбоевич  юристконкусльт.jpg",
   },
@@ -95,6 +102,7 @@ const teamMembers: TeamMember[] = [
       en: "Head of foreign econimic relations department",
       uz: "Tashqi iqtisodiy faoliyat bo'limi boshlig'i",
       ru: "Начальник отдела ВЭД",
+      de: "Leiter der Abteilung für Außenwirtschaft",
     },
     image: "/Team/Умаров Зафар Рашидович  Начальник отдела ВЭД.jpg",
   },
@@ -106,6 +114,7 @@ const teamMembers: TeamMember[] = [
       en: "Warehouse Manager",
       uz: "Ombor mudiri",
       ru: "Зав. склада",
+      de: "Lagerleiter",
     },
     image: "/Team/Якубходжаев Саидкамол Саидакбарович  Зав. склада.jpg",
   },
@@ -117,6 +126,7 @@ const teamMembers: TeamMember[] = [
       en: "HDM",
       uz: "HDM",
       ru: "HDM",
+      de: "HDM",
     },
     image: "/Team/Алибаев Камолиддин Абдузокирович  HDM.jpg",
   },
@@ -128,6 +138,7 @@ const teamMembers: TeamMember[] = [
       en: "HDM",
       uz: "HDM",
       ru: "HDM",
+      de: "HDM",
     },
     image: "/Team/Абдурахмонов Акмалжон Абдуллажонович .jpg",
   },
@@ -139,6 +150,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Tashkent",
       uz: "Toshkent shahri bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по г. Ташкента",
+      de: "Regionalmanagerin für Taschkent",
     },
     image:
       "/Team/Полвонова Парвина Рахматуллаевна  Региональный менеджер по г. Ташкента.jpg",
@@ -151,6 +163,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Samarkand Region",
       uz: "Samarqand viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Самаркандской области",
+      de: "Regionalmanager für die Region Samarkand",
     },
     image:
       "/Team/Уразалиев Орзубек Данабой ўғли  Региональный менеджер по Самаркандской области.jpg",
@@ -163,6 +176,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Kashkadarya Region",
       uz: "Qashqadaryo viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Кашкадарьинской области",
+      de: "Regionalmanagerin für die Region Qashqadarya",
     },
     image:
       "/Team/Юлдошева Гулмира Жонимкуловна  Региональный менеджер по Кашкадарьинской области.jpg",
@@ -175,6 +189,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Navoi Region",
       uz: "Navoiy viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Навоийской области",
+      de: "Regionalmanagerin für die Region Navoiy",
     },
     image:
       "/Team/Санақулова Малика Умаровна  Региональный менеджер по Навоийской области.jpg",
@@ -187,6 +202,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Surkhandarya Region",
       uz: "Surxondaryo viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Сурхандарьинской области",
+      de: "Regionalmanager für die Region Surxondaryo",
     },
     image:
       "/Team/Шодманов Бунёд Хамдамович  Региональный менеджер по Сурхандарьинской области.jpg",
@@ -199,6 +215,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Namangan Region",
       uz: "Namangan viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Наманганской области",
+      de: "Regionalmanagerin für die Region Namangan",
     },
     image: "/Team/Абдулазизова Нозима Машрабовна.jpg",
   },
@@ -210,6 +227,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Tashkent Region",
       uz: "Toshkent viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Тошкентской области",
+      de: "Regionalmanager für die Region Taschkent",
     },
     image:
       "/Team/Хожимуродов Акмал Абдумаликович  Региональный менеджер по Тошкентской области.jpg",
@@ -222,6 +240,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Bukhara Region",
       uz: "Buxoro viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Бухарской области",
+      de: "Regionalmanager für die Region Buchara",
     },
     image: "/Team/Баходир Усманов Шамсиевич Бухоро РМ.jpg",
   },
@@ -233,6 +252,7 @@ const teamMembers: TeamMember[] = [
       en: "Regional Manager for Jizzakh Region",
       uz: "Jizzax viloyati bo'yicha mintaqaviy menejer",
       ru: "Региональный менеджер по Джизакской области",
+      de: "Regionalmanager für die Region Jizzakh",
     },
     image:
       "/Team/Ачилов Толмас Тоштемирович  Региональный менеджер по Джизакской области.jpg",
@@ -245,6 +265,7 @@ const teamMembers: TeamMember[] = [
       en: "Pharmacovigilance Specialist",
       uz: "Farmakonazor bo'yicha mutaxassis",
       ru: "Специалист по фармаконадзора",
+      de: "Fachkraft für Pharmakovigilanz",
     },
     image:
       "/Team/Сайдуллаев Абдулхай Абдишукир угли  Специалист по фармаконадзора.jpg",
@@ -257,6 +278,7 @@ const teamMembers: TeamMember[] = [
       en: "Assistant to Chief Accountant",
       uz: "Bosh hisobchining yordamchisi",
       ru: "помощник гл.бухгалтера",
+      de: "Assistentin des Chefbuchhalters",
     },
     image: "/Team/Курбонова Мухтабар Рахмжоновна  помощник гл.бухгалтера.jpg",
   },
@@ -268,6 +290,7 @@ const teamMembers: TeamMember[] = [
       en: "Assistant to Warehouse Manager",
       uz: "Ombor mudirining yordamchisi",
       ru: "помощник зав.склада ",
+      de: "Assistentin des Lagerleiters",
     },
     image: "/Team/Махкамова Умида Закировна  помощник зав.склада.jpg",
   },
