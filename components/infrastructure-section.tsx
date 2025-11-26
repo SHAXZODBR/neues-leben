@@ -15,7 +15,7 @@ export default function InfrastructureSection() {
   return (
     <section
       id="infrastructure"
-      className="w-full py-20 bg-gray-50 dark:bg-gray-900"
+      className="w-full py-20 bg-muted/50"
     >
       <div className="container px-4 md:px-6">
         <motion.div
@@ -26,10 +26,10 @@ export default function InfrastructureSection() {
           ref={ref}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
               {t("infrastructure.title")}
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-xl text-muted-foreground">
               {t("infrastructure.subtitle")}
             </p>
           </div>
@@ -45,22 +45,22 @@ export default function InfrastructureSection() {
           >
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                  <Warehouse className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+                <div className="p-3 bg-primary/10 rounded-full">
+                  <Warehouse className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                <h3 className="text-2xl font-bold text-foreground">
                   {t("infrastructure.warehouse.title")}
                 </h3>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("infrastructure.warehouse.description")}
                 </p>
               </div>
 
-              <div className="bg-primary-50 dark:bg-primary-900/30 p-6 rounded-xl shadow-md">
-                <p className="font-medium text-primary-800 dark:text-primary-300">
+              <div className="bg-primary/5 p-6 rounded-xl shadow-sm border border-primary/20">
+                <p className="font-medium text-foreground">
                   {t("infrastructure.warehouse.size")}
                 </p>
               </div>
@@ -73,8 +73,8 @@ export default function InfrastructureSection() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div className="bg-white/90 dark:bg-gray-800/90 p-4 rounded-lg shadow-lg max-w-xs text-center">
-                  <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                <div className="bg-card/95 p-4 rounded-lg shadow-lg max-w-xs text-center border border-border">
+                  <h4 className="text-xl font-bold text-foreground">
                     {t("infrastructure.warehouse.standards")}
                   </h4>
                 </div>
@@ -95,11 +95,11 @@ export default function InfrastructureSection() {
                 className="w-full h-full"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div className="bg-white/90 dark:bg-gray-800/90 p-4 rounded-lg shadow-lg max-w-xs text-center">
-                  <h4 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                <div className="bg-card/95 p-4 rounded-lg shadow-lg max-w-xs text-center border border-border">
+                  <h4 className="text-lg sm:text-xl font-bold text-foreground mb-2">
                     {t("infrastructure.logistics.modern")}
                   </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-muted-foreground">
                     {t("infrastructure.logistics.efficient")}
                   </p>
                 </div>
@@ -108,25 +108,25 @@ export default function InfrastructureSection() {
 
             <div className="order-1 md:order-2 space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                  <Truck className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+                <div className="p-3 bg-primary/10 rounded-full">
+                  <Truck className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                <h3 className="text-2xl font-bold text-foreground">
                   {t("infrastructure.logistics.title")}
                 </h3>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("infrastructure.logistics.description")}
                 </p>
               </div>
 
-              <div className="flex items-center space-x-4 p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
-                <div className="p-2 bg-primary-100 dark:bg-primary-800 rounded-full">
-                  <Thermometer className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+              <div className="flex items-center space-x-4 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                <div className="p-2 bg-primary/10 rounded-full">
+                  <Thermometer className="h-6 w-6 text-primary" />
                 </div>
-                <p className="text-primary-800 dark:text-primary-300">
+                <p className="text-foreground">
                   {t("infrastructure.logistics.temperature")}
                 </p>
               </div>

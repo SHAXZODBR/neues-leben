@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,11 +11,28 @@ import LanguageSelector from "@/components/language-selector";
 import { useLanguage } from "@/contexts/language-context";
 import ThemeToggle from "@/components/theme-toggle";
 import { motion } from "framer-motion";
+import DoctorVerificationModal from "@/components/doctor-verification-modal";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
+
+  const handleBlogClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowVerification(true);
+  };
+
+  const handleVerificationConfirm = () => {
+    sessionStorage.setItem("blogVerified", "true");
+    setShowVerification(false);
+    setIsOpen(false);
+    router.push("/blog");
+  };
 
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -36,12 +55,20 @@ export default function Navbar() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
+      // Clear hash from URL without adding to history
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
     }
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setIsOpen(false);
+    // Clear hash from URL
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   };
 
   const navItems = [
@@ -68,27 +95,58 @@ export default function Navbar() {
     >
       <div className="container flex h-14 sm:h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <button onClick={scrollToTop} className="flex items-center gap-2">
-            <Logo className="h-16 w-16 sm:h-16 sm:w-14 " />
-          </button>
+          {isHome ? (
+            <button onClick={scrollToTop} className="flex items-center gap-2">
+              <Logo className="h-16 w-16 sm:h-16 sm:w-14 " />
+            </button>
+          ) : (
+            <Link href="/" className="flex items-center gap-2">
+              <Logo className="h-16 w-16 sm:h-16 sm:w-14 " />
+            </Link>
+          )}
         </div>
 
         <nav className="hidden lg:flex items-center gap-2 xl:gap-4">
-          <button
-            onClick={scrollToTop}
-            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
-          >
-            {t("nav.home")}
-          </button>
-          {navItems.map((item) => (
+          {isHome ? (
             <button
-              key={item.key}
-              onClick={() => scrollToSection(item.id)}
+              onClick={scrollToTop}
               className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
             >
-              {t(item.key)}
+              {t("nav.home")}
             </button>
-          ))}
+          ) : (
+            <Link
+              href="/"
+              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+            >
+              {t("nav.home")}
+            </Link>
+          )}
+          {navItems.map((item) =>
+            isHome ? (
+              <button
+                key={item.key}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+              >
+                {t(item.key)}
+              </button>
+            ) : (
+              <Link
+                key={item.key}
+                href={`/#${item.id}`}
+                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+              >
+                {t(item.key)}
+              </Link>
+            )
+          )}
+          <button
+            onClick={handleBlogClick}
+            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+          >
+            {t("nav.blog")}
+          </button>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -113,21 +171,48 @@ export default function Navbar() {
               className="overflow-y-auto w-[280px] sm:w-[350px]"
             >
               <div className="flex flex-col gap-6 pt-6">
+                {isHome ? (
+                  <button
+                    className="text-sm font-medium transition-colors hover:text-primary text-left"
+                    onClick={scrollToTop}
+                  >
+                    {t("nav.home")}
+                  </button>
+                ) : (
+                  <Link
+                    href="/"
+                    className="text-sm font-medium transition-colors hover:text-primary text-left"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {t("nav.home")}
+                  </Link>
+                )}
+                {navItems.map((item) =>
+                  isHome ? (
+                    <button
+                      key={item.key}
+                      className="text-sm font-medium transition-colors hover:text-primary text-left"
+                      onClick={() => scrollToSection(item.id)}
+                    >
+                      {t(item.key)}
+                    </button>
+                  ) : (
+                    <Link
+                      key={item.key}
+                      href={`/#${item.id}`}
+                      className="text-sm font-medium transition-colors hover:text-primary text-left"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {t(item.key)}
+                    </Link>
+                  )
+                )}
                 <button
                   className="text-sm font-medium transition-colors hover:text-primary text-left"
-                  onClick={scrollToTop}
+                  onClick={handleBlogClick}
                 >
-                  {t("nav.home")}
+                  {t("nav.blog")}
                 </button>
-                {navItems.map((item) => (
-                  <button
-                    key={item.key}
-                    className="text-sm font-medium transition-colors hover:text-primary text-left"
-                    onClick={() => scrollToSection(item.id)}
-                  >
-                    {t(item.key)}
-                  </button>
-                ))}
                 <div className="flex items-center gap-4 pt-4 sm:hidden">
                   <ThemeToggle />
                   <LanguageSelector />
@@ -137,6 +222,12 @@ export default function Navbar() {
           </Sheet>
         </div>
       </div>
+
+      <DoctorVerificationModal
+        isOpen={showVerification}
+        onConfirm={handleVerificationConfirm}
+        onCancel={() => setShowVerification(false)}
+      />
     </motion.header>
   );
 }

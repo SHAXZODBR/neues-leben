@@ -1,40 +1,46 @@
-import type React from "react";
-import type { Metadata } from "next/metadata";
-import { Inter, Josefin_Sans } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { LanguageProvider } from "@/contexts/language-context";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter, Josefin_Sans } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/contexts/language-context"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
   variable: "--font-josefin-sans",
   weight: ["300", "400", "500", "600", "700"],
-});
+})
 
 export const metadata: Metadata = {
-  title: "Neues Leben | Фармацевтическая дистрибьюторская компания",
+  title: "NEUES LEBEN | Pharmaceutical Distribution",
   description:
-    "Дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана.",
-  generator: "Batirjonov Shakhzod",
-};
+    "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. Quality, Timely Delivery, Reliable Partnership.",
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/icon.png" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+      </head>
       <body className={`${inter.variable} ${josefinSans.variable} font-sans`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <LanguageProvider>
             <div className="flex min-h-screen flex-col">
               <Navbar />
@@ -45,5 +51,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

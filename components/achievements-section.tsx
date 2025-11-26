@@ -26,7 +26,7 @@ export default function AchievementsSection() {
           ref={ref}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary-800 dark:text-primary-400">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
               {t("achievements.title")}
             </h2>
           </div>
@@ -34,38 +34,38 @@ export default function AchievementsSection() {
 
         <div className="grid grid-cols-1 gap-12 mb-16">
           <motion.div
-            className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
+            className="bg-card rounded-xl p-8 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="flex items-center space-x-4 mb-6">
               <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                <Trophy className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+                <Trophy className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{t("achievements.award")}</h3>
+              <h3 className="text-2xl font-bold text-foreground">{t("achievements.award")}</h3>
             </div>
-            <p className="text-lg text-gray-700 dark:text-gray-300">{t("achievements.description")}</p>
+            <p className="text-lg text-muted-foreground">{t("achievements.description")}</p>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg flex items-center">
-                <Award className="h-10 w-10 text-primary-600 dark:text-primary-400 mr-4" />
+                <Award className="h-10 w-10 text-primary mr-4" />
                 <div>
-                  <h4 className="font-bold text-gray-800 dark:text-gray-200">{t("achievements.award1.title")}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t("achievements.award1.year")}</p>
+                  <h4 className="font-bold text-foreground">{t("achievements.award1.title")}</h4>
+                  <p className="text-sm text-muted-foreground">{t("achievements.award1.year")}</p>
                 </div>
               </div>
               <div className="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg flex items-center">
-                <Award className="h-10 w-10 text-primary-600 dark:text-primary-400 mr-4" />
+                <Award className="h-10 w-10 text-primary mr-4" />
                 <div>
-                  <h4 className="font-bold text-gray-800 dark:text-gray-200">{t("achievements.award2.title")}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t("achievements.award2.year")}</p>
+                  <h4 className="font-bold text-foreground">{t("achievements.award2.title")}</h4>
+                  <p className="text-sm text-muted-foreground">{t("achievements.award2.year")}</p>
                 </div>
               </div>
               <div className="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg flex items-center">
-                <Award className="h-10 w-10 text-primary-600 dark:text-primary-400 mr-4" />
+                <Award className="h-10 w-10 text-primary mr-4" />
                 <div>
-                  <h4 className="font-bold text-gray-800 dark:text-gray-200">{t("achievements.award3.title")}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t("achievements.award3.year")}</p>
+                  <h4 className="font-bold text-foreground">{t("achievements.award3.title")}</h4>
+                  <p className="text-sm text-muted-foreground">{t("achievements.award3.year")}</p>
                 </div>
               </div>
             </div>
@@ -79,12 +79,12 @@ export default function AchievementsSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold text-primary-800 dark:text-primary-400 mb-4 flex items-center gap-3">
+            <div className="bg-card p-6 rounded-xl shadow-md">
+              <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
                 <TrendingUp className="h-8 w-8 text-primary-600" />
                 {t("achievements.growth")}
               </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 {t("achievements.growthDescription")}
               </p>
             </div>
@@ -94,15 +94,15 @@ export default function AchievementsSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="relative h-[400px] bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+            className="relative h-[400px] bg-card rounded-xl p-6 shadow-lg"
           >
-            <h3 className="text-xl font-bold text-primary-800 dark:text-primary-400 mb-6">
+            <h3 className="text-xl font-bold text-foreground mb-6">
               {t("achievements.growthChart")}
             </h3>
 
             <div className="absolute bottom-16 left-0 right-0 flex justify-between px-6">
               {years.map((year, index) => (
-                <div key={index} className="text-xs text-gray-500 dark:text-gray-400">
+                <div key={index} className="text-xs text-muted-foreground">
                   {year}
                 </div>
               ))}

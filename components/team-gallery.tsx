@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/language-context";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -22,6 +22,18 @@ type TeamMember = {
 };
 
 const teamMembers: TeamMember[] = [
+  {
+    id: 5,
+    name: "Хўжаев Жаҳонгир",
+    nameLatin: "Xo’jayev Jahongir",
+    position: {
+      en: "Founder",
+      uz: "Asoschi",
+      ru: "Основатель",
+      de: "Gründer",
+    },
+    image: "/Team/J_Xujayev.jpg",
+  },
   {
     id: 2,
     name: "Ахтамов Озот Азимбоевич",
@@ -70,18 +82,7 @@ const teamMembers: TeamMember[] = [
     },
     image: "/Team/Саидова Нигора Азизхановна, Менеджер по продуктам.jpg",
   },
-  {
-    id: 5,
-    name: "Равшанов Зафар Зойир угли",
-    nameLatin: "Ravshanov Zafar Zoyir oʻgʻli",
-    position: {
-      en: "Financial Director",
-      uz: "Moliya direktori",
-      ru: "финансовый директор",
-      de: "Finanzdirektor",
-    },
-    image: "/Team/Равшанов Зафар Зойир угли  Гл. Бухгалтер.jpg",
-  },
+
   {
     id: 6,
     name: "Мавланов Самад Хайитбоевич",
@@ -343,7 +344,7 @@ export default function TeamGallery() {
 
   return (
     <div className="py-8">
-      <h3 className="text-2xl font-bold text-primary-800 dark:text-primary-400 mb-6 text-center">
+      <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
         {t("team.gallery.title")}
       </h3>
 
@@ -351,7 +352,7 @@ export default function TeamGallery() {
         {displayedMembers.map((member) => (
           <motion.div
             key={member.id}
-            className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-800"
+            className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md bg-card"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
             onClick={() => handleOpenModal(member)}
           >
@@ -372,10 +373,10 @@ export default function TeamGallery() {
               </div>
             </div>
             <div className="p-3 text-center">
-              <h4 className="font-semibold text-gray-800 dark:text-gray-200">
+              <h4 className="font-semibold text-foreground">
                 {getDisplayName(member)}
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 {member.position[language as keyof typeof member.position]}
               </p>
             </div>
@@ -396,6 +397,11 @@ export default function TeamGallery() {
         onOpenChange={(open) => !open && handleCloseModal()}
       >
         <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white dark:bg-gray-900 ">
+          <DialogTitle className="sr-only">
+            {selectedMember
+              ? `Profile details for ${getDisplayName(selectedMember)}`
+              : "Team member details"}
+          </DialogTitle>
           <div className="relative ">
             <Button
               variant="ghost"
@@ -421,17 +427,17 @@ export default function TeamGallery() {
               <div className="p-16 w-full  flex flex-col justify-center">
                 {selectedMember && (
                   <>
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
                       {getDisplayName(selectedMember)}
                     </h3>
-                    <p className="text-lg text-primary-600 dark:text-primary-400 mb-4">
+                    <p className="text-lg text-primary mb-4">
                       {
                         selectedMember.position[
                           language as keyof typeof selectedMember.position
                         ]
                       }
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-muted-foreground">
                       {t("team.gallery.memberDescription")}
                     </p>
                   </>

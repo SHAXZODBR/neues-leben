@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/contexts/language-context"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import Logo from "@/components/logo"
+import { useLanguage } from "@/contexts/language-context";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import Logo from "@/components/logo";
 
 export default function HeroSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId)
+    const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" })
+      section.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section className="w-full min-h-[90vh] py-12 md:py-24 lg:py-32 relative overflow-hidden flex items-center">
@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center gap-4 mb-6"
           >
             <Logo size="large" className="w-16 h-16 sm:w-24 sm:h-24" />
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter text-gray-700 dark:text-gray-200 text-center sm:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter text-foregr                                                                                                                                                                                          ound text-center sm:text-left">
               NEUES LEBEN
             </h1>
           </motion.div>
@@ -47,7 +47,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary-700 dark:text-primary-300 max-w-4xl text-center leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary max-w-4xl text-center leading-relaxed"
           >
             {t("hero.tagline")}
           </motion.p>
@@ -60,17 +60,25 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-6"
           >
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               {t("hero.description")}
             </p>
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               {t("hero.description2")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" onClick={() => scrollToSection("about")} className="bg-primary hover:bg-primary/90">
+              <Button
+                size="lg"
+                onClick={() => scrollToSection("about")}
+                className="bg-primary hover:bg-primary/90"
+              >
                 {t("hero.learnMore")}
               </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection("contact")}>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => scrollToSection("contact")}
+              >
                 {t("hero.contactUs")}
               </Button>
             </div>
@@ -82,15 +90,17 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
               <div className="relative w-3/4 h-3/4">
                 <Logo size="large" className="w-full h-full" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-4 sm:p-6 bg-white/90 dark:bg-gray-900/90 rounded-lg shadow-lg max-w-xs sm:max-w-sm">
-                    <h3 className="text-xl sm:text-2xl font-bold text-primary-700 dark:text-primary-300 mb-2">
+                  <div className="text-center p-4 sm:p-6 bg-card/95 rounded-lg shadow-lg max-w-xs sm:max-w-sm border border-border">
+                    <h3 className="text-xl sm:text-2xl font-bold text-primary mb-2">
                       {t("hero.established")}
                     </h3>
-                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{t("hero.quality")}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      {t("hero.quality")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -99,5 +109,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
