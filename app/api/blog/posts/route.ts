@@ -6,6 +6,8 @@ import {
   getAllCategories,
 } from "@/lib/posts";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const posts = getAllPosts();
   const popularPosts = getPopularPosts(4);
