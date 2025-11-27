@@ -3,7 +3,70 @@
 import Link from "next/link";
 import { CalendarDays, FileText, ArrowLeft, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { getAllPosts } from "@/lib/posts";
+import { useEffect, useState, useCallback } from "react";
+import { supabase } from "@/lib/supabaseClient";
+
+type PostSummary = {
+  id: string;
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  author?: string | null;
+  author_credentials?: string | null;
+  cover_image?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
+
+type DbPost = {
+  id: string | null;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  created_at?: string | null;
+  author?: string | null;
+  author_credentials?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
+
+const normalizePost = (post: DbPost): PostSummary => {
+  const plainContent = post.content ? post.content.replace(/<[^>]*>/g, "") : "";
+  const excerptSource = post.summary || plainContent;
+  const id = post.id || post.slug;
+
+  return {
+    id,
+    slug: post.slug,
+    title: post.title,
+    date: post.created_at || new Date().toISOString(),
+    excerpt: excerptSource
+      ? `${excerptSource.slice(0, 180)}${
+          excerptSource.length > 180 ? "…" : ""
+        }`
+      : "",
+    author: post.author,
+    author_credentials: post.author_credentials,
+    cover_image: post.image_url,
+    category: post.category || "General",
+    specialty: post.specialty,
+    reading_time: post.reading_time,
+    featured: post.featured,
+    views: post.views,
+    citations: post.citations,
+  };
+};
 
 const formatDate = (isoDate: string, language: string) => {
   const localeMap: Record<string, string> = {
@@ -33,7 +96,80 @@ const getMonthName = (date: Date, language: string) => {
 
 export default function BlogArchivePage() {
   const { t, language } = useLanguage();
-  const posts = getAllPosts();
+  const [posts, setPosts] = useState<PostSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPosts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
+
+    const normalized = (data as DbPost[] | null)?.map(normalizePost) ?? [];
+    setPosts(normalized);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  if (loading) {
+    return (
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-pulse text-muted-foreground">
+            {t("blog.loading")}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 text-center">
+        <p className="text-sm uppercase tracking-[0.3em] text-primary mb-4">
+          {t("blog.completeArchive")}
+        </p>
+        <h1 className="text-3xl font-bold text-foreground mb-4">
+          {t("blog.allPublicationsArchive")}
+        </h1>
+        <p className="text-muted-foreground mb-6">{error}</p>
+        <button
+          onClick={fetchPosts}
+          className="rounded-full bg-primary px-6 py-2 text-sm font-semibold text-primary-foreground"
+        >
+          {t("blog.tryAgain")}
+        </button>
+      </section>
+    );
+  }
+
+  if (!posts.length) {
+    return (
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 text-center">
+        <p className="text-sm uppercase tracking-[0.3em] text-primary mb-4">
+          {t("blog.completeArchive")}
+        </p>
+        <h1 className="text-3xl font-bold text-foreground mb-4">
+          {t("blog.allPublicationsArchive")}
+        </h1>
+        <p className="text-muted-foreground">{t("blog.subtitle")}</p>
+      </section>
+    );
+  }
 
   // Group by year and month
   const grouped = posts.reduce<Record<string, Record<string, typeof posts>>>(
@@ -52,7 +188,9 @@ export default function BlogArchivePage() {
 
   const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
   const totalArticles = posts.length;
-  const totalCategories = new Set(posts.map((p) => p.category)).size;
+  const totalCategories = new Set(
+    posts.map((p) => p.category).filter((cat): cat is string => Boolean(cat))
+  ).size;
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">

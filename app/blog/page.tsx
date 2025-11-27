@@ -3,13 +3,8 @@
 import Link from "next/link";
 import { ArrowUpRight, Search, Eye, Quote, Bookmark } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { useState } from "react";
-import {
-  getAllPosts,
-  getPopularPosts,
-  getMostCitedPosts,
-  getAllCategories,
-} from "@/lib/posts";
+import { useState, useEffect, useCallback } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 type PostSummary = {
   id: string;
@@ -17,16 +12,58 @@ type PostSummary = {
   title: string;
   date: string;
   excerpt: string;
-  author?: string;
-  author_credentials?: string;
-  tags?: string[];
-  cover_image?: string;
-  category?: string;
-  specialty?: string;
-  reading_time?: string;
-  featured?: boolean;
-  views?: number;
-  citations?: number;
+  author?: string | null;
+  author_credentials?: string | null;
+  cover_image?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
+
+type DbPost = {
+  id: string | null;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  created_at?: string | null;
+  author?: string | null;
+  author_credentials?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
+
+const normalizePost = (post: DbPost): PostSummary => {
+  const plainContent = post.content ? post.content.replace(/<[^>]*>/g, "") : "";
+  const excerptSource = post.summary || plainContent;
+  const id = post.id || post.slug;
+
+  return {
+    id,
+    slug: post.slug,
+    title: post.title,
+    date: post.created_at || new Date().toISOString(),
+    excerpt: excerptSource
+      ? `${excerptSource.slice(0, 180)}${excerptSource.length > 180 ? "…" : ""}`
+      : "",
+    author: post.author,
+    author_credentials: post.author_credentials,
+    cover_image: post.image_url,
+    category: post.category || "General",
+    specialty: post.specialty,
+    reading_time: post.reading_time,
+    featured: post.featured,
+    views: post.views,
+    citations: post.citations,
+  };
 };
 
 const formatDate = (isoDate: string, language: string) => {
@@ -46,17 +83,97 @@ const formatDate = (isoDate: string, language: string) => {
 export default function BlogIndexPage() {
   const { t, language } = useLanguage();
 
-  // Get data directly from mock
-  const allPosts = getAllPosts();
-  const categories = getAllCategories();
-  const popularPosts = getPopularPosts(4);
-  const mostCitedPosts = getMostCitedPosts(3);
+  const [allPosts, setAllPosts] = useState<PostSummary[]>([]);
+  const [popularPosts, setPopularPosts] = useState<PostSummary[]>([]);
+  const [mostCitedPosts, setMostCitedPosts] = useState<PostSummary[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const PAGE_SIZE = 12;
+
+  const fetchPosts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
+
+    const normalized = (data as DbPost[] | null)?.map(normalizePost) ?? [];
+    setAllPosts(normalized);
+
+    const uniqueCategories = Array.from(
+      new Set(
+        normalized
+          .map((post) => post.category)
+          .filter((cat): cat is string => Boolean(cat))
+      )
+    );
+    setCategories(uniqueCategories.length ? uniqueCategories : ["General"]);
+
+    const byViews = [...normalized].sort(
+      (a, b) => (b.views ?? 0) - (a.views ?? 0)
+    );
+    setPopularPosts(byViews.slice(0, 4));
+
+    const byCitations = [...normalized].sort(
+      (a, b) => (b.citations ?? 0) - (a.citations ?? 0)
+    );
+    setMostCitedPosts(byCitations.slice(0, 3));
+
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  if (loading) {
+    return (
+      <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8 text-center">
+        <p className="text-sm uppercase tracking-[0.3em] text-primary">
+          {t("nav.blog")}
+        </p>
+        <h1 className="mt-4 text-4xl font-bold text-foreground">
+          {t("blog.title")}
+        </h1>
+        <p className="mt-3 text-muted-foreground">{t("blog.loading")}</p>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8 text-center">
+        <p className="text-sm uppercase tracking-[0.3em] text-primary">
+          {t("nav.blog")}
+        </p>
+        <h1 className="mt-4 text-4xl font-bold text-foreground">
+          {t("blog.title")}
+        </h1>
+        <p className="mt-3 text-muted-foreground">{error}</p>
+        <button
+          onClick={fetchPosts}
+          className="mt-6 rounded-full bg-primary px-6 py-2 text-sm font-semibold text-primary-foreground"
+        >
+          {t("blog.tryAgain")}
+        </button>
+      </section>
+    );
+  }
 
   // Filter posts
   let filteredPosts = allPosts;

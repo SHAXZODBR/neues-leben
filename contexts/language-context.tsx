@@ -42,7 +42,10 @@ const translations = {
 
     // Blog/Medical Journal
     "blog.title": "Medical Research & Clinical Insights",
-    "blog.subtitle": "Evidence-based articles, case studies, and clinical guidelines from healthcare professionals across all specialties.",
+    "blog.subtitle":
+      "Evidence-based articles, case studies, and clinical guidelines from healthcare professionals across all specialties.",
+    "blog.loading": "Loading latest articles...",
+    "blog.tryAgain": "Try Again",
     "blog.peerReviewed": "Peer-Reviewed Medical Literature",
     "blog.searchPlaceholder": "Search articles by title, specialty...",
     "blog.search": "Search",
@@ -57,7 +60,8 @@ const translations = {
     "blog.views": "views",
     "blog.citations": "citations",
     "blog.medicalUpdates": "Medical Updates",
-    "blog.newsletterText": "Get the latest research and clinical insights delivered to your inbox.",
+    "blog.newsletterText":
+      "Get the latest research and clinical insights delivered to your inbox.",
     "blog.subscribe": "Subscribe",
     "blog.previous": "Previous",
     "blog.next": "Next",
@@ -67,25 +71,31 @@ const translations = {
     "blog.backToJournal": "Back to Journal",
     "blog.completeArchive": "Complete Archive",
     "blog.allPublicationsArchive": "All Medical Publications",
-    "blog.archiveDescription": "Browse our complete collection of peer-reviewed articles and clinical research, organized chronologically.",
+    "blog.archiveDescription":
+      "Browse our complete collection of peer-reviewed articles and clinical research, organized chronologically.",
     "blog.articles": "Articles",
     "blog.years": "Years",
     "blog.article": "article",
     "blog.lookingForResearch": "Looking for specific research?",
-    "blog.useSearch": "Use our search to find articles by topic, author, or keyword.",
+    "blog.useSearch":
+      "Use our search to find articles by topic, author, or keyword.",
     "blog.searchArticles": "Search Articles",
-    "blog.forHealthcareProfessionals": "For licensed healthcare professionals only",
-    
+    "blog.forHealthcareProfessionals":
+      "For licensed healthcare professionals only",
+
     // Doctor verification modal
     "verification.title": "Healthcare Professional Verification",
     "verification.subtitle": "Access to Medical Literature",
     "verification.notice": "Important Notice",
-    "verification.noticeText": "The medical articles and research content in this section are intended for licensed healthcare professionals only. The information presented is for educational purposes and should not replace clinical judgment.",
+    "verification.noticeText":
+      "The medical articles and research content in this section are intended for licensed healthcare professionals only. The information presented is for educational purposes and should not replace clinical judgment.",
     "verification.confirmCredentials": "Please confirm your credentials",
-    "verification.confirmText": "I confirm that I am a licensed healthcare professional (physician, nurse, pharmacist, or other qualified medical practitioner) and I understand that the content is intended for professional medical education.",
+    "verification.confirmText":
+      "I confirm that I am a licensed healthcare professional (physician, nurse, pharmacist, or other qualified medical practitioner) and I understand that the content is intended for professional medical education.",
     "verification.cancel": "Cancel",
     "verification.confirm": "Confirm & Continue",
-    "verification.terms": "By continuing, you agree to our Terms of Service and Privacy Policy",
+    "verification.terms":
+      "By continuing, you agree to our Terms of Service and Privacy Policy",
 
     // Hero section
     "hero.tagline": "We believe that health is the foundation of a happy life!",
@@ -319,9 +329,13 @@ const translations = {
 
     // Blog/Medical Journal
     "blog.title": "Tibbiy Tadqiqotlar va Klinik Tushunchalar",
-    "blog.subtitle": "Barcha mutaxassisliklar bo'yicha sog'liqni saqlash mutaxassislaridan dalillarga asoslangan maqolalar, klinik holatlar va ko'rsatmalar.",
+    "blog.subtitle":
+      "Barcha mutaxassisliklar bo'yicha sog'liqni saqlash mutaxassislaridan dalillarga asoslangan maqolalar, klinik holatlar va ko'rsatmalar.",
+    "blog.loading": "Maqolalar yuklanmoqda...",
+    "blog.tryAgain": "Qayta urinish",
     "blog.peerReviewed": "Ekspert Tekshiruvidan O'tgan Tibbiy Adabiyot",
-    "blog.searchPlaceholder": "Maqolalarni sarlavha, mutaxassislik bo'yicha qidirish...",
+    "blog.searchPlaceholder":
+      "Maqolalarni sarlavha, mutaxassislik bo'yicha qidirish...",
     "blog.search": "Qidirish",
     "blog.browseArchive": "To'liq Arxivni Ko'rish",
     "blog.showingArticles": "{count} ta maqola ko'rsatilmoqda",
@@ -334,7 +348,8 @@ const translations = {
     "blog.views": "ko'rish",
     "blog.citations": "iqtibos",
     "blog.medicalUpdates": "Tibbiy Yangiliklar",
-    "blog.newsletterText": "Eng so'nggi tadqiqotlar va klinik tushunchalarni elektron pochtangizga oling.",
+    "blog.newsletterText":
+      "Eng so'nggi tadqiqotlar va klinik tushunchalarni elektron pochtangizga oling.",
     "blog.subscribe": "Obuna bo'lish",
     "blog.previous": "Oldingi",
     "blog.next": "Keyingi",
@@ -344,25 +359,31 @@ const translations = {
     "blog.backToJournal": "Jurnalga Qaytish",
     "blog.completeArchive": "To'liq Arxiv",
     "blog.allPublicationsArchive": "Barcha Tibbiy Nashrlar",
-    "blog.archiveDescription": "Ekspert tekshiruvidan o'tgan maqolalar va klinik tadqiqotlarning to'liq to'plamini xronologik tartibda ko'ring.",
+    "blog.archiveDescription":
+      "Ekspert tekshiruvidan o'tgan maqolalar va klinik tadqiqotlarning to'liq to'plamini xronologik tartibda ko'ring.",
     "blog.articles": "Maqolalar",
     "blog.years": "Yillar",
     "blog.article": "maqola",
     "blog.lookingForResearch": "Muayyan tadqiqot qidiryapsizmi?",
-    "blog.useSearch": "Mavzu, muallif yoki kalit so'z bo'yicha maqolalarni topish uchun qidiruvimizdan foydalaning.",
+    "blog.useSearch":
+      "Mavzu, muallif yoki kalit so'z bo'yicha maqolalarni topish uchun qidiruvimizdan foydalaning.",
     "blog.searchArticles": "Maqolalarni Qidirish",
-    "blog.forHealthcareProfessionals": "Faqat litsenziyalangan tibbiyot xodimlari uchun",
-    
+    "blog.forHealthcareProfessionals":
+      "Faqat litsenziyalangan tibbiyot xodimlari uchun",
+
     // Doctor verification modal
     "verification.title": "Sog'liqni Saqlash Mutaxassisi Tekshiruvi",
     "verification.subtitle": "Tibbiy Adabiyotga Kirish",
     "verification.notice": "Muhim Eslatma",
-    "verification.noticeText": "Ushbu bo'limdagi tibbiy maqolalar va tadqiqot materiallari faqat litsenziyalangan sog'liqni saqlash mutaxassislari uchun mo'ljallangan. Taqdim etilgan ma'lumotlar ta'lim maqsadlarida va klinik qarorlarni almashtirmasligi kerak.",
+    "verification.noticeText":
+      "Ushbu bo'limdagi tibbiy maqolalar va tadqiqot materiallari faqat litsenziyalangan sog'liqni saqlash mutaxassislari uchun mo'ljallangan. Taqdim etilgan ma'lumotlar ta'lim maqsadlarida va klinik qarorlarni almashtirmasligi kerak.",
     "verification.confirmCredentials": "Iltimos, malakangizni tasdiqlang",
-    "verification.confirmText": "Men litsenziyalangan sog'liqni saqlash mutaxassisi (shifokor, hamshira, farmatsevt yoki boshqa malakali tibbiy amaliyotchi) ekanligimni va kontent professional tibbiy ta'lim uchun mo'ljallanganligini tushunishimni tasdiqlayman.",
+    "verification.confirmText":
+      "Men litsenziyalangan sog'liqni saqlash mutaxassisi (shifokor, hamshira, farmatsevt yoki boshqa malakali tibbiy amaliyotchi) ekanligimni va kontent professional tibbiy ta'lim uchun mo'ljallanganligini tushunishimni tasdiqlayman.",
     "verification.cancel": "Bekor qilish",
     "verification.confirm": "Tasdiqlash va Davom etish",
-    "verification.terms": "Davom etish orqali siz Foydalanish shartlari va Maxfiylik siyosatiga rozilik bildirasiz",
+    "verification.terms":
+      "Davom etish orqali siz Foydalanish shartlari va Maxfiylik siyosatiga rozilik bildirasiz",
 
     // Hero section
     "hero.tagline": "Biz sog'liq baxtli hayotning asosi deb ishonamiz!",
@@ -597,7 +618,10 @@ const translations = {
 
     // Blog/Medical Journal
     "blog.title": "Медицинские Исследования и Клинические Обзоры",
-    "blog.subtitle": "Научно обоснованные статьи, клинические случаи и рекомендации от специалистов здравоохранения всех направлений.",
+    "blog.subtitle":
+      "Научно обоснованные статьи, клинические случаи и рекомендации от специалистов здравоохранения всех направлений.",
+    "blog.loading": "Загружаем свежие статьи...",
+    "blog.tryAgain": "Попробовать снова",
     "blog.peerReviewed": "Рецензируемая Медицинская Литература",
     "blog.searchPlaceholder": "Поиск статей по названию, специальности...",
     "blog.search": "Поиск",
@@ -612,7 +636,8 @@ const translations = {
     "blog.views": "просмотров",
     "blog.citations": "цитирований",
     "blog.medicalUpdates": "Медицинские Новости",
-    "blog.newsletterText": "Получайте последние исследования и клинические обзоры на вашу почту.",
+    "blog.newsletterText":
+      "Получайте последние исследования и клинические обзоры на вашу почту.",
     "blog.subscribe": "Подписаться",
     "blog.previous": "Назад",
     "blog.next": "Далее",
@@ -622,25 +647,32 @@ const translations = {
     "blog.backToJournal": "Вернуться к Журналу",
     "blog.completeArchive": "Полный Архив",
     "blog.allPublicationsArchive": "Все Медицинские Публикации",
-    "blog.archiveDescription": "Просмотрите нашу полную коллекцию рецензируемых статей и клинических исследований в хронологическом порядке.",
+    "blog.archiveDescription":
+      "Просмотрите нашу полную коллекцию рецензируемых статей и клинических исследований в хронологическом порядке.",
     "blog.articles": "Статьи",
     "blog.years": "Годы",
     "blog.article": "статья",
     "blog.lookingForResearch": "Ищете конкретное исследование?",
-    "blog.useSearch": "Используйте наш поиск для нахождения статей по теме, автору или ключевому слову.",
+    "blog.useSearch":
+      "Используйте наш поиск для нахождения статей по теме, автору или ключевому слову.",
     "blog.searchArticles": "Поиск Статей",
-    "blog.forHealthcareProfessionals": "Только для лицензированных медицинских работников",
-    
+    "blog.forHealthcareProfessionals":
+      "Только для лицензированных медицинских работников",
+
     // Doctor verification modal
     "verification.title": "Верификация Медицинского Специалиста",
     "verification.subtitle": "Доступ к Медицинской Литературе",
     "verification.notice": "Важное Уведомление",
-    "verification.noticeText": "Медицинские статьи и исследовательский контент в этом разделе предназначены только для лицензированных специалистов здравоохранения. Представленная информация носит образовательный характер и не должна заменять клиническое суждение.",
-    "verification.confirmCredentials": "Пожалуйста, подтвердите вашу квалификацию",
-    "verification.confirmText": "Я подтверждаю, что являюсь лицензированным специалистом здравоохранения (врачом, медсестрой, фармацевтом или другим квалифицированным медицинским практиком) и понимаю, что контент предназначен для профессионального медицинского образования.",
+    "verification.noticeText":
+      "Медицинские статьи и исследовательский контент в этом разделе предназначены только для лицензированных специалистов здравоохранения. Представленная информация носит образовательный характер и не должна заменять клиническое суждение.",
+    "verification.confirmCredentials":
+      "Пожалуйста, подтвердите вашу квалификацию",
+    "verification.confirmText":
+      "Я подтверждаю, что являюсь лицензированным специалистом здравоохранения (врачом, медсестрой, фармацевтом или другим квалифицированным медицинским практиком) и понимаю, что контент предназначен для профессионального медицинского образования.",
     "verification.cancel": "Отмена",
     "verification.confirm": "Подтвердить и Продолжить",
-    "verification.terms": "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности",
+    "verification.terms":
+      "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности",
 
     // Hero section
     "hero.tagline": "Мы верим, что здоровье — основа счастливой жизни!",
@@ -872,7 +904,10 @@ const translations = {
 
     // Blog/Medical Journal
     "blog.title": "Medizinische Forschung & Klinische Erkenntnisse",
-    "blog.subtitle": "Evidenzbasierte Artikel, Fallstudien und klinische Leitlinien von Gesundheitsexperten aller Fachrichtungen.",
+    "blog.subtitle":
+      "Evidenzbasierte Artikel, Fallstudien und klinische Leitlinien von Gesundheitsexperten aller Fachrichtungen.",
+    "blog.loading": "Lade aktuelle Artikel...",
+    "blog.tryAgain": "Erneut versuchen",
     "blog.peerReviewed": "Peer-Reviewed Medizinische Literatur",
     "blog.searchPlaceholder": "Artikel nach Titel, Fachgebiet suchen...",
     "blog.search": "Suchen",
@@ -887,7 +922,8 @@ const translations = {
     "blog.views": "Aufrufe",
     "blog.citations": "Zitierungen",
     "blog.medicalUpdates": "Medizinische Updates",
-    "blog.newsletterText": "Erhalten Sie die neuesten Forschungsergebnisse und klinischen Erkenntnisse per E-Mail.",
+    "blog.newsletterText":
+      "Erhalten Sie die neuesten Forschungsergebnisse und klinischen Erkenntnisse per E-Mail.",
     "blog.subscribe": "Abonnieren",
     "blog.previous": "Zurück",
     "blog.next": "Weiter",
@@ -897,25 +933,32 @@ const translations = {
     "blog.backToJournal": "Zurück zum Journal",
     "blog.completeArchive": "Vollständiges Archiv",
     "blog.allPublicationsArchive": "Alle Medizinischen Publikationen",
-    "blog.archiveDescription": "Durchsuchen Sie unsere vollständige Sammlung von peer-reviewed Artikeln und klinischer Forschung, chronologisch geordnet.",
+    "blog.archiveDescription":
+      "Durchsuchen Sie unsere vollständige Sammlung von peer-reviewed Artikeln und klinischer Forschung, chronologisch geordnet.",
     "blog.articles": "Artikel",
     "blog.years": "Jahre",
     "blog.article": "Artikel",
     "blog.lookingForResearch": "Suchen Sie nach bestimmter Forschung?",
-    "blog.useSearch": "Nutzen Sie unsere Suche, um Artikel nach Thema, Autor oder Stichwort zu finden.",
+    "blog.useSearch":
+      "Nutzen Sie unsere Suche, um Artikel nach Thema, Autor oder Stichwort zu finden.",
     "blog.searchArticles": "Artikel Suchen",
-    "blog.forHealthcareProfessionals": "Nur für lizenzierte medizinische Fachkräfte",
-    
+    "blog.forHealthcareProfessionals":
+      "Nur für lizenzierte medizinische Fachkräfte",
+
     // Doctor verification modal
     "verification.title": "Verifizierung für Medizinische Fachkräfte",
     "verification.subtitle": "Zugang zur Medizinischen Literatur",
     "verification.notice": "Wichtiger Hinweis",
-    "verification.noticeText": "Die medizinischen Artikel und Forschungsinhalte in diesem Bereich sind nur für lizenzierte Gesundheitsfachkräfte bestimmt. Die präsentierten Informationen dienen Bildungszwecken und sollten das klinische Urteil nicht ersetzen.",
-    "verification.confirmCredentials": "Bitte bestätigen Sie Ihre Qualifikation",
-    "verification.confirmText": "Ich bestätige, dass ich eine lizenzierte Gesundheitsfachkraft bin (Arzt, Krankenschwester, Apotheker oder anderer qualifizierter medizinischer Praktiker) und verstehe, dass der Inhalt für die professionelle medizinische Ausbildung bestimmt ist.",
+    "verification.noticeText":
+      "Die medizinischen Artikel und Forschungsinhalte in diesem Bereich sind nur für lizenzierte Gesundheitsfachkräfte bestimmt. Die präsentierten Informationen dienen Bildungszwecken und sollten das klinische Urteil nicht ersetzen.",
+    "verification.confirmCredentials":
+      "Bitte bestätigen Sie Ihre Qualifikation",
+    "verification.confirmText":
+      "Ich bestätige, dass ich eine lizenzierte Gesundheitsfachkraft bin (Arzt, Krankenschwester, Apotheker oder anderer qualifizierter medizinischer Praktiker) und verstehe, dass der Inhalt für die professionelle medizinische Ausbildung bestimmt ist.",
     "verification.cancel": "Abbrechen",
     "verification.confirm": "Bestätigen & Fortfahren",
-    "verification.terms": "Durch Fortfahren stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu",
+    "verification.terms":
+      "Durch Fortfahren stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu",
 
     // Hero section
     "hero.tagline":

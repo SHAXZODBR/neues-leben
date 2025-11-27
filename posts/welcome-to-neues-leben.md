@@ -7,9 +7,6 @@ coverImage: "welcome-to-neues-leben.jpg"
 category: "Operations"
 readingTime: "4 min read"
 featured: true
-tags:
-  - logistics
-  - transparency
 ---
 
 ## Building the future of logistics

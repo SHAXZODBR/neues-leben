@@ -45,7 +45,6 @@ export const MOCK_POSTS = [
     `,
     views: 2450,
     citations: 124,
-    tags: ["cardiology", "imaging", "AI", "2024"],
   },
   {
     id: "2",
@@ -64,7 +63,6 @@ export const MOCK_POSTS = [
     content: `<h2>The AI Revolution in Radiology</h2><p>Artificial intelligence is transforming diagnostic radiology by automating routine tasks and providing decision support to radiologists. Deep learning models trained on large datasets can now detect abnormalities with accuracy comparable to or exceeding experienced radiologists.</p><h2>Clinical Applications</h2><p>Current AI applications in radiology include:</p><ul><li>Chest X-ray analysis for pneumonia, pneumothorax, and tuberculosis</li><li>Breast cancer detection in mammography</li><li>Coronary artery disease assessment in CT angiography</li><li>Stroke detection in head CT and perfusion imaging</li></ul>`,
     views: 3120,
     citations: 89,
-    tags: ["radiology", "AI", "diagnostic-imaging"],
   },
   {
     id: "3",
@@ -83,7 +81,6 @@ export const MOCK_POSTS = [
     content: `<h2>Pain Management Overview</h2><p>Modern pain management requires a comprehensive, multimodal approach that reduces reliance on opioids while maintaining patient comfort and quality of life.</p>`,
     views: 1890,
     citations: 156,
-    tags: ["pain-management", "opioids", "anesthesia"],
   },
   {
     id: "4",
@@ -102,7 +99,6 @@ export const MOCK_POSTS = [
     content: `<h2>Skin Cancer Detection</h2><p>Early detection of skin cancer dramatically improves treatment outcomes and patient survival rates.</p>`,
     views: 1245,
     citations: 67,
-    tags: ["dermatology", "cancer", "screening"],
   },
   {
     id: "5",
@@ -121,7 +117,6 @@ export const MOCK_POSTS = [
     content: `<h2>Alzheimer's Biomarkers</h2><p>Recent discoveries in biomarkers have revolutionized our understanding of Alzheimer's disease pathology and opened new therapeutic avenues.</p>`,
     views: 2156,
     citations: 203,
-    tags: ["neurology", "alzheimers", "biomarkers"],
   },
   {
     id: "6",
@@ -140,7 +135,6 @@ export const MOCK_POSTS = [
     content: `<h2>Immunotherapy Revolution</h2><p>Immunotherapy has transformed cancer treatment by harnessing the patient's immune system to recognize and eliminate cancer cells.</p>`,
     views: 3450,
     citations: 278,
-    tags: ["oncology", "immunotherapy", "cancer"],
   },
   {
     id: "7",
@@ -159,7 +153,6 @@ export const MOCK_POSTS = [
     content: `<h2>IBD Management</h2><p>Modern approaches to inflammatory bowel disease focus on inducing and maintaining remission while minimizing treatment-related complications.</p>`,
     views: 987,
     citations: 102,
-    tags: ["gastroenterology", "IBD", "treatment"],
   },
   {
     id: "8",
@@ -178,7 +171,6 @@ export const MOCK_POSTS = [
     content: `<h2>COPD Management</h2><p>Chronic obstructive pulmonary disease requires careful management to prevent exacerbations and maintain respiratory function.</p>`,
     views: 1567,
     citations: 87,
-    tags: ["pulmonology", "COPD", "respiratory"],
   },
   {
     id: "9",
@@ -197,7 +189,6 @@ export const MOCK_POSTS = [
     content: `<h2>CKD Overview</h2><p>Chronic kidney disease affects millions worldwide and requires comprehensive management to slow progression and prevent complications.</p>`,
     views: 2234,
     citations: 145,
-    tags: ["nephrology", "CKD", "kidney-disease"],
   },
   {
     id: "10",
@@ -216,6 +207,5 @@ export const MOCK_POSTS = [
     content: `<h2>Mental Health Treatment</h2><p>Depression and anxiety are among the most common mental health disorders, requiring individualized treatment approaches combining medication and therapy.</p>`,
     views: 1834,
     citations: 112,
-    tags: ["psychiatry", "mental-health", "depression"],
   },
 ]

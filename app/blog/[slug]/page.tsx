@@ -1,63 +1,162 @@
-import Link from "next/link"
-import type { Metadata } from "next"
-import { ArrowLeft, Share2, Calendar } from "lucide-react"
-import { getPostBySlug, getPostSlugs, getAllPosts } from "@/lib/posts"
+import Link from "next/link";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ArrowLeft, Calendar } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
+import { ShareButton } from "@/components/share-button";
 
 type BlogPostPageProps = {
-  params: Promise<{ slug: string }>
-}
+  params: { slug: string };
+};
+
+type DbPost = {
+  id: string | null;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  created_at?: string | null;
+  author?: string | null;
+  author_credentials?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
+
+type Post = {
+  id: string;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  content: string;
+  image_url?: string | null;
+  created_at: string;
+  author?: string | null;
+  author_credentials?: string | null;
+  category?: string | null;
+  specialty?: string | null;
+  reading_time?: string | null;
+  featured?: boolean | null;
+  views?: number | null;
+  citations?: number | null;
+};
 
 const formatDate = (isoDate: string) =>
   new Date(isoDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
 
-export const generateStaticParams = async () => {
-  const slugs = await getPostSlugs()
-  return slugs.map((slug) => ({ slug }))
+const normalizePost = (post: DbPost): Post => {
+  const plainContent = post.content ? post.content : "";
+  return {
+    id: post.id || post.slug,
+    slug: post.slug,
+    title: post.title,
+    summary: post.summary,
+    content: plainContent,
+    image_url: post.image_url,
+    created_at: post.created_at || new Date().toISOString(),
+    author: post.author,
+    author_credentials: post.author_credentials,
+    category: post.category || "General",
+    specialty: post.specialty,
+    reading_time: post.reading_time,
+    featured: post.featured,
+    views: post.views,
+    citations: post.citations,
+  };
+};
+
+async function fetchPost(slug: string): Promise<Post | null> {
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .eq("published", true)
+    .single();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return normalizePost(data as DbPost);
 }
 
-export const generateMetadata = async ({ params }: BlogPostPageProps): Promise<Metadata> => {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+async function fetchRelatedPosts(
+  category: string | null,
+  slug: string
+): Promise<Post[]> {
+  const query = supabase
+    .from("posts")
+    .select("*")
+    .eq("published", true)
+    .neq("slug", slug)
+    .order("created_at", { ascending: false })
+    .limit(6);
+
+  if (category) {
+    query.eq("category", category);
+  }
+
+  const { data, error } = await query;
+
+  if (error || !data) {
+    return [];
+  }
+
+  const normalized = (data as DbPost[]).map(normalizePost);
+
+  if (normalized.length >= 3 || category === null) {
+    return normalized.slice(0, 3);
+  }
+
+  // fallback to latest posts if not enough in same category
+  const { data: fallbackData } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("published", true)
+    .neq("slug", slug)
+    .order("created_at", { ascending: false })
+    .limit(3);
+
+  return (fallbackData as DbPost[] | null)?.map(normalizePost) ?? [];
+}
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
+export const generateMetadata = async ({
+  params,
+}: BlogPostPageProps): Promise<Metadata> => {
+  const post = await fetchPost(params.slug);
 
   if (!post) {
     return {
       title: "Post not found | Medical Journal",
       description: "The requested article could not be found.",
-    }
+    };
   }
 
   return {
     title: `${post.title} | Medical Journal`,
-    description: post.excerpt,
-  }
-}
+    description: post.summary || post.content.slice(0, 140),
+  };
+};
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+  const post = await fetchPost(params.slug);
 
   if (!post) {
-    return (
-      <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl font-bold text-foreground">Article not found</h1>
-        <p className="mt-3 text-muted-foreground">The article you're looking for doesn't exist.</p>
-        <Link href="/blog" className="mt-6 inline-flex items-center gap-2 text-primary hover:gap-3 transition-all">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Journal
-        </Link>
-      </section>
-    )
+    notFound();
   }
 
-  const allPosts = await getAllPosts()
-  const relatedPosts = allPosts.filter((item) => item.slug !== post.slug && item.category === post.category).slice(0, 3)
-
-  const allRelated =
-    relatedPosts.length > 0 ? relatedPosts : allPosts.filter((item) => item.slug !== post.slug).slice(0, 3)
+  const allRelated = await fetchRelatedPosts(post.category || null, post.slug);
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
@@ -87,7 +186,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.title}
         </h1>
 
-        <p className="text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          {post.excerpt}
+        </p>
 
         {/* Meta Info */}
         <div className="flex flex-wrap items-center gap-6 py-4 border-y border-border">
@@ -126,26 +227,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      {/* Tags */}
-      {post.tags && post.tags.length > 0 && (
-        <div className="mt-12 pt-6 border-t border-border">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">Keywords</p>
-          <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Related Articles */}
       {allRelated.length > 0 && (
         <section className="mt-16 pt-10 border-t border-border">
           <div className="flex items-center justify-between mb-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">Related Research</p>
-            <Link href="/blog/archive" className="text-sm font-semibold text-primary hover:underline">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">
+              Related Research
+            </p>
+            <Link
+              href="/blog/archive"
+              className="text-sm font-semibold text-primary hover:underline"
+            >
               View Archive →
             </Link>
           </div>
@@ -166,11 +258,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   )}
                 </div>
                 <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-primary font-medium">{item.category}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-primary font-medium">
+                    {item.category}
+                  </p>
                   <p className="mt-2 text-sm font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
                     {item.title}
                   </p>
-                  <p className="mt-2 text-xs text-muted-foreground">{formatDate(item.date)}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {formatDate(item.date)}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -178,5 +274,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
       )}
     </article>
-  )
+  );
 }

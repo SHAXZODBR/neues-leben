@@ -7,10 +7,6 @@ coverImage: "pharmacy-success-story-city-hospital.jpg"
 category: "Customer Stories"
 readingTime: "6 min read"
 featured: false
-tags:
-  - case-study
-  - hospital
-  - inventory
 ---
 
 When we first met the team at City Hospital, their pharmacy was fighting daily

@@ -7,10 +7,6 @@ coverImage: "regulatory-roundup-november.jpg"
 category: "Regulatory"
 readingTime: "8 min read"
 featured: false
-tags:
-  - regulatory
-  - uzbekistan
-  - gdp
 ---
 
 Every month we compile the most important regulatory changes that our partner

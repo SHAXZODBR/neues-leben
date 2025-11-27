@@ -7,10 +7,6 @@ coverImage: "1.png"
 category: "Cold Chain"
 readingTime: "7 min read"
 featured: false
-tags:
-  - gdp
-  - cold-chain
-  - pharmacy
 ---
 
 Maintaining a validated cold chain is one of the most critical responsibilities

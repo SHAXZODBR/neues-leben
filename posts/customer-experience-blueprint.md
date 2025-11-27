@@ -7,10 +7,6 @@ coverImage: "customer-experience-blueprint.jpg"
 category: "Customer Experience"
 readingTime: "5 min read"
 featured: false
-tags:
-  - customer-success
-  - automation
-  - pharma
 ---
 
 Pharmacies and hospital buyers expect more than price lists—they expect proactive

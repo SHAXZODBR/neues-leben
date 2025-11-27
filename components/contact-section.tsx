@@ -148,7 +148,9 @@ export default function ContactSection() {
                       <p className="text-muted-foreground">
                         info@neuesleben.uz
                       </p>
-                      <p className="text-muted-foreground">hr@neuesleben.uz</p>
+                      <p className="text-muted-foreground">
+                        info@neuesleben.uz
+                      </p>
                       <p className="text-muted-foreground">
                         import@neuesleben.uz
                       </p>
