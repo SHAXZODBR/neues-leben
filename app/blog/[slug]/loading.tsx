@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Sparkles } from "lucide-react";
+import { FileText, Sparkles } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Creative Loading Animation */}
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center space-y-6">
-          {/* Animated Icon */}
+          {/* Animated Iconca*/}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -38,7 +38,7 @@ export default function Loading() {
                   ease: "easeInOut",
                 }}
               >
-                <BookOpen className="h-16 w-16 text-primary" />
+                <FileText className="h-16 w-16 text-primary" />
               </motion.div>
               <motion.div
                 animate={{
@@ -65,7 +65,7 @@ export default function Loading() {
             className="space-y-2"
           >
             <h2 className="text-2xl font-bold text-foreground">
-              Loading Medical Journal
+              Loading Article
             </h2>
             <div className="flex items-center justify-center gap-1">
               <motion.span

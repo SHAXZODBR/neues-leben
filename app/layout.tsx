@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SupabaseProvider } from "@/components/providers/supabase-provider";
+import { NavigationLoader } from "@/components/navigation-loader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const josefinSans = Josefin_Sans({
@@ -33,10 +34,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = createServerComponentClient({ cookies });
+  const cookieStore = await (cookies() as any);
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
+  
+  // Get session only if user exists
+  const session = user ? (await supabase.auth.getSession()).data.session : null;
 
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
@@ -49,6 +54,7 @@ export default async function RootLayout({
         <SupabaseProvider initialSession={session}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
             <LanguageProvider>
+              <NavigationLoader />
               <div className="flex min-h-screen flex-col">
                 <Navbar />
                 <main className="flex-1">{children}</main>

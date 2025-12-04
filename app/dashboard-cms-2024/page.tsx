@@ -1,4 +1,4 @@
-                                                                                                                                                                                                        "use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -348,7 +348,7 @@ export default function AdminPage() {
           Sign out
         </button>
       </div>
-      
+
       <form
         onSubmit={handleSave}
         className="space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm mb-10"
@@ -597,7 +597,6 @@ export default function AdminPage() {
               ))}
             </div>
 
-              
             {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className="mt-6 flex items-center justify-center gap-3">

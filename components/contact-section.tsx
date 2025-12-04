@@ -160,7 +160,7 @@ export default function ContactSection() {
                     </div>
                   </div>
                 </div>
-              </CardContent>
+              </CardContent>                
             </Card>
 
             <div className="flex items-center justify-center p-4 sm:p-8 bg-card rounded-xl shadow-sm border border-border">

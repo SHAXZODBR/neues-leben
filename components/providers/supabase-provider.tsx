@@ -1,7 +1,7 @@
 "use client";
 
 import { SessionContextProvider, type Session } from "@supabase/auth-helpers-react";
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { useState, type ReactNode } from "react";
 
 type SupabaseProviderProps = {
@@ -10,7 +10,7 @@ type SupabaseProviderProps = {
 };
 
 export function SupabaseProvider({ children, initialSession }: SupabaseProviderProps) {
-  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+  const [supabaseClient] = useState(() => createPagesBrowserClient());
 
   return (
     <SessionContextProvider supabaseClient={supabaseClient} initialSession={initialSession}>
@@ -18,4 +18,3 @@ export function SupabaseProvider({ children, initialSession }: SupabaseProviderP
     </SessionContextProvider>
   );
 }
-

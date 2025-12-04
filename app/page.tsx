@@ -1,9 +1,11 @@
 import HeroSection from "@/components/hero-section";
 import MedicalJournalCTA from "@/components/medical-journal-cta";
 import AboutSection from "@/components/about-section";
+import ProductsSection from "@/components/products-section";
 import MissionSection from "@/components/mission-section";
 import ValuesSection from "@/components/values-section";
 import TeamSection from "@/components/team-section";
+import TestimonialsSection from "@/components/testimonials-section";
 import CultureSection from "@/components/culture-section";
 import AchievementsSection from "@/components/achievements-section";
 import PartnersSection from "@/components/partners-section";
@@ -18,6 +20,7 @@ export default function Home() {
       <HeroSection />
       <MedicalJournalCTA />
       <AboutSection />
+      <ProductsSection />
       <MissionSection />
       <ValuesSection />
       <TeamSection />
@@ -26,8 +29,11 @@ export default function Home() {
       <PartnersSection />
       <InfrastructureSection />
       <CoverageSection />
+      <TestimonialsSection />
       <ContactSection />
       <ScrollToTop />
     </div>
   );
 }
+
+

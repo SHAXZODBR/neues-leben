@@ -93,18 +93,29 @@ export default function CoverageSection() {
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-muted/50 p-8 rounded-xl min-h-[300px] flex items-center justify-center border border-border">
-              <div className="text-center">
-                <div className="p-4 bg-primary/10 rounded-full inline-block mb-4">
-                  <MapPin className="h-12 w-12 text-primary" />
+            {/* Location Map */}
+            <div className="bg-muted/50 rounded-xl overflow-hidden border border-border">
+              <div className="relative w-full h-[320px]">
+                <iframe
+                  title="NEUES LEBEN Location"
+                  src="https://www.google.com/maps?q=41.302743,69.350461&z=15&output=embed"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute top-4 left-4 flex items-start gap-3 bg-card/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg border border-border">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">
+                      {t("coverage.uzbekistanMap")}
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      {t("coverage.description")}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="text-lg font-semibold text-foreground mb-2">
-                  {t("coverage.uzbekistanMap")}
-                </h4>
-                <p className="text-muted-foreground max-w-sm">
-                  {t("coverage.description")}
-                </p>
               </div>
             </div>
           </motion.div>

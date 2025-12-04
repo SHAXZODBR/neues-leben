@@ -40,6 +40,11 @@ export default function PrivacyPolicy() {
           content:
             "If you have any questions about this privacy policy or our privacy practices, please contact us at info@neuesleben.com.",
         },
+        {
+          title: "6. Medical Professional Verification",
+          content:
+            "To access professional medical content, we require verification of your status as a healthcare professional. We collect and store your IP address, User-Agent, and the confirmation text indefinitely for legal compliance and audit purposes.",
+        },
       ],
       backToHome: "Back to Home",
     },
@@ -74,6 +79,11 @@ export default function PrivacyPolicy() {
           content:
             "Agar sizda ushbu maxfiylik siyosati yoki bizning maxfiylik amaliyotimiz haqida savollaringiz bo'lsa, iltimos, info@neuesleben.com orqali biz bilan bog'laning.",
         },
+        {
+          title: "6. Tibbiy Mutaxassisni Tasdiqlash",
+          content:
+            "Professional tibbiy tarkibga kirish uchun biz sizning sog'liqni saqlash mutaxassisi ekanligingizni tasdiqlashni talab qilamiz. Biz qonuniy muvofiqlik va audit maqsadlari uchun IP manzilingiz, User-Agent va tasdiqlash matnini muddatsiz saqlaymiz.",
+        },
       ],
       backToHome: "Bosh sahifaga qaytish",
     },
@@ -107,6 +117,11 @@ export default function PrivacyPolicy() {
           title: "5. Свяжитесь с нами",
           content:
             "Если у вас есть какие-либо вопросы об этой политике конфиденциальности или наших практиках конфиденциальности, пожалуйста, свяжитесь с нами по адресу info@neuesleben.com.",
+        },
+        {
+          title: "6. Верификация Медицинского Специалиста",
+          content:
+            "Для доступа к профессиональному медицинскому контенту мы требуем подтверждения вашего статуса медицинского работника. Мы собираем и храним ваш IP-адрес, User-Agent и текст подтверждения бессрочно для целей соблюдения законодательства и аудита.",
         },
       ],
       backToHome: "Вернуться на главную",

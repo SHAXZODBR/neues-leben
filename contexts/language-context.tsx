@@ -55,6 +55,7 @@ const translations = {
     "blog.matching": "matching",
     "blog.allPublications": "All Publications",
     "blog.specialties": "Specialties",
+    "blog.allCategories": "All Categories",
     "blog.mostRead": "Most Read",
     "blog.mostCited": "Most Cited",
     "blog.views": "views",
@@ -82,6 +83,12 @@ const translations = {
     "blog.searchArticles": "Search Articles",
     "blog.forHealthcareProfessionals":
       "For licensed healthcare professionals only",
+    "blog.research": "Research",
+    "blog.researchDescription": "Latest research articles and studies",
+    "blog.clinical": "Clinical",
+    "blog.clinicalDescription": "Latest clinical articles and studies",
+    "blog.education": "Education",
+    "blog.educationDescription": "Latest education articles and studies",
 
     // Doctor verification modal
     "verification.title": "Healthcare Professional Verification",
@@ -98,6 +105,10 @@ const translations = {
       "By continuing, you agree to our Terms of Service and Privacy Policy",
 
     // Hero section
+    "hero.badge": "Est. 2018",
+    "hero.title": "We believe that health is the foundation of a happy life!",
+    "hero.subtitle":
+      "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. The company was founded in 2018, starting its history with wholesale sales of medicines throughout the Republic of Uzbekistan.",
     "hero.tagline": "We believe that health is the foundation of a happy life!",
     "hero.description":
       "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. The company was founded in 2018, starting its history with wholesale sales of medicines throughout the Republic of Uzbekistan.",
@@ -105,6 +116,8 @@ const translations = {
       "Today, our business direction is direct distribution of medicines through our own sales department. Since 2019, the company has moved to a new level by signing direct contracts with foreign manufacturers.",
     "hero.learnMore": "Learn More",
     "hero.contactUs": "Contact Us",
+    "hero.cta.primary": "Learn More",
+    "hero.cta.secondary": "Contact Us",
     "hero.established": "Established in 2018",
     "hero.quality": "Quality, Timely Delivery, Reliable Partnership",
 
@@ -216,18 +229,19 @@ const translations = {
     "achievements.award3.title": "Quality Excellence 2024",
     "achievements.award3.year": "Industry Recognition",
 
-    // Partners section
+    // Partners
+    "partners.badge": "Global Partners",
     "partners.title": "Our Partners",
     "partners.subtitle":
-      "We collaborate with leading pharmaceutical manufacturers worldwide",
+      "We collaborate with leading pharmaceutical manufacturers worldwide.",
+    "partners.globalNetwork": "Global Partnership Network",
+    "partners.networkDescription":
+      "Through strategic partnerships with pharmaceutical manufacturers across four continents, we ensure access to high-quality medications and medical supplies. Our international network enables us to deliver innovative healthcare solutions to Uzbekistan.",
     "partners.countries": "We collaborate with:",
     "partners.southKorea": "South Korea",
     "partners.poland": "Poland",
     "partners.china": "China",
     "partners.india": "India",
-    "partners.products": "Exclusive Products",
-    "partners.productsDescription":
-      "More than 50 types of exclusive drugs from foreign and local production",
     "partners.product": "Product",
 
     // Infrastructure section
@@ -253,7 +267,7 @@ const translations = {
     "coverage.title": "Our Coverage",
     "coverage.subtitle": "We carry out sales throughout Uzbekistan",
     "coverage.description":
-      "We carry out sales throughout Uzbekistan, ensuring reliable supply of medicines to all regions of the country.",
+      "Our head office and main logistics center in Tashkent (41.302743, 69.350461) coordinates reliable medicine supply to all regions of Uzbekistan.",
     "coverage.offices": "Regional Offices",
     "coverage.officesDescription":
       "In all regions of the country, we have distribution offices under the leadership of regional managers.",
@@ -262,7 +276,7 @@ const translations = {
       "Ensuring access to quality medicines across Uzbekistan",
     "coverage.cooperation":
       "We are open for mutually beneficial and long-term cooperation",
-    "coverage.uzbekistanMap": "Uzbekistan Coverage Map",
+    "coverage.uzbekistanMap": "Head Office Location – Tashkent",
     "coverage.stats.regions": "Regions Covered",
     "coverage.stats.team": "Team Members",
     "coverage.stats.network": "Distribution Network",
@@ -310,6 +324,34 @@ const translations = {
     "footer.rights": "All rights reserved.",
     "footer.openToCooperation":
       "We are open for mutually beneficial and long-term cooperation.",
+
+    // Products section
+    "nav.products": "Products",
+    "products.badge": "Our Products",
+    "products.title": "Pharmaceutical Solutions",
+    "products.description":
+      "Discover our comprehensive range of high-quality pharmaceutical products from leading manufacturers worldwide.",
+    "products.learnMore": "Learn More",
+    "products.viewAll": "View All Products",
+    "products.descriptionLabel": "Description",
+    "products.featuresLabel": "Key Features",
+    "products.contactCTA": "Need More Information?",
+    "products.contactInfo":
+      "For detailed product information, pricing, or bulk orders, please contact our sales team.",
+    "products.contactButton": "Contact Us",
+    "products.pageTitle": "Our Products",
+    "products.pageDescription":
+      "Explore our complete catalog of pharmaceutical products, carefully selected to meet the highest quality standards.",
+    "products.searchPlaceholder": "Search products...",
+    "products.noResults": "No products found matching your criteria.",
+
+    // Testimonials section
+    "testimonials.badge": "Testimonials",
+    "testimonials.title": "Trusted by Healthcare Professionals",
+    "testimonials.description":
+      "See what medical professionals and healthcare institutions say about our products and services.",
+    "testimonials.cta":
+      "Join hundreds of healthcare professionals who trust NEUES LEBEN for quality pharmaceutical distribution.",
   },
 
   uz: {
@@ -330,7 +372,7 @@ const translations = {
     // Blog/Medical Journal
     "blog.title": "Tibbiy Tadqiqotlar va Klinik Tushunchalar",
     "blog.subtitle":
-      "Barcha mutaxassisliklar bo'yicha sog'liqni saqlash mutaxassislaridan dalillarga asoslangan maqolalar, klinik holatlar va ko'rsatmalar.",
+      "Barcha mutaxassisliklar bo'yicha sog'liqni saqlash mutaxassislari tomonidan dalillarga asoslangan maqolalar, klinik holatlar va ko'rsatmalar.",
     "blog.loading": "Maqolalar yuklanmoqda...",
     "blog.tryAgain": "Qayta urinish",
     "blog.peerReviewed": "Ekspert Tekshiruvidan O'tgan Tibbiy Adabiyot",
@@ -343,6 +385,7 @@ const translations = {
     "blog.matching": "mos keladigan",
     "blog.allPublications": "Barcha Nashrlar",
     "blog.specialties": "Mutaxassisliklar",
+    "blog.allCategories": "Barcha kategoriyalar",
     "blog.mostRead": "Eng Ko'p O'qilgan",
     "blog.mostCited": "Eng Ko'p Iqtibos Qilingan",
     "blog.views": "ko'rish",
@@ -369,7 +412,14 @@ const translations = {
       "Mavzu, muallif yoki kalit so'z bo'yicha maqolalarni topish uchun qidiruvimizdan foydalaning.",
     "blog.searchArticles": "Maqolalarni Qidirish",
     "blog.forHealthcareProfessionals":
-      "Faqat litsenziyalangan tibbiyot xodimlari uchun",
+      "Faqat litsenziyalangan sog'liqni saqlash mutaxassislari uchun",
+    "blog.research": "Tadqiqot",
+    "blog.researchDescription":
+      "Eng so'nggi tadqiqot maqolalari va tadqiqotlar",
+    "blog.clinical": "Klinik",
+    "blog.clinicalDescription": "Eng so'nggi klinik maqolalar va tadqiqotlar",
+    "blog.education": "Ta'lim",
+    "blog.educationDescription": "Eng so'nggi ta'lim maqolalari va tadqiqotlar",
 
     // Doctor verification modal
     "verification.title": "Sog'liqni Saqlash Mutaxassisi Tekshiruvi",
@@ -386,6 +436,10 @@ const translations = {
       "Davom etish orqali siz Foydalanish shartlari va Maxfiylik siyosatiga rozilik bildirasiz",
 
     // Hero section
+    "hero.badge": "2018 yilda tashkil etilgan",
+    "hero.title": "Biz sog'liq baxtli hayotning asosi deb ishonamiz!",
+    "hero.subtitle":
+      "'NEUES LEBEN' MChJ – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
     "hero.tagline": "Biz sog'liq baxtli hayotning asosi deb ishonamiz!",
     "hero.description":
       "'NEUES LEBEN' MChJ – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
@@ -393,6 +447,8 @@ const translations = {
       "Bugungi kunda faoliyat yo'nalishi - o'z savdo bo'limi orqali dori vositalarini to'g'ridan-to'g'ri distribyutsiya qilish. 2019 yildan boshlab kompaniya xorijiy ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri shartnomalar tuzib, yangi darajaga ko'tarildi.",
     "hero.learnMore": "Batafsil",
     "hero.contactUs": "Biz bilan bog'laning",
+    "hero.cta.primary": "Batafsil",
+    "hero.cta.secondary": "Biz bilan bog'laning",
     "hero.established": "2018 yilda tashkil etilgan",
     "hero.quality": "Sifat, O'z vaqtida yetkazib berish, Ishonchli hamkorlik",
 
@@ -405,7 +461,7 @@ const translations = {
     "about.paragraph1":
       "ООО 'NEUES LEBEN' – O'zbekiston farmatsevtika bozorida faoliyat yurituvchi distribyutor kompaniya. 'NEUES LEBEN' kompaniyasi 2018 yilda tashkil etilgan bo'lib, o'z faoliyatini O'zbekiston Respublikasi bo'ylab dori vositalarini ulgurji sotishdan boshlagan.",
     "about.paragraph2":
-      "2019 yildan boshlab kompaniya xorijiy ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri shartnomalar tuzib, yangi darajaga ko'tarildi, bu esa yuqori sifatli dori vositalarini import qilish va targ'ib qilish imkonini berdi. 'NEUES LEBEN' kompaniyasi dori vositalarini sifatli saqlash amalga oshiriladigan omborga ega.",
+      "Since 2019, the company has reached a new level by signing direct contracts with foreign manufacturers, which has enabled the import and promotion of high-quality medicines. 'NEUES LEBEN' kompaniyasi dori vositalarini sifatli saqlash amalga oshiriladigan omborga ega.",
     "about.conclusion":
       "Ishimizning asosiy tamoyillari - biz taklif qiladigan mahsulot sifati, o'z vaqtida yetkazib berish va ishonchli hamkorlik!",
 
@@ -506,18 +562,19 @@ const translations = {
     "achievements.award3.title": "Sifat mukammalligi 2024",
     "achievements.award3.year": "Soha e'tirofi",
 
-    // Partners section
-    "partners.title": "Hamkorlarimiz",
+    // Partners
+    "partners.badge": "Global hamkorlar",
+    "partners.title": "Bizning hamkorlarimiz",
     "partners.subtitle":
-      "Biz dunyoning yetakchi farmatsevtika ishlab chiqaruvchilari bilan hamkorlik qilamiz",
+      "Biz dunyo bo'ylab yetakchi farmatsevtika ishlab chiqaruvchilari bilan hamkorlik qilamiz.",
+    "partners.globalNetwork": "Global hamkorlik tarmog'i",
+    "partners.networkDescription":
+      "To'rtta qit'adagi farmatsevtika ishlab chiqaruvchilari bilan strategik hamkorlik orqali biz yuqori sifatli dorilar va tibbiy buyumlarga kirishni ta'minlaymiz. Xalqaro tarmog'imiz O'zbekistonga innovatsion sog'liqni saqlash yechimlarini yetkazib berishga imkon beradi.",
     "partners.countries": "Biz quyidagilar bilan hamkorlik qilamiz:",
     "partners.southKorea": "Janubiy Koreya",
     "partners.poland": "Polsha",
     "partners.china": "Xitoy",
     "partners.india": "Hindiston",
-    "partners.products": "Eksklyuziv mahsulotlar",
-    "partners.productsDescription":
-      "Xorijiy va mahalliy ishlab chiqarishdan 50 dan ortiq turdagi eksklyuziv dori vositalari",
     "partners.product": "Mahsulot",
 
     // Infrastructure section
@@ -545,7 +602,7 @@ const translations = {
     "coverage.subtitle":
       "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz",
     "coverage.description":
-      "Biz butun O'zbekiston bo'ylab sotuvlarni amalga oshiramiz, mamlakatning barcha hududlariga dori vositalarini ishonchli yetkazib berishni ta'minlaymiz.",
+      "Bizning bosh ofisimiz va asosiy logistika markazimiz Toshkent shahrida (41.302743, 69.350461) joylashgan bo'lib, butun O'zbekiston bo'ylab dori vositalarining ishonchli yetkazib berilishini muvofiqlashtiradi.",
     "coverage.offices": "Mintaqaviy ofislar",
     "coverage.officesDescription":
       "Mamlakatning barcha hududlarida mintaqaviy menejerlar rahbarligida distribyutsiya ofislarimiz mavjud.",
@@ -554,7 +611,7 @@ const translations = {
       "O'zbekiston bo'ylab sifatli dori vositalariga kirishni ta'minlash",
     "coverage.cooperation":
       "Biz o'zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz",
-    "coverage.uzbekistanMap": "O‘zbekiston qamrov xaritasi",
+    "coverage.uzbekistanMap": "Bosh ofis manzili – Toshkent",
     "coverage.stats.regions": "Qamrab olingan hududlar",
     "coverage.stats.team": "Jamoa a’zolari",
     "coverage.stats.network": "Taqsimot tarmog‘i",
@@ -600,6 +657,34 @@ const translations = {
     "footer.rights": "Barcha huquqlar himoyalangan.",
     "footer.openToCooperation":
       "Biz o‘zaro manfaatli va uzoq muddatli hamkorlik uchun ochiqmiz.",
+
+    // Products section
+    "nav.products": "Mahsulotlar",
+    "products.badge": "Bizning mahsulotlarimiz",
+    "products.title": "Farmatsevtika yechimlari",
+    "products.description":
+      "Dunyo bo'ylab yetakchi ishlab chiqaruvchilardan yuqori sifatli farmatsevtika mahsulotlarining keng assortimenti bilan tanishing.",
+    "products.learnMore": "Batafsil",
+    "products.viewAll": "Barcha mahsulotlarni ko'rish",
+    "products.descriptionLabel": "Tavsif",
+    "products.featuresLabel": "Asosiy xususiyatlar",
+    "products.contactCTA": "Qo'shimcha ma'lumot kerakmi?",
+    "products.contactInfo":
+      "Batafsil mahsulot ma'lumoti, narxlar yoki ommaviy buyurtmalar uchun savdo jamoamiz bilan bog'laning.",
+    "products.contactButton": "Biz bilan bog'lanish",
+    "products.pageTitle": "Bizning mahsulotlarimiz",
+    "products.pageDescription":
+      "Eng yuqori sifat standartlariga javob berish uchun ehtiyotkorlik bilan tanlangan farmatsevtika mahsulotlarining to'liq katalogini ko'ring.",
+    "products.searchPlaceholder": "Mahsulotlarni qidirish...",
+    "products.noResults": "Sizning mezonlaringizga mos mahsulotlar topilmadi.",
+
+    // Testimonials section
+    "testimonials.badge": "Fikrlar",
+    "testimonials.title": "Sog'liqni saqlash mutaxassislari ishonadi",
+    "testimonials.description":
+      "Tibbiyot mutaxassislari va sog'liqni saqlash muassasalari bizning mahsulotlar va xizmatlarimiz haqida nima deyishini ko'ring.",
+    "testimonials.cta":
+      "Sifatli farmatsevtika distribyutsiyasi uchun NEUES LEBEN'ga ishongan yuzlab sog'liqni saqlash mutaxassislariga qo'shiling.",
   },
   ru: {
     // Navigation
@@ -631,6 +716,7 @@ const translations = {
     "blog.matching": "соответствующих",
     "blog.allPublications": "Все Публикации",
     "blog.specialties": "Специальности",
+    "blog.allCategories": "Все категории",
     "blog.mostRead": "Самые Читаемые",
     "blog.mostCited": "Самые Цитируемые",
     "blog.views": "просмотров",
@@ -658,6 +744,14 @@ const translations = {
     "blog.searchArticles": "Поиск Статей",
     "blog.forHealthcareProfessionals":
       "Только для лицензированных медицинских работников",
+    "blog.research": "Исследования",
+    "blog.researchDescription":
+      "Последние исследовательские статьи и исследования",
+    "blog.clinical": "Клинические",
+    "blog.clinicalDescription": "Последние клинические статьи и исследования",
+    "blog.education": "Образование",
+    "blog.educationDescription":
+      "Последние образовательные статьи и исследования",
 
     // Doctor verification modal
     "verification.title": "Верификация Медицинского Специалиста",
@@ -675,6 +769,10 @@ const translations = {
       "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности",
 
     // Hero section
+    "hero.badge": "Основано в 2018",
+    "hero.title": "Мы верим, что здоровье — основа счастливой жизни!",
+    "hero.subtitle":
+      "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
     "hero.tagline": "Мы верим, что здоровье — основа счастливой жизни!",
     "hero.description":
       "ООО 'NEUES LEBEN' – дистрибьюторская компания, осуществляющая свою деятельность в сфере фармацевтической индустрии на рынке Узбекистана. Компания 'NEUES LEBEN' была основана в 2018 году, начала свою историю с оптовых продаж лекарственных средств, с покрытием по всей Республики Узбекистан.",
@@ -682,6 +780,8 @@ const translations = {
       "На сегодняшний день направление деятельности - прямая дистрибуция лекарственных средств через собственный торговый отдел. С 2019 года компания перешла на новый уровень, заключив прямые договора с зарубежными производителями.",
     "hero.learnMore": "Узнать больше",
     "hero.contactUs": "Связаться с нами",
+    "hero.cta.primary": "Узнать больше",
+    "hero.cta.secondary": "Связаться с нами",
     "hero.established": "Основано в 2018",
     "hero.quality": "Качество, Своевременность, Надежное партнерство",
 
@@ -793,18 +893,19 @@ const translations = {
     "achievements.award3.title": "Превосходство качества 2024",
     "achievements.award3.year": "Признание отрасли",
 
-    // Partners section
+    // Partners
+    "partners.badge": "Глобальные партнеры",
     "partners.title": "Наши партнеры",
     "partners.subtitle":
-      "Мы сотрудничаем с ведущими фармацевтическими производителями по всему миру",
+      "Мы сотрудничаем с ведущими фармацевтическими производителями по всему миру.",
+    "partners.globalNetwork": "Глобальная партнерская сеть",
+    "partners.networkDescription":
+      "Благодаря стратегическому партнерству с фармацевтическими производителями на четырех континентах, мы обеспечиваем доступ к высококачественным лекарствам и медицинским принадлежностям. Наша международная сеть позволяет нам предоставлять инновационные решения в области здравоохранения для Узбекистана.",
     "partners.countries": "Мы сотрудничаем с:",
     "partners.southKorea": "Южная Корея",
     "partners.poland": "Польша",
     "partners.china": "Китай",
     "partners.india": "Индия",
-    "partners.products": "Эксклюзивные препараты",
-    "partners.productsDescription":
-      "Более 50 видов эксклюзивных препаратов зарубежного и местного производства",
     "partners.product": "Продукт",
 
     // Infrastructure section
@@ -830,7 +931,7 @@ const translations = {
     "coverage.title": "Наше покрытие",
     "coverage.subtitle": "Мы осуществляем продажи по всему Узбекистану",
     "coverage.description":
-      "Мы осуществляем продажи по всему Узбекистану, обеспечивая надежные поставки лекарственных средств во все регионы страны.",
+      "Наш головной офис и главный логистический центр находятся в Ташкенте (41.302743, 69.350461) и координируют надежные поставки лекарственных средств во все регионы Узбекистана.",
     "coverage.offices": "Региональные офисы",
     "coverage.officesDescription":
       "Во всех регионах страны у нас действуют дистрибьюторские офисы под руководством региональных менеджеров.",
@@ -839,7 +940,7 @@ const translations = {
       "Обеспечение доступа к качественным лекарствам по всему Узбекистану",
     "coverage.cooperation":
       "Мы открыты для взаимовыгодного и долгосрочного сотрудничества",
-    "coverage.uzbekistanMap": "Карта покрытия Узбекистана",
+    "coverage.uzbekistanMap": "Расположение главного офиса — Ташкент",
     "coverage.stats.regions": "Охваченные регионы",
     "coverage.stats.team": "Сотрудники команды",
     "coverage.stats.network": "Сеть распределения",
@@ -885,6 +986,35 @@ const translations = {
     "footer.rights": "Все права защищены.",
     "footer.openToCooperation":
       "Мы открыты для взаимовыгодного и долгосрочного сотрудничества.",
+
+    // Products section
+    "nav.products": "Продукция",
+    "products.badge": "Наша продукция",
+    "products.title": "Фармацевтические решения",
+    "products.description":
+      "Откройте для себя наш полный ассортимент высококачественных фармацевтических продуктов от ведущих производителей мира.",
+    "products.learnMore": "Подробнее",
+    "products.viewAll": "Посмотреть все продукты",
+    "products.descriptionLabel": "Описание",
+    "products.featuresLabel": "Ключевые особенности",
+    "products.contactCTA": "Нужна дополнительная информация?",
+    "products.contactInfo":
+      "Для получения подробной информации о продукте, ценах или оптовых заказах, пожалуйста, свяжитесь с нашим отделом продаж.",
+    "products.contactButton": "Связаться с нами",
+    "products.pageTitle": "Наша продукция",
+    "products.pageDescription":
+      "Изучите наш полный каталог фармацевтических продуктов, тщательно отобранных для соответствия высочайшим стандартам качества.",
+    "products.searchPlaceholder": "Поиск продуктов...",
+    "products.noResults":
+      "Продукты, соответствующие вашим критериям, не найдены.",
+
+    // Testimonials section
+    "testimonials.badge": "Отзывы",
+    "testimonials.title": "Нам доверяют медицинские специалисты",
+    "testimonials.description":
+      "Узнайте, что говорят медицинские специалисты и учреждения здравоохранения о наших продуктах и услугах.",
+    "testimonials.cta":
+      "Присоединяйтесь к сотням медицинских специалистов, которые доверяют NEUES LEBEN качественную фармацевтическую дистрибуцию.",
   },
 
   de: {
@@ -917,6 +1047,7 @@ const translations = {
     "blog.matching": "passend zu",
     "blog.allPublications": "Alle Publikationen",
     "blog.specialties": "Fachgebiete",
+    "blog.allCategories": "Alle Kategorien",
     "blog.mostRead": "Meistgelesen",
     "blog.mostCited": "Meistzitiert",
     "blog.views": "Aufrufe",
@@ -944,6 +1075,12 @@ const translations = {
     "blog.searchArticles": "Artikel Suchen",
     "blog.forHealthcareProfessionals":
       "Nur für lizenzierte medizinische Fachkräfte",
+    "blog.research": "Forschung",
+    "blog.researchDescription": "Neueste Forschungsartikel und Studien",
+    "blog.clinical": "Klinisch",
+    "blog.clinicalDescription": "Neueste klinische Artikel und Studien",
+    "blog.education": "Bildung",
+    "blog.educationDescription": "Neueste Bildungsartikel und Studien",
 
     // Doctor verification modal
     "verification.title": "Verifizierung für Medizinische Fachkräfte",
@@ -961,6 +1098,11 @@ const translations = {
       "Durch Fortfahren stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu",
 
     // Hero section
+    "hero.badge": "Gegründet 2018",
+    "hero.title":
+      "Wir glauben, dass die Gesundheit die Grundlage für ein glückliches Leben ist!",
+    "hero.subtitle":
+      "NEUES LEBEN LLC ist ein Vertriebsunternehmen der Pharmaindustrie auf dem usbekischen Markt. Das Unternehmen NEUES LEBEN wurde 2018 gegründet und begann seine Geschichte mit dem Großhandelsverkauf von Arzneimitteln in der gesamten Republik Usbekistan.",
     "hero.tagline":
       "Wir glauben, dass die Gesundheit die Grundlage für ein glückliches Leben ist!",
     "hero.description":
@@ -969,6 +1111,8 @@ const translations = {
       "Bis heute konzentriert sich das Unternehmen auf den Direktvertrieb von Arzneimitteln über eine eigene Vertriebsabteilung. Seit 2019 hat das Unternehmen eine neue Dimension erreicht und schließt Direktverträge mit ausländischen Herstellern ab.",
     "hero.learnMore": "Mehr erfahren",
     "hero.contactUs": "Kontaktieren Sie uns",
+    "hero.cta.primary": "Mehr erfahren",
+    "hero.cta.secondary": "Kontaktieren Sie uns",
     "hero.established": "Gegründet 2018",
     "hero.quality": "Qualität, Pünktlichkeit, zuverlässige Partnerschaft",
 
@@ -1081,18 +1225,19 @@ const translations = {
     "achievements.award3.title": "Qualitätsexzellenz 2024",
     "achievements.award3.year": "Branchenanerkennung",
 
-    // Partners section
+    // Partners
+    "partners.badge": "Globale Partner",
     "partners.title": "Unsere Partner",
     "partners.subtitle":
-      "Wir kooperieren mit führenden Pharmaherstellern weltweit.",
+      "Wir arbeiten mit führenden pharmazeutischen Herstellern weltweit zusammen.",
+    "partners.globalNetwork": "Globales Partnernetzwerk",
+    "partners.networkDescription":
+      "Durch strategische Partnerschaften mit pharmazeutischen Herstellern auf vier Kontinenten gewährleisten wir den Zugang zu hochwertigen Medikamenten und medizinischen Hilfsmitteln. Unser internationales Netzwerk ermöglicht es uns, innovative Gesundheitslösungen nach Usbekistan zu liefern.",
     "partners.countries": "Wir kooperieren mit:",
     "partners.southKorea": "Südkorea",
     "partners.poland": "Polen",
     "partners.china": "China",
     "partners.india": "Indien",
-    "partners.products": "Exklusive Arzneimittel",
-    "partners.productsDescription":
-      "Mehr als 50 exklusive Arzneimittel aus ausländischer und lokaler Produktion",
     "partners.product": "Produkt",
 
     // Infrastructure section
@@ -1117,7 +1262,7 @@ const translations = {
     "coverage.title": "Unsere Reichweite",
     "coverage.subtitle": "Wir verkaufen in ganz Usbekistan",
     "coverage.description":
-      "Wir verkaufen in ganz Usbekistan und gewährleisten eine zuverlässige Versorgung mit Arzneimitteln in alle Regionen des Landes.",
+      "Unser Hauptsitz und zentrales Logistikzentrum in Taschkent (41.302743, 69.350461) koordiniert die zuverlässige Versorgung mit Arzneimitteln in alle Regionen Usbekistans.",
     "coverage.offices": "Regionale Niederlassungen",
     "coverage.officesDescription":
       "Wir verfügen über Vertriebsbüros in allen Regionen des Landes unter der Leitung von Regionalmanagern.",
@@ -1126,7 +1271,7 @@ const translations = {
       "Sicherung des Zugangs zu hochwertigen Medikamenten in ganz Usbekistan",
     "coverage.cooperation":
       "Wir sind offen für eine für beide Seiten vorteilhafte und langfristige Zusammenarbeit.",
-    "coverage.uzbekistanMap": "Abdeckungskarte Usbekistan",
+    "coverage.uzbekistanMap": "Standort der Hauptzentrale – Taschkent",
     "coverage.stats.regions": "Abgedeckte Regionen",
     "coverage.stats.team": "Teammitglieder",
     "coverage.stats.network": "Vertriebsnetz",
@@ -1172,6 +1317,35 @@ const translations = {
     "footer.rights": "Alle Rechte vorbehalten.",
     "footer.openToCooperation":
       "Wir sind offen für eine für beide Seiten vorteilhafte und langfristige Zusammenarbeit.",
+
+    // Products section
+    "nav.products": "Produkte",
+    "products.badge": "Unsere Produkte",
+    "products.title": "Pharmazeutische Lösungen",
+    "products.description":
+      "Entdecken Sie unser umfassendes Sortiment an hochwertigen pharmazeutischen Produkten von führenden Herstellern weltweit.",
+    "products.learnMore": "Mehr erfahren",
+    "products.viewAll": "Alle Produkte ansehen",
+    "products.descriptionLabel": "Beschreibung",
+    "products.featuresLabel": "Hauptmerkmale",
+    "products.contactCTA": "Benötigen Sie weitere Informationen?",
+    "products.contactInfo":
+      "Für detaillierte Produktinformationen, Preise oder Großbestellungen wenden Sie sich bitte an unser Vertriebsteam.",
+    "products.contactButton": "Kontaktieren Sie uns",
+    "products.pageTitle": "Unsere Produkte",
+    "products.pageDescription":
+      "Erkunden Sie unseren vollständigen Katalog pharmazeutischer Produkte, sorgfältig ausgewählt, um höchste Qualitätsstandards zu erfüllen.",
+    "products.searchPlaceholder": "Produkte suchen...",
+    "products.noResults":
+      "Keine Produkte gefunden, die Ihren Kriterien entsprechen.",
+
+    // Testimonials section
+    "testimonials.badge": "Erfahrungsberichte",
+    "testimonials.title": "Vertraut von medizinischen Fachkräften",
+    "testimonials.description":
+      "Sehen Sie, was medizinische Fachkräfte und Gesundheitseinrichtungen über unsere Produkte und Dienstleistungen sagen.",
+    "testimonials.cta":
+      "Schließen Sie sich Hunderten von medizinischen Fachkräften an, die NEUES LEBEN für qualitativ hochwertige pharmazeutische Distribution vertrauen.",
   },
 };
 
@@ -1190,22 +1364,42 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && ["en", "uz", "ru", "de"].includes(savedLanguage)) {
       setLanguageState(savedLanguage);
+      // Also set cookie for server-side rendering
+      document.cookie = `language=${savedLanguage}; path=/; max-age=31536000`;
     }
   }, []);
 
-  // Function to set language and save to localStorage
+  // Function to set language and save to localStorage and cookies
   const setLanguage = (newLanguage: Language) => {
     setLanguageState(newLanguage);
     localStorage.setItem("language", newLanguage);
+    // Also set cookie for server-side rendering
+    document.cookie = `language=${newLanguage}; path=/; max-age=31536000`; // 1 year
+    // Trigger a page refresh to update server-rendered content
+    window.location.reload();
   };
 
   // Translation function
   const t = (key: string): string => {
-    return (
-      translations[language][
-        key as keyof (typeof translations)[typeof language]
-      ] || key
-    );
+    const langTable = translations[language];
+    const value =
+      langTable[key as keyof (typeof translations)[typeof language]];
+
+    if (value) {
+      return value;
+    }
+
+    // Graceful fallback to English if the key is missing in the current language
+    if (language !== "en") {
+      const fallback =
+        translations.en[key as keyof (typeof translations)["en"]];
+      if (fallback) {
+        return fallback;
+      }
+    }
+
+    // As a last resort, return the key itself so missing strings are visible
+    return key;
   };
 
   // Return the provider with the value

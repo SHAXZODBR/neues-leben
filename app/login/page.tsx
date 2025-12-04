@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (session) {
-      router.replace("/admin");
+      router.replace("/dashboard-cms-2024");
     }
   }, [session, router]);
 
@@ -37,7 +37,7 @@ export default function LoginPage() {
     }
 
     setStatus("Logged in! Redirecting…");
-    router.replace("/admin");
+    router.replace("/dashboard-cms-2024");
   }
 
   return (
@@ -88,4 +88,8 @@ export default function LoginPage() {
     </section>
   );
 }
+
+
+
+
 

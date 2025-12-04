@@ -11,12 +11,11 @@ import LanguageSelector from "@/components/language-selector";
 import { useLanguage } from "@/contexts/language-context";
 import ThemeToggle from "@/components/theme-toggle";
 import { motion } from "framer-motion";
-import DoctorVerificationModal from "@/components/doctor-verification-modal";
+import logo from "@/components/logo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showVerification, setShowVerification] = useState(false);
   const { t } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
@@ -24,13 +23,6 @@ export default function Navbar() {
 
   const handleBlogClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowVerification(true);
-  };
-
-  const handleVerificationConfirm = () => {
-    sessionStorage.setItem("blogVerified", "true");
-    setShowVerification(false);
-    setIsOpen(false);
     router.push("/blog");
   };
 
@@ -73,6 +65,7 @@ export default function Navbar() {
 
   const navItems = [
     { key: "nav.about", id: "about" },
+    { key: "nav.products", id: "products" },
     { key: "nav.mission", id: "mission" },
     { key: "nav.values", id: "values" },
     { key: "nav.team", id: "team" },
@@ -86,9 +79,21 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-shadow ${
-        scrolled ? "shadow-md" : ""
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
+        scrolled
+          ? "border-border/30 shadow-2xl"
+          : "border-border/10"
       }`}
+      style={{
+        background: scrolled 
+          ? 'rgba(255, 255, 255, 0.05)' 
+          : 'rgba(255, 255, 255, 0.02)',
+        backdropFilter: 'blur(20px) saturate(180%) brightness(1.1)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%) brightness(1.1)',
+        boxShadow: scrolled 
+          ? '0 8px 32px 0 rgba(31, 38, 135, 0.15)' 
+          : '0 4px 16px 0 rgba(31, 38, 135, 0.05)',
+      }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -96,17 +101,34 @@ export default function Navbar() {
       <div className="container flex h-14 sm:h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {isHome ? (
-            <button onClick={scrollToTop} className="flex items-center gap-2">
-              <Logo className="h-16 w-16 sm:h-16 sm:w-14 " />
-            </button>
+            <motion.button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                animate={{
+                  rotate: scrolled ? 360 : 0,
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
+              </motion.div>
+            </motion.button>
           ) : (
-            <Link href="/" className="flex items-center gap-2">
-              <Logo className="h-16 w-16 sm:h-16 sm:w-14 " />
+            <Link href="/" className="flex items-center gap-2 group">
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
+              </motion.div>
             </Link>
           )}
         </div>
 
-        <nav className="hidden lg:flex items-center gap-2 xl:gap-4">
+        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-3">
           {isHome ? (
             <button
               onClick={scrollToTop}
@@ -222,12 +244,6 @@ export default function Navbar() {
           </Sheet>
         </div>
       </div>
-
-      <DoctorVerificationModal
-        isOpen={showVerification}
-        onConfirm={handleVerificationConfirm}
-        onCancel={() => setShowVerification(false)}
-      />
     </motion.header>
   );
 }
