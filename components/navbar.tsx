@@ -80,19 +80,17 @@ export default function Navbar() {
   return (
     <motion.header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
-        scrolled
-          ? "border-border/30 shadow-2xl"
-          : "border-border/10"
+        scrolled ? "border-border/30 shadow-2xl" : "border-border/10"
       }`}
       style={{
-        background: scrolled 
-          ? 'rgba(255, 255, 255, 0.05)' 
-          : 'rgba(255, 255, 255, 0.02)',
-        backdropFilter: 'blur(20px) saturate(180%) brightness(1.1)',
-        WebkitBackdropFilter: 'blur(20px) saturate(180%) brightness(1.1)',
-        boxShadow: scrolled 
-          ? '0 8px 32px 0 rgba(31, 38, 135, 0.15)' 
-          : '0 4px 16px 0 rgba(31, 38, 135, 0.05)',
+        background: scrolled
+          ? "rgba(255, 255, 255, 0.05)"
+          : "rgba(255, 255, 255, 0.02)",
+        backdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
+        boxShadow: scrolled
+          ? "0 8px 32px 0 rgba(31, 38, 135, 0.15)"
+          : "0 4px 16px 0 rgba(31, 38, 135, 0.05)",
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

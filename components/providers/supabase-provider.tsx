@@ -18,3 +18,4 @@ export function SupabaseProvider({ children, initialSession }: SupabaseProviderP
     </SessionContextProvider>
   );
 }
+
