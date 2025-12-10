@@ -114,58 +114,68 @@ export default function ProductsPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer h-[620px]"
                   onClick={() => handleProductClick(product)}
                 >
-                  <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover-glow transition-all duration-300">
-                    {/* Product Image */}
-                    <div className="relative h-64 bg-gradient-to-br from-primary/12 to-primary/5 overflow-hidden flex items-center justify-center">
-                      <div className="relative w-[88%] h-[88%] bg-background rounded-2xl shadow-md flex items-center justify-center p-3">
+                  <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col">
+                    {/* Product Image - Larger */}
+                    <div className="relative h-72 flex-shrink-0 bg-gradient-to-br from-primary/12 to-primary/5 overflow-hidden flex items-center justify-center">
+                      <div className="relative w-[90%] h-[90%] bg-background rounded-2xl shadow-md flex items-center justify-center p-4">
                         <Image
                           src={product.image}
                           alt={product.name[language as keyof typeof product.name]}
-                          width={300}
-                          height={300}
+                          width={400}
+                          height={400}
                           className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110"
+                          unoptimized
                         />
                       </div>
-                      {/* Category Badge */}
                     </div>
 
-                    {/* Product Info */}
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-xl font-bold text-foreground line-clamp-2 min-h-[3.5rem]">
+
+                    {/* Product Info - Flex grow */}
+                    <div className="p-5 flex flex-col flex-grow">
+                      {/* Title - Fixed height */}
+                      <h3 className="text-lg font-bold text-foreground line-clamp-2 h-14 leading-7 group-hover:text-primary transition-colors">
                         {product.name[language as keyof typeof product.name]}
                       </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                      
+                      {/* Description - Fixed height */}
+                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed h-16 mt-2">
                         {product.description[language as keyof typeof product.description]}
                       </p>
                       
-                      {/* Features */}
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {product.features[language as keyof typeof product.features].map((feature, idx) => (
+                      {/* Features - Fixed height container */}
+                      <div className="flex flex-wrap gap-1.5 mt-3 h-16 overflow-hidden content-start">
+                        {product.features[language as keyof typeof product.features].slice(0, 3).map((feature, idx) => (
                           <span
                             key={idx}
-                            className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
+                            className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary h-fit"
                           >
                             {feature}
                           </span>
                         ))}
                       </div>
 
-                      {/* Learn More Button */}
-                      <Button
-                        variant="outline"
-                        className="w-full mt-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                        onClick={() => handleProductClick(product)}
-                      >
-                        {t("products.learnMore")}
-                      </Button>
+                      {/* Learn More Button - Always at bottom */}
+                      <div className="mt-auto pt-3">
+                        <Button
+                          variant="outline"
+                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product);
+                          }}
+                        >
+                          {t("products.learnMore")}
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
+
           )}
         </div>
       </section>

@@ -14,11 +14,9 @@ interface ProductModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-// Auto-format plain text medical info into beautiful HTML
+// Auto-format plain text medical info into clean HTML
 function formatMedicalText(text: string): string {
   if (!text) return '';
-  
-  console.log('Formatting medical text, length:', text.length);
   
   const lines = text.split('\n');
   let html = '';
@@ -28,58 +26,50 @@ function formatMedicalText(text: string): string {
     let line = lines[i].trim();
     
     if (!line) {
-      // Close list if we were in one
       if (inList) {
         html += '</ul>';
         inList = false;
       }
-      html += '<br/>';
       continue;
     }
     
-    // Check if line is a bullet point (•, -, *, or starts with dash)
-    if (line.startsWith('•') || line.startsWith('-') || line.startsWith('*') || line.match(/^[\-\•\*]\s/)) {
+    // Check if line starts with bullet point markers
+    const bulletMatch = line.match(/^[•\-\*—]\s*/);
+    if (bulletMatch) {
       if (!inList) {
-        html += '<ul class="list-disc pl-8 space-y-4 my-5">';
+        html += '<ul class="list-disc pl-4 my-0">';
         inList = true;
       }
-      const content = line.substring(1).trim();
-      html += `<li class="text-gray-900 dark:text-gray-100 text-lg leading-relaxed">${content}</li>`;
+      const content = line.substring(bulletMatch[0].length).trim();
+      html += `<li class="text-gray-900 dark:text-gray-100 text-sm leading-tight py-0">${content}</li>`;
     }
-    // Check if line is a section header (ends with colon)
-    else if (line.endsWith(':')) {
+    // Check if line is a section header (ends with colon and is short)
+    else if (line.endsWith(':') && line.length < 80) {
       if (inList) {
         html += '</ul>';
         inList = false;
       }
-      html += `<h3 class="font-bold text-2xl text-red-700 dark:text-red-400 mt-10 mb-5">${line}</h3>`;
+      html += `<p class="font-bold text-emerald-600 dark:text-emerald-400 mt-3 mb-0.5 text-sm">${line}</p>`;
     }
-    // Check if line looks like a title (short, all caps, or contains ®)
-    else if ((line.length < 50 && line === line.toUpperCase()) || line.includes('®') || line.includes('ВАЗОЛИЗИН')) {
-      if (inList) {
-        html += '</ul>';
-        inList = false;
-      }
-      html += `<h2 class="font-bold text-3xl text-red-600 dark:text-red-400 mt-8 mb-4">${line}</h2>`;
-    }
+
     // Regular paragraph
     else {
       if (inList) {
         html += '</ul>';
         inList = false;
       }
-      html += `<p class="mb-4 text-gray-900 dark:text-gray-100 text-lg leading-relaxed">${line}</p>`;
+      html += `<p class="my-0 text-gray-900 dark:text-gray-100 text-sm leading-tight">${line}</p>`;
     }
   }
   
-  // Close list if still open
   if (inList) {
     html += '</ul>';
   }
   
-  console.log('Formatted HTML length:', html.length);
   return html;
 }
+
+
 
 export default function ProductModal({ product, open, onOpenChange }: ProductModalProps) {
   const { language } = useLanguage();
@@ -97,11 +87,12 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
       <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-0 bg-white dark:bg-gray-900">
         {product && (
           <>
-            {/* Header - Medical Document Style */}
-            <div className="sticky top-0 z-20 bg-white dark:bg-gray-900 border-b-2 border-red-600 px-6 py-4">
+            {/* Header */}
+            <div className="sticky top-0 z-20 bg-white dark:bg-gray-900 border-b-2 border-emerald-600 dark:border-emerald-500 px-6 py-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <DialogTitle className="text-2xl md:text-3xl font-bold text-red-600 uppercase tracking-wide">
+                  <DialogTitle className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
+
                     {product.name[language as keyof typeof product.name]}
                   </DialogTitle>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">
@@ -121,22 +112,25 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
 
             {/* Scrollable Content */}
             <div className="overflow-y-auto max-h-[calc(95vh-80px)] px-6 py-6">
-              {/* Product Image */}
+              {/* Product Image - Large Display */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-700"
+                className="mb-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 md:p-8 border border-gray-200 dark:border-gray-700"
               >
-                <div className="relative h-64 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.name[language as keyof typeof product.name]}
-                    width={400}
-                    height={400}
-                    className="object-contain max-h-full w-auto drop-shadow-xl"
+                    width={800}
+                    height={800}
+                    className="object-contain w-full h-full drop-shadow-xl"
+                    unoptimized
+                    priority
                   />
                 </div>
               </motion.div>
+
 
               {/* Medical Information */}
               {formattedMedicalInfo ? (
@@ -161,7 +155,7 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                 /* Fallback: Show basic info if no medical info */
                 <div className="space-y-6">
                   <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    <h3 className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mb-3">
                       {language === "en" ? "Description" : language === "uz" ? "Tavsif" : language === "ru" ? "Описание" : "Beschreibung"}
                     </h3>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -170,19 +164,20 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                   </div>
 
                   <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    <h3 className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mb-3">
                       {language === "en" ? "Key Features" : language === "uz" ? "Asosiy xususiyatlar" : language === "ru" ? "Ключевые особенности" : "Hauptmerkmale"}
                     </h3>
                     <ul className="space-y-2">
                       {product.features[language as keyof typeof product.features].map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                          <span className="text-red-600 dark:text-red-400 mt-1">•</span>
+                          <span className="text-emerald-600 dark:text-emerald-400 mt-1">•</span>
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
+
               )}
             </div>
           </>

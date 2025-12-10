@@ -71,73 +71,96 @@ export default function ProductsSection() {
         </motion.div>
 
         {/* Horizontal Scrolling Products */}
-        <div className="relative">
-          {/* Products Row */}
+        <div className="relative overflow-hidden">
+          {/* Products Row - Scrollable */}
           <div
-            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-12"
+            className="flex gap-8 pb-4 overflow-x-auto scrollbar-hide px-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {featuredProducts.slice(0, 6).map((product, index) => {
-              const isEven = index % 2 === 0;
-              const initialY = isEven ? -100 : 100;
-              const initialRotate = isEven ? 20 : -20;
+              // Book opening animation - cards open from center like pages of a book
+              const isLeftPage = index % 2 === 0;
+              const initialRotateY = isLeftPage ? -90 : 90;
               
               return (
                 <motion.div
                   key={product.id}
-                  initial={{ opacity: 0, y: initialY, rotateX: initialRotate, scale: 0.9 }}
-                  animate={inView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : {}}
+                  initial={{ 
+                    opacity: 0, 
+                    rotateY: initialRotateY,
+                    scale: 0.8,
+                  }}
+                  animate={inView ? { 
+                    opacity: 1, 
+                    rotateY: 0, 
+                    scale: 1,
+                  } : {}}
                   transition={{ 
-                    duration: 0.9, 
+                    duration: 1.0, 
                     delay: index * 0.12,
-                    ease: [0.34, 1.56, 0.64, 1],
+                    ease: [0.25, 0.46, 0.45, 0.94],
                     type: "spring",
-                    stiffness: 60,
+                    stiffness: 50,
                     damping: 12
                   }}
                   whileHover={{ 
-                    y: -15,
-                    scale: 1.05,
-                    rotateY: isEven ? 5 : -5,
+                    y: -12,
+                    scale: 1.03,
+                    rotateY: isLeftPage ? 8 : -8,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                     transition: { duration: 0.4, ease: "easeOut" }
                   }}
-                  className="group relative flex-shrink-0 w-[340px]"
+                  className="group relative flex-shrink-0 w-[380px] h-[580px]"
                   style={{ 
                     transformStyle: "preserve-3d",
-                    perspective: "1000px"
+                    perspective: "1000px",
+                    transformOrigin: isLeftPage ? "right center" : "left center"
                   }}
                 >
-                  <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-500">
-                    {/* Product Image */}
-                    <div className="relative h-64 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
+                  {/* Book spine shadow effect */}
+                  <div 
+                    className="absolute inset-y-0 w-3 bg-gradient-to-r from-black/15 to-transparent transition-opacity duration-300 group-hover:opacity-0 z-10 rounded-l-lg"
+                    style={{ 
+                      left: isLeftPage ? 'auto' : 0,
+                      right: isLeftPage ? 0 : 'auto'
+                    }}
+                  />
+                  
+                  <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col">
+                    {/* Product Image - Larger */}
+                    <div className="relative h-64 flex-shrink-0 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
                       <div className="relative w-[90%] h-[90%] bg-background rounded-xl shadow-md flex items-center justify-center p-4">
                         <Image
                           src={product.image}
                           alt={product.name[language as keyof typeof product.name]}
-                          width={320}
-                          height={320}
+                          width={400}
+                          height={400}
                           className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-110"
+                          unoptimized
                         />
                       </div>
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[3.5rem]">
+                    <div className="p-6 pb-8 flex flex-col flex-grow">
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[3.5rem] leading-7">
                         {product.name[language as keyof typeof product.name]}
                       </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                      
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed min-h-[4rem] mt-3">
                         {product.description[language as keyof typeof product.description]}
                       </p>
 
                       {/* Features */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mt-4 min-h-[3rem] overflow-hidden content-start">
                         {product.features[language as keyof typeof product.features]
-                          .slice(0, 2)
+                          .slice(0, 3)
                           .map((feature, idx) => (
                             <span
                               key={idx}
-                              className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium"
+                              className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium h-fit"
                             >
                               {feature}
                             </span>
@@ -145,22 +168,27 @@ export default function ProductsSection() {
                       </div>
 
                       {/* Learn More Button */}
-                      <Button
-                        variant="outline"
-                        className="w-full mt-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-semibold"
-                        onClick={() => handleProductClick(product)}
-                        type="button"
-                      >
-                        {t("products.learnMore")}
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
-                      </Button>
+                      <div className="mt-auto pt-6">
+                        <Button
+                          variant="outline"
+                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-semibold py-3"
+                          onClick={() => handleProductClick(product)}
+                          type="button"
+                        >
+                          {t("products.learnMore")}
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
+
                 </motion.div>
               );
             })}
           </div>
         </div>
+
+
 
         {/* View All Button */}
         <motion.div

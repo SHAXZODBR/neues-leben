@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { testimonials } from "@/lib/testimonials-data";
 import { Quote, Star } from "lucide-react";
-import Image from "next/image";
+
 
 export default function TestimonialsSection() {
   const { t, language } = useLanguage();
@@ -91,14 +91,10 @@ export default function TestimonialsSection() {
 
                 {/* Author Info */}
                 <div className="flex items-center gap-4 pt-4 border-t border-border">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
-                    <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
+                  <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 flex-shrink-0 flex items-center justify-center">
+                    <span className="text-lg font-bold text-primary">
+                      {testimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm truncate">
@@ -112,6 +108,7 @@ export default function TestimonialsSection() {
                     </p>
                   </div>
                 </div>
+
               </div>
             ))}
           </motion.div>

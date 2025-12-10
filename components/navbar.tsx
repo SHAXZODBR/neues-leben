@@ -11,15 +11,22 @@ import LanguageSelector from "@/components/language-selector";
 import { useLanguage } from "@/contexts/language-context";
 import ThemeToggle from "@/components/theme-toggle";
 import { motion } from "framer-motion";
-import logo from "@/components/logo";
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { t } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
-  const isHome = pathname === "/";
+  
+  // Only check isHome after component mounts to avoid hydration mismatch
+  const isHome = mounted && pathname === "/";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleBlogClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,6 +48,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);

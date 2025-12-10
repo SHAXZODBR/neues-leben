@@ -7,15 +7,52 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
 import Logo from "@/components/logo";
+import { useState } from "react";
 
 export default function ContactSection() {
-  const { t } = useLanguage();
+  const { t
+ } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    
+    // Open email client
+    window.location.href = `mailto:info@neuesleben.uz?subject=${subject}&body=${body}`;
+    
+    // Show success after a short delay
+    setTimeout(() => {
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 3000);
+    }, 500);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value
+    }));
+  };
 
   return (
     <section id="contact" className="w-full py-16 sm:py-20 bg-muted/50">
@@ -52,9 +89,7 @@ export default function ContactSection() {
               <CardContent>
                 <form
                   className="space-y-4 sm:space-y-6"
-                  action="mailto:info@neuesleben.uz"
-                  method="post"
-                  encType="text/plain"
+                  onSubmit={handleSubmit}
                 >
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -63,6 +98,9 @@ export default function ContactSection() {
                     <Input
                       id="name"
                       placeholder={t("contact.form.namePlaceholder")}
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="space-y-2">
@@ -73,6 +111,9 @@ export default function ContactSection() {
                       id="email"
                       type="email"
                       placeholder={t("contact.form.emailPlaceholder")}
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="space-y-2">
@@ -83,13 +124,32 @@ export default function ContactSection() {
                       id="message"
                       placeholder={t("contact.form.messagePlaceholder")}
                       className="min-h-[100px] sm:min-h-[120px]"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90"
+                    disabled={status === "sending"}
                   >
-                    {t("contact.form.submit")}
+                    {status === "sending" ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : status === "success" ? (
+                      <>
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Message Sent!
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        {t("contact.form.submit")}
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -145,18 +205,18 @@ export default function ContactSection() {
                       {t("contact.info.email.title")}
                     </h3>
                     <div className="space-y-1">
-                      <p className="text-muted-foreground">
+                      <a href="mailto:info@neuesleben.uz" className="text-muted-foreground hover:text-primary transition-colors block">
                         info@neuesleben.uz
-                      </p>
-                      <p className="text-muted-foreground">
+                      </a>
+                      <a href="mailto:hr@neuesleben.uz" className="text-muted-foreground hover:text-primary transition-colors block">
                         hr@neuesleben.uz
-                      </p>
-                      <p className="text-muted-foreground">
+                      </a>
+                      <a href="mailto:import@neuesleben.uz" className="text-muted-foreground hover:text-primary transition-colors block">
                         import@neuesleben.uz
-                      </p>
-                      <p className="text-muted-foreground">
+                      </a>
+                      <a href="mailto:sales@neuesleben.uz" className="text-muted-foreground hover:text-primary transition-colors block">
                         sales@neuesleben.uz
-                      </p>
+                      </a>
                     </div>
                   </div>
                 </div>
