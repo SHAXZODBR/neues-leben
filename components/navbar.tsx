@@ -96,8 +96,8 @@ export default function Navbar() {
         backdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
         WebkitBackdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
         boxShadow: scrolled
-          ? "0 8px 32px 0 rgba(31, 38, 135, 0.15)"
-          : "0 4px 16px 0 rgba(31, 38, 135, 0.05)",
+          ? "0 8px 32px 0 rgba(0, 0, 0, 0.15)"
+          : "0 4px 16px 0 rgba(0, 0, 0, 0.05)",
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -120,8 +120,8 @@ export default function Navbar() {
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
-                {/* Santa hat on logo */}
-                <span className="absolute -top-2 -right-1 text-sm">🎅</span>
+
+
               </motion.div>
             </motion.button>
           ) : (
@@ -132,8 +132,8 @@ export default function Navbar() {
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
-                {/* Santa hat on logo */}
-                <span className="absolute -top-2 -right-1 text-sm">🎅</span>
+
+
               </motion.div>
             </Link>
           )}

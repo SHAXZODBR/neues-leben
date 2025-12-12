@@ -15,7 +15,7 @@ export default function ChristmasLights() {
     const lightCount = 20;
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-40 pointer-events-none overflow-hidden">
+        <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 pointer-events-none overflow-hidden">
             {/* Wire */}
             <svg
                 className="w-full h-12"

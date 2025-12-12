@@ -12,8 +12,6 @@ import { SupabaseProvider } from "@/components/providers/supabase-provider";
 import { NavigationLoader } from "@/components/navigation-loader";
 import SnowfallBg from "@/components/snowfall-bg";
 import ChristmasLights from "@/components/christmas-lights";
-import FestiveBanner from "@/components/festive-banner";
-import FloatingOrnaments from "@/components/floating-ornaments";
 
 export const dynamic = "force-dynamic";
 
@@ -71,10 +69,9 @@ export default async function RootLayout({
             <LanguageProvider>
               <NavigationLoader />
               <div className="flex min-h-screen flex-col">
-                <FestiveBanner />
                 <Navbar />
                 <SnowfallBg />
-                <FloatingOrnaments />
+                <ChristmasLights />
                 <main className="flex-1">{children}</main>
                 <Footer />
               </div>

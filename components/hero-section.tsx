@@ -4,8 +4,6 @@ import { useLanguage } from "@/contexts/language-context";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Logo from "@/components/logo";
-import { Sparkles } from "lucide-react";
-import { TopOrnamentCluster, InlineOrnaments } from "@/components/section-ornaments";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -19,13 +17,10 @@ export default function HeroSection() {
 
   return (
     <section className="w-full min-h-[90vh] py-12 md:py-24 lg:py-32 relative overflow-hidden flex items-center">
-      {/* Big ornament cluster at the TOP of the page */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
-        <TopOrnamentCluster />
-      </div>
+
 
       {/* Animated gradient background - tweaked for festive vibe */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-purple-50/50 dark:from-slate-950 dark:via-indigo-950/30 dark:to-slate-900 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-slate-50/30 to-zinc-50/50 dark:from-slate-950 dark:via-slate-900/30 dark:to-neutral-900 pointer-events-none"></div>
 
       {/* Floating particles */}
       <div className="absolute inset-0 z-0">
@@ -78,10 +73,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit">
-              <InlineOrnaments count={2} />
-              <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary">{t("hero.badge")}</span>
-              <InlineOrnaments count={2} />
             </motion.div>
 
             {/* Main Heading with better visibility */}
@@ -121,7 +113,6 @@ export default function HeroSection() {
                   size="lg"
                   onClick={() => scrollToSection("about")}
                   className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white shadow-lg hover:shadow-xl transition-all">
-                  <span className="mr-2">🎄</span>
                   {t("hero.cta.primary")}
                 </Button>
               </motion.div>
@@ -134,7 +125,6 @@ export default function HeroSection() {
                   onClick={() => scrollToSection("contact")}
                   className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white transition-all">
                   {t("hero.cta.secondary")}
-                  <span className="ml-2">🎁</span>
                 </Button>
               </motion.div>
             </motion.div>
