@@ -142,13 +142,24 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center relative">
+          {/* Festive decorations */}
+          <div className="absolute left-4 top-4 text-2xl opacity-60 hidden md:block">🎄</div>
+          <div className="absolute right-4 top-4 text-2xl opacity-60 hidden md:block">🎁</div>
+
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
+            <span>❄️</span>
             © {currentYear} Neues Leben. {t("footer.rights")}
+            <span>❄️</span>
           </p>
-          <p className="text-sm text-muted-foreground mt-4 md:mt-0">
-            {t("footer.openToCooperation")}
-          </p>
+
+          <div className="flex items-center gap-2 mt-4 md:mt-0">
+            <span className="text-lg">🎅</span>
+            <p className="text-sm text-muted-foreground">
+              {t("footer.openToCooperation")}
+            </p>
+            <span className="text-lg">🦌</span>
+          </div>
         </div>
       </div>
     </footer>

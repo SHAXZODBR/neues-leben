@@ -13,7 +13,7 @@ import { useState } from "react";
 
 export default function ContactSection() {
   const { t
- } = useLanguage();
+  } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -35,10 +35,10 @@ export default function ContactSection() {
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     );
-    
+
     // Open email client
     window.location.href = `mailto:info@neuesleben.uz?subject=${subject}&body=${body}`;
-    
+
     // Show success after a short delay
     setTimeout(() => {
       setStatus("success");
@@ -65,8 +65,10 @@ export default function ContactSection() {
           ref={ref}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-3">
+              <span className="text-2xl sm:text-3xl">🎄</span>
               {t("contact.title")}
+              <span className="text-2xl sm:text-3xl">🎁</span>
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground">
               {t("contact.subtitle")}
@@ -220,7 +222,7 @@ export default function ContactSection() {
                     </div>
                   </div>
                 </div>
-              </CardContent>                
+              </CardContent>
             </Card>
 
             <div className="flex items-center justify-center p-4 sm:p-8 bg-card rounded-xl shadow-sm border border-border">

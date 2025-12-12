@@ -18,13 +18,13 @@ export default function HeroSection() {
 
   return (
     <section className="w-full min-h-[90vh] py-12 md:py-24 lg:py-32 relative overflow-hidden flex items-center">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 animated-gradient opacity-20"></div>
-      
+      {/* Animated gradient background - tweaked for festive vibe */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-purple-50/50 dark:from-slate-950 dark:via-indigo-950/30 dark:to-slate-900 pointer-events-none"></div>
+
       {/* Floating particles */}
       <div className="absolute inset-0 z-0">
         <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-primary/30 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl"
           animate={{
             y: [0, -30, 0],
             x: [0, 20, 0],
@@ -36,7 +36,7 @@ export default function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute top-40 right-20 w-48 h-48 bg-primary/20 rounded-full blur-3xl"
+          className="absolute top-40 right-20 w-48 h-48 bg-green-500/10 rounded-full blur-3xl"
           animate={{
             y: [0, 40, 0],
             x: [0, -30, 0],
@@ -48,7 +48,7 @@ export default function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 left-1/3 w-40 h-40 bg-primary/25 rounded-full blur-3xl"
+          className="absolute bottom-20 left-1/3 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"
           animate={{
             y: [0, -25, 0],
             scale: [1, 1.1, 1],
@@ -65,6 +65,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="flex flex-col justify-center space-y-6">
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -111,7 +112,8 @@ export default function HeroSection() {
                 <Button
                   size="lg"
                   onClick={() => scrollToSection("about")}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all">
+                  className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white shadow-lg hover:shadow-xl transition-all">
+                  <span className="mr-2">🎄</span>
                   {t("hero.cta.primary")}
                 </Button>
               </motion.div>
@@ -122,14 +124,15 @@ export default function HeroSection() {
                   size="lg"
                   variant="outline"
                   onClick={() => scrollToSection("contact")}
-                  className="border-2 hover:bg-primary/10 transition-all">
+                  className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white transition-all">
                   {t("hero.cta.secondary")}
+                  <span className="ml-2">🎁</span>
                 </Button>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* Right Column - Logo with proper sizing */}
+          {/* Right Column - Logo with Santa Hat */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -149,10 +152,11 @@ export default function HeroSection() {
                   ease: "easeInOut",
                 }}
               />
-              {/* Logo */}
+
+              {/* Logo with Santa Hat */}
               <motion.div
                 animate={{
-                  rotate: [0, 5, -5, 0],
+                  rotate: [0, 3, -3, 0],
                   scale: [1, 1.02, 1],
                 }}
                 transition={{
@@ -161,6 +165,37 @@ export default function HeroSection() {
                   ease: "easeInOut",
                 }}
                 className="relative z-10 w-full h-full flex items-center justify-center p-8">
+                {/* Beautiful Santa Hat SVG */}
+                <svg
+                  className="absolute top-2 sm:top-0 md:-top-2 left-1/2 z-30 w-20 h-16 sm:w-28 sm:h-24 md:w-36 md:h-28 drop-shadow-xl"
+                  style={{ transform: "translateX(-50%) rotate(12deg)" }}
+                  viewBox="0 0 100 80"
+                  fill="none"
+                >
+                  {/* Hat body - main red part */}
+                  <path
+                    d="M15 60 C15 60 25 20 50 15 C75 10 95 30 95 50 C95 55 90 58 85 55 C82 52 80 45 78 42 C76 39 74 38 72 40 C68 45 65 50 60 50"
+                    fill="#DC2626"
+                  />
+                  <path
+                    d="M15 60 C20 35 40 20 50 18 C35 25 25 45 22 58"
+                    fill="#B91C1C"
+                    opacity="0.5"
+                  />
+                  {/* White fur trim band */}
+                  <ellipse cx="45" cy="62" rx="35" ry="9" fill="#F5F5F5" />
+                  <ellipse cx="45" cy="62" rx="33" ry="7" fill="white" />
+                  {/* Fluffy bumps on trim */}
+                  <circle cx="15" cy="62" r="6" fill="white" />
+                  <circle cx="28" cy="64" r="5" fill="white" />
+                  <circle cx="42" cy="65" r="5" fill="white" />
+                  <circle cx="56" cy="64" r="5" fill="white" />
+                  <circle cx="70" cy="62" r="6" fill="white" />
+                  {/* Pompom ball */}
+                  <circle cx="78" cy="42" r="9" fill="#F5F5F5" />
+                  <circle cx="78" cy="42" r="7" fill="white" />
+                  <circle cx="75" cy="39" r="2" fill="#F5F5F5" opacity="0.8" />
+                </svg>
                 <Logo className="w-full h-full max-w-[400px] max-h-[400px] drop-shadow-2xl" />
               </motion.div>
             </div>

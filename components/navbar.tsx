@@ -20,7 +20,7 @@ export default function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
-  
+
   // Only check isHome after component mounts to avoid hydration mismatch
   const isHome = mounted && pathname === "/";
 
@@ -87,9 +87,8 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
-        scrolled ? "border-border/30 shadow-2xl" : "border-border/10"
-      }`}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${scrolled ? "border-border/30 shadow-2xl" : "border-border/10"
+        }`}
       style={{
         background: scrolled
           ? "rgba(255, 255, 255, 0.05)"
@@ -118,8 +117,11 @@ export default function Navbar() {
                   rotate: scrolled ? 360 : 0,
                 }}
                 transition={{ duration: 0.6 }}
+                className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
+                {/* Santa hat on logo */}
+                <span className="absolute -top-2 -right-1 text-sm">🎅</span>
               </motion.div>
             </motion.button>
           ) : (
@@ -127,8 +129,11 @@ export default function Navbar() {
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
+                className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
+                {/* Santa hat on logo */}
+                <span className="absolute -top-2 -right-1 text-sm">🎅</span>
               </motion.div>
             </Link>
           )}

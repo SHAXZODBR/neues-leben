@@ -10,6 +10,10 @@ import Footer from "@/components/footer";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SupabaseProvider } from "@/components/providers/supabase-provider";
 import { NavigationLoader } from "@/components/navigation-loader";
+import SnowfallBg from "@/components/snowfall-bg";
+import ChristmasLights from "@/components/christmas-lights";
+import FestiveBanner from "@/components/festive-banner";
+import FloatingOrnaments from "@/components/floating-ornaments";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const josefinSans = Josefin_Sans({
@@ -34,14 +38,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await (cookies() as any);
-  const supabase = createServerComponentClient({ cookies: () => cookieStore });
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  
-  // Get session only if user exists
-  const session = user ? (await supabase.auth.getSession()).data.session : null;
+  let session = null;
+
+  // Try to initialize Supabase, but don't crash if env vars are missing/invalid
+  try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (supabaseUrl && supabaseAnonKey) {
+      const cookieStore = await (cookies() as any);
+      const supabase = createServerComponentClient({ cookies: () => cookieStore });
+      const { data: { user } } = await supabase.auth.getUser();
+      session = user ? (await supabase.auth.getSession()).data.session : null;
+    }
+  } catch (error) {
+    console.warn("Supabase initialization failed:", error);
+    // Continue without Supabase session
+  }
 
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
@@ -56,7 +69,10 @@ export default async function RootLayout({
             <LanguageProvider>
               <NavigationLoader />
               <div className="flex min-h-screen flex-col">
+                <FestiveBanner />
                 <Navbar />
+                <SnowfallBg />
+                <FloatingOrnaments />
                 <main className="flex-1">{children}</main>
                 <Footer />
               </div>

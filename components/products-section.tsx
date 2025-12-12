@@ -56,14 +56,17 @@ export default function ProductsSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-primary">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
+            <span>🎁</span>
+            <span className="text-sm font-medium text-red-600 dark:text-red-400">
               {t("products.badge")}
             </span>
+            <span>🎁</span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-3">
+            <span className="text-2xl sm:text-3xl">🎄</span>
             {t("products.title")}
+            <span className="text-2xl sm:text-3xl">🎄</span>
           </h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             {t("products.description")}
@@ -81,29 +84,29 @@ export default function ProductsSection() {
               // Book opening animation - cards open from center like pages of a book
               const isLeftPage = index % 2 === 0;
               const initialRotateY = isLeftPage ? -90 : 90;
-              
+
               return (
                 <motion.div
                   key={product.id}
-                  initial={{ 
-                    opacity: 0, 
+                  initial={{
+                    opacity: 0,
                     rotateY: initialRotateY,
                     scale: 0.8,
                   }}
-                  animate={inView ? { 
-                    opacity: 1, 
-                    rotateY: 0, 
+                  animate={inView ? {
+                    opacity: 1,
+                    rotateY: 0,
                     scale: 1,
                   } : {}}
-                  transition={{ 
-                    duration: 1.0, 
+                  transition={{
+                    duration: 1.0,
                     delay: index * 0.12,
                     ease: [0.25, 0.46, 0.45, 0.94],
                     type: "spring",
                     stiffness: 50,
                     damping: 12
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -12,
                     scale: 1.03,
                     rotateY: isLeftPage ? 8 : -8,
@@ -111,21 +114,21 @@ export default function ProductsSection() {
                     transition: { duration: 0.4, ease: "easeOut" }
                   }}
                   className="group relative flex-shrink-0 w-[380px] h-[580px]"
-                  style={{ 
+                  style={{
                     transformStyle: "preserve-3d",
                     perspective: "1000px",
                     transformOrigin: isLeftPage ? "right center" : "left center"
                   }}
                 >
                   {/* Book spine shadow effect */}
-                  <div 
+                  <div
                     className="absolute inset-y-0 w-3 bg-gradient-to-r from-black/15 to-transparent transition-opacity duration-300 group-hover:opacity-0 z-10 rounded-l-lg"
-                    style={{ 
+                    style={{
                       left: isLeftPage ? 'auto' : 0,
                       right: isLeftPage ? 0 : 'auto'
                     }}
                   />
-                  
+
                   <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col">
                     {/* Product Image - Larger */}
                     <div className="relative h-64 flex-shrink-0 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
@@ -147,7 +150,7 @@ export default function ProductsSection() {
                       <h3 className="text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[3.5rem] leading-7">
                         {product.name[language as keyof typeof product.name]}
                       </h3>
-                      
+
                       {/* Description */}
                       <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed min-h-[4rem] mt-3">
                         {product.description[language as keyof typeof product.description]}
