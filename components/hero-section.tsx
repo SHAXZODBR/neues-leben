@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Logo from "@/components/logo";
 import { Sparkles } from "lucide-react";
+import { TopOrnamentCluster, InlineOrnaments } from "@/components/section-ornaments";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -18,6 +19,11 @@ export default function HeroSection() {
 
   return (
     <section className="w-full min-h-[90vh] py-12 md:py-24 lg:py-32 relative overflow-hidden flex items-center">
+      {/* Big ornament cluster at the TOP of the page */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+        <TopOrnamentCluster />
+      </div>
+
       {/* Animated gradient background - tweaked for festive vibe */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-purple-50/50 dark:from-slate-950 dark:via-indigo-950/30 dark:to-slate-900 pointer-events-none"></div>
 
@@ -66,14 +72,16 @@ export default function HeroSection() {
           {/* Left Column - Text Content */}
           <div className="flex flex-col justify-center space-y-6">
 
-            {/* Badge */}
+            {/* Badge with inline ornaments */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit">
+              <InlineOrnaments count={2} />
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary">{t("hero.badge")}</span>
+              <InlineOrnaments count={2} />
             </motion.div>
 
             {/* Main Heading with better visibility */}

@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
 import Logo from "@/components/logo";
 import { useState } from "react";
+import { InlineOrnaments } from "@/components/section-ornaments";
 
 export default function ContactSection() {
   const { t
@@ -65,10 +66,12 @@ export default function ContactSection() {
           ref={ref}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-3">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-2">
+              <InlineOrnaments count={3} />
               <span className="text-2xl sm:text-3xl">🎄</span>
               {t("contact.title")}
               <span className="text-2xl sm:text-3xl">🎁</span>
+              <InlineOrnaments count={3} />
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground">
               {t("contact.subtitle")}

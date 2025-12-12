@@ -3,6 +3,7 @@
 import { useLanguage } from "@/contexts/language-context";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { InlineOrnaments } from "@/components/section-ornaments";
 
 export default function AboutSection() {
   const { t } = useLanguage();
@@ -25,10 +26,12 @@ export default function AboutSection() {
           ref={ref}
         >
           <div className="space-y-2 max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-3">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-2">
+              <InlineOrnaments count={3} />
               <span className="text-2xl sm:text-3xl">❄️</span>
               {t("about.title")}
               <span className="text-2xl sm:text-3xl">❄️</span>
+              <InlineOrnaments count={3} />
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground">
               {t("about.subtitle")}

@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import ProductModal from "@/components/product-modal";
+import { InlineOrnaments } from "@/components/section-ornaments";
 
 export default function ProductsSection() {
   const { t, language } = useLanguage();
@@ -63,10 +64,12 @@ export default function ProductsSection() {
             </span>
             <span>🎁</span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground flex items-center justify-center gap-2">
+            <InlineOrnaments count={3} />
             <span className="text-2xl sm:text-3xl">🎄</span>
             {t("products.title")}
             <span className="text-2xl sm:text-3xl">🎄</span>
+            <InlineOrnaments count={3} />
           </h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             {t("products.description")}
