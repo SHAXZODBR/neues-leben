@@ -6,6 +6,8 @@ import { useLanguage } from "@/contexts/language-context";
 import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
+export const dynamic = "force-dynamic";
+
 type PostSummary = {
   id: string;
   slug: string;
@@ -52,9 +54,8 @@ const normalizePost = (post: DbPost): PostSummary => {
     title: post.title,
     date: post.created_at || new Date().toISOString(),
     excerpt: excerptSource
-      ? `${excerptSource.slice(0, 180)}${
-          excerptSource.length > 180 ? "…" : ""
-        }`
+      ? `${excerptSource.slice(0, 180)}${excerptSource.length > 180 ? "…" : ""
+      }`
       : "",
     author: post.author,
     author_credentials: post.author_credentials,

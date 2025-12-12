@@ -14,6 +14,8 @@ import CoverageSection from "@/components/coverage-section";
 import ContactSection from "@/components/contact-section";
 import ScrollToTop from "@/components/scroll-to-top";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center">

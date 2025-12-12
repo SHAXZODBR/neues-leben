@@ -15,6 +15,8 @@ import ChristmasLights from "@/components/christmas-lights";
 import FestiveBanner from "@/components/festive-banner";
 import FloatingOrnaments from "@/components/floating-ornaments";
 
+export const dynamic = "force-dynamic";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
