@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabase } from "@/components/providers/supabase-provider";
 
 export default function LoginPage() {
   const router = useRouter();
-  const session = useSession();
-  const supabase = useSupabaseClient();
+  const { session, supabase } = useSupabase();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

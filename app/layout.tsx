@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/server";
 import { SupabaseProvider } from "@/components/providers/supabase-provider";
 import { NavigationLoader } from "@/components/navigation-loader";
 import SnowfallBg from "@/components/snowfall-bg";
@@ -46,10 +46,9 @@ export default async function RootLayout({
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (supabaseUrl && supabaseAnonKey) {
-      const cookieStore = await (cookies() as any);
-      const supabase = createServerComponentClient({ cookies: () => cookieStore });
-      const { data: { user } } = await supabase.auth.getUser();
-      session = user ? (await supabase.auth.getSession()).data.session : null;
+      const supabase = await createClient();
+      const { data: { session: appSession } } = await supabase.auth.getSession();
+      session = appSession;
     }
   } catch (error) {
     console.warn("Supabase initialization failed:", error);

@@ -1,8 +1,8 @@
-                                                                                                                                                                                                        "use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabase } from "@/components/providers/supabase-provider";
 import Link from "next/link";
 import type { Language } from "@/contexts/language-context";
 import { getAvailableLanguages, getLanguageDisplayName } from "@/lib/i18n-helpers";
@@ -44,8 +44,7 @@ const slugify = (text: string) =>
     .replace(/^-+|-+$/g, "");
 
 export default function AdminPage() {
-  const session = useSession();
-  const supabase = useSupabaseClient();
+  const { session, supabase } = useSupabase();
   const router = useRouter();
 
   const [posts, setPosts] = useState<PostRecord[]>([]);
@@ -170,12 +169,12 @@ export default function AdminPage() {
 
     try {
       const uploadedUrl = await uploadImageIfNeeded(imageUrl);
-      
+
       // Build i18n objects, only including non-empty values
       const title_i18n: Record<string, string> = {};
       const summary_i18n: Record<string, string> = {};
       const content_i18n: Record<string, string> = {};
-      
+
       (Object.keys(titleI18n) as Language[]).forEach((lang) => {
         if (titleI18n[lang].trim()) title_i18n[lang] = titleI18n[lang];
         if (summaryI18n[lang].trim()) summary_i18n[lang] = summaryI18n[lang];
@@ -243,7 +242,7 @@ export default function AdminPage() {
     setSlug(post.slug);
     setSummary(post.summary ?? "");
     setContent(post.content);
-    
+
     // Load i18n data if available
     if (post.title_i18n) {
       setTitleI18n({
@@ -255,7 +254,7 @@ export default function AdminPage() {
     } else {
       setTitleI18n({ en: post.title, uz: "", ru: "", de: "" });
     }
-    
+
     if (post.summary_i18n) {
       setSummaryI18n({
         en: post.summary_i18n.en || "",
@@ -266,7 +265,7 @@ export default function AdminPage() {
     } else {
       setSummaryI18n({ en: post.summary || "", uz: "", ru: "", de: "" });
     }
-    
+
     if (post.content_i18n) {
       setContentI18n({
         en: post.content_i18n.en || "",
@@ -277,7 +276,7 @@ export default function AdminPage() {
     } else {
       setContentI18n({ en: post.content, uz: "", ru: "", de: "" });
     }
-    
+
     setCategory(post.category ?? CATEGORY_OPTIONS[0]);
     setSpecialty(post.specialty ?? "");
     setPublished(post.published);
@@ -348,7 +347,7 @@ export default function AdminPage() {
           Sign out
         </button>
       </div>
-      
+
       <form
         onSubmit={handleSave}
         className="space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm mb-10"
@@ -362,11 +361,10 @@ export default function AdminPage() {
                 key={lang}
                 type="button"
                 onClick={() => setCurrentLang(lang)}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                  currentLang === lang
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${currentLang === lang
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
+                  }`}
               >
                 {getLanguageDisplayName(lang)}
                 {(titleI18n[lang] || contentI18n[lang]) && (
@@ -597,16 +595,15 @@ export default function AdminPage() {
               ))}
             </div>
 
-              
+
             {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className="mt-6 flex items-center justify-center gap-3">
                 <button
                   onClick={() => setCurrentPage(Math.max(1, safePage - 1))}
                   disabled={safePage === 1}
-                  className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${
-                    safePage === 1 ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                  className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${safePage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
                   ← Previous
                 </button>
@@ -618,9 +615,8 @@ export default function AdminPage() {
                 <button
                   onClick={() => setCurrentPage(Math.min(totalPages, safePage + 1))}
                   disabled={safePage === totalPages}
-                  className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${
-                    safePage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                  className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${safePage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
                   Next →
                 </button>
