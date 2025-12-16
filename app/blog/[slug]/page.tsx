@@ -2,12 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar } from "lucide-react";
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 import { BlogShareButton } from "@/components/blog-share-button";
 import { BlogVerificationCheck } from "@/components/blog-verification-check";
 import { cookies } from "next/headers";
 import { getLocalizedField } from "@/lib/i18n-helpers";
 import { getCategoryTranslation } from "@/lib/category-translations";
+
+const supabase = createClient();
 
 type BlogPostPageProps = {
   params: { slug: string };
@@ -64,7 +66,7 @@ const normalizePost = (post: DbPost, language: string = "en"): Post => {
   const localizedTitle = getLocalizedField(post.title_i18n, language as any, "en") || post.title;
   const localizedSummary = getLocalizedField(post.summary_i18n, language as any, "en") || post.summary;
   const localizedContent = getLocalizedField(post.content_i18n, language as any, "en") || post.content || "";
-  
+
   return {
     id: post.id || post.slug,
     slug: post.slug,
@@ -93,7 +95,7 @@ async function getLanguageFromCookies(): Promise<string> {
 
 async function fetchPost(slug: string): Promise<Post | null> {
   const language = await getLanguageFromCookies();
-  
+
   const { data, error } = await supabase
     .from("posts")
     .select("*")
@@ -113,7 +115,7 @@ async function fetchRelatedPosts(
   slug: string
 ): Promise<Post[]> {
   const language = await getLanguageFromCookies();
-  
+
   const query = supabase
     .from("posts")
     .select("*")
@@ -200,13 +202,13 @@ export const generateMetadata = async ({
       authors: post.author ? [post.author] : undefined,
       images: post.image_url
         ? [
-            {
-              url: post.image_url,
-              width: 1200,
-              height: 630,
-              alt: post.title,
-            },
-          ]
+          {
+            url: post.image_url,
+            width: 1200,
+            height: 630,
+            alt: post.title,
+          },
+        ]
         : undefined,
     },
     twitter: {
@@ -269,7 +271,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <BlogShareButton 
+            <BlogShareButton
               title={post.title}
               url={`https://neues-leben.uz/blog/${post.slug}`}
             />

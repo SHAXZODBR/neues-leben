@@ -4,10 +4,13 @@ import Link from "next/link";
 import { ArrowUpRight, Search, Eye, Quote, Bookmark } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 import { MedicalDisclaimerModal } from "@/components/medical-disclaimer-modal";
 import { getLocalizedField } from "@/lib/i18n-helpers";
 import { getCategoryTranslation } from "@/lib/category-translations";
+
+const supabase = createClient();
+
 
 type PostSummary = {
   id: string;
@@ -52,7 +55,7 @@ const normalizePost = (post: DbPost, language: string): PostSummary => {
   const localizedTitle = getLocalizedField(post.title_i18n, language as any, "en") || post.title;
   const localizedSummary = getLocalizedField(post.summary_i18n, language as any, "en") || post.summary || "";
   const localizedContent = getLocalizedField(post.content_i18n, language as any, "en") || post.content || "";
-  
+
   const plainContent = localizedContent ? localizedContent.replace(/<[^>]*>/g, "") : "";
   const excerptSource = localizedSummary || plainContent;
   const id = post.id || post.slug;
@@ -276,13 +279,13 @@ export default function BlogIndexPage() {
 
   // When filtering is active, show all posts in grid. Otherwise use hero/secondary layout
   const isFiltering = !!(searchQuery || selectedCategory);
-  
+
   const gridPosts = isFiltering ? filteredPosts : (() => {
     const heroPost = filteredPosts.find((post) => post.featured) ?? filteredPosts[0];
     const secondaryPosts = filteredPosts
       .filter((post) => post.slug !== heroPost?.slug)
       .slice(0, 2);
-    
+
     return filteredPosts.filter(
       (post) =>
         post.slug !== heroPost?.slug &&
@@ -314,238 +317,236 @@ export default function BlogIndexPage() {
 
   return (
     <>
-      <MedicalDisclaimerModal 
-        isOpen={showDisclaimer} 
-        onConfirm={handleDisclaimerConfirm} 
+      <MedicalDisclaimerModal
+        isOpen={showDisclaimer}
+        onConfirm={handleDisclaimerConfirm}
       />
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 via-background to-background rounded-3xl shadow-sm">
-      {/* Hero Header */}
-      <div className="mb-12 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-          <Bookmark className="h-4 w-4" />
-          {t("blog.peerReviewed")}
-        </div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4 text-balance">
-          {t("blog.title")}
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          {t("blog.subtitle")}
-        </p>
-
-        {/* Search Bar */}
-        <form
-          onSubmit={handleSearch}
-          className="flex w-full max-w-2xl mx-auto items-center gap-2 rounded-full border border-border bg-card/90 px-5 py-3 shadow-md backdrop-blur"
-        >
-          <Search className="h-5 w-5 text-muted-foreground" />
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t("blog.searchPlaceholder")}
-            className="flex-1 bg-transparent text-sm outline-none"
-          />
-          <button
-            type="submit"
-            className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
-          >
-            {t("blog.search")}
-          </button>
-        </form>
-
-        {/* Archive Link */}
-        <div className="mt-5">
-          <Link
-            href="/blog/archive"
-            className="inline-flex items-center rounded-full border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground transition hover:border-primary hover:text-primary"
-          >
-            {t("blog.browseArchive")}
-          </Link>
-        </div>
-
-        {(searchQuery || selectedCategory) && (
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <p className="text-sm text-muted-foreground">
-              {t("blog.showingArticles").replace(
-                "{count}",
-                String(filteredPosts.length)
-              )}
-              {selectedCategory && (
-                <>
-                  {" "}
-                  {t("blog.inCategory")}{" "}
-                  <span className="font-semibold text-primary">
-                    {selectedCategory}
-                  </span>
-                </>
-              )}
-              {searchQuery && (
-                <>
-                  {" "}
-                  {t("blog.matching")}{" "}
-                  <span className="font-semibold">"{searchQuery}"</span>
-                </>
-              )}
-            </p>
-            <button
-              onClick={clearFilters}
-              className="text-xs text-primary hover:underline"
-            >
-              ✕
-            </button>
+        {/* Hero Header */}
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            <Bookmark className="h-4 w-4" />
+            {t("blog.peerReviewed")}
           </div>
-        )}
-      </div>
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4 text-balance">
+            {t("blog.title")}
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            {t("blog.subtitle")}
+          </p>
 
-      {/* Category Filter Section */}
-      <div className="mb-10">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-foreground">
-            {t("blog.specialties")}
-          </h2>
-          {selectedCategory && (
+          {/* Search Bar */}
+          <form
+            onSubmit={handleSearch}
+            className="flex w-full max-w-2xl mx-auto items-center gap-2 rounded-full border border-border bg-card/90 px-5 py-3 shadow-md backdrop-blur"
+          >
+            <Search className="h-5 w-5 text-muted-foreground" />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t("blog.searchPlaceholder")}
+              className="flex-1 bg-transparent text-sm outline-none"
+            />
             <button
-              onClick={clearFilters}
-              className="text-sm text-primary hover:underline"
+              type="submit"
+              className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              Clear Filter
+              {t("blog.search")}
             </button>
+          </form>
+
+          {/* Archive Link */}
+          <div className="mt-5">
+            <Link
+              href="/blog/archive"
+              className="inline-flex items-center rounded-full border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground transition hover:border-primary hover:text-primary"
+            >
+              {t("blog.browseArchive")}
+            </Link>
+          </div>
+
+          {(searchQuery || selectedCategory) && (
+            <div className="mt-4 flex items-center justify-center gap-2">
+              <p className="text-sm text-muted-foreground">
+                {t("blog.showingArticles").replace(
+                  "{count}",
+                  String(filteredPosts.length)
+                )}
+                {selectedCategory && (
+                  <>
+                    {" "}
+                    {t("blog.inCategory")}{" "}
+                    <span className="font-semibold text-primary">
+                      {selectedCategory}
+                    </span>
+                  </>
+                )}
+                {searchQuery && (
+                  <>
+                    {" "}
+                    {t("blog.matching")}{" "}
+                    <span className="font-semibold">"{searchQuery}"</span>
+                  </>
+                )}
+              </p>
+              <button
+                onClick={clearFilters}
+                className="text-xs text-primary hover:underline"
+              >
+                ✕
+              </button>
+            </div>
           )}
         </div>
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={clearFilters}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              !selectedCategory
+
+        {/* Category Filter Section */}
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-foreground">
+              {t("blog.specialties")}
+            </h2>
+            {selectedCategory && (
+              <button
+                onClick={clearFilters}
+                className="text-sm text-primary hover:underline"
+              >
+                Clear Filter
+              </button>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={clearFilters}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!selectedCategory
                 ? "bg-primary text-primary-foreground"
                 : "bg-card border border-border hover:border-primary"
-            }`}
-          >
-            {t("blog.allCategories")}
-          </button>
-          {categories.map((cat) => {
-            const count = allPosts.filter((p) => p.category === cat).length;
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategoryClick(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === cat
+                }`}
+            >
+              {t("blog.allCategories")}
+            </button>
+            {categories.map((cat) => {
+              const count = allPosts.filter((p) => p.category === cat).length;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => handleCategoryClick(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === cat
                     ? "bg-primary text-primary-foreground"
                     : "bg-card border border-border hover:border-primary"
-                }`}
-              >
-                {getCategoryTranslation(cat, language)} ({count})
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Hero Featured Post - Only show when not filtering */}
-      {!isFiltering && filteredPosts.length > 0 && (() => {
-        const heroPost = filteredPosts.find((post) => post.featured) ?? filteredPosts[0];
-        return (
-          <article className="mb-12 overflow-hidden rounded-2xl border border-border/70 bg-card shadow-lg transition hover:shadow-xl">
-            <div className="grid lg:grid-cols-2 gap-0">
-              {/* Hero Image */}
-              <div className="relative h-64 lg:h-full min-h-[400px]">
-                {heroPost.cover_image && (
-                  <img
-                    src={heroPost.cover_image}
-                    alt={heroPost.title}
-                    className="h-full w-full object-cover"
-                  />
-                )}
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider shadow-lg">
-                    <Bookmark className="h-3 w-3" />
-                    Featured
-                  </span>
-                </div>
-              </div>
-
-              {/* Hero Content */}
-              <div className="flex flex-col justify-center p-8 lg:p-12">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleCategoryClick(heroPost.category || "");
-                  }}
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:underline mb-3"
+                    }`}
                 >
-                  {heroPost.category ? getCategoryTranslation(heroPost.category, language) : ""}
+                  {getCategoryTranslation(cat, language)} ({count})
                 </button>
-                
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
-                  <Link
-                    href={`/blog/${heroPost.slug}`}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {heroPost.title}
-                  </Link>
-                </h2>
+              );
+            })}
+          </div>
+        </div>
 
-                <p className="text-lg text-muted-foreground mb-6 line-clamp-3">
-                  {heroPost.excerpt}
-                </p>
-
-                {/* Author & Meta Info */}
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                  {heroPost.author && (
-                    <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-xs font-semibold text-primary">
-                          {heroPost.author.charAt(0).toUpperCase()}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground">{heroPost.author}</p>
-                        {heroPost.author_credentials && (
-                          <p className="text-xs">{heroPost.author_credentials}</p>
-                        )}
-                      </div>
-                    </div>
+        {/* Hero Featured Post - Only show when not filtering */}
+        {!isFiltering && filteredPosts.length > 0 && (() => {
+          const heroPost = filteredPosts.find((post) => post.featured) ?? filteredPosts[0];
+          return (
+            <article className="mb-12 overflow-hidden rounded-2xl border border-border/70 bg-card shadow-lg transition hover:shadow-xl">
+              <div className="grid lg:grid-cols-2 gap-0">
+                {/* Hero Image */}
+                <div className="relative h-64 lg:h-full min-h-[400px]">
+                  {heroPost.cover_image && (
+                    <img
+                      src={heroPost.cover_image}
+                      alt={heroPost.title}
+                      className="h-full w-full object-cover"
+                    />
                   )}
-                  <div className="flex items-center gap-4">
-                    {heroPost.reading_time && (
-                      <span className="flex items-center gap-1">
-                        <Eye className="h-4 w-4" />
-                        {heroPost.reading_time}
-                      </span>
-                    )}
-                    {heroPost.views !== null && heroPost.views !== undefined && heroPost.views > 0 && (
-                      <span>{heroPost.views.toLocaleString()} clicks</span>
-                    )}
-                    {heroPost.citations !== null && heroPost.citations !== undefined && heroPost.citations > 0 && (
-                      <span className="flex items-center gap-1">
-                        <Quote className="h-4 w-4" />
-                        {heroPost.citations} citations
-                      </span>
-                    )}
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider shadow-lg">
+                      <Bookmark className="h-3 w-3" />
+                      Featured
+                    </span>
                   </div>
                 </div>
 
-                <Link
-                  href={`/blog/${heroPost.slug}`}
-                  onClick={() => trackPostClick(heroPost.id)}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors w-fit"
-                >
-                  Read Full Article
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </article>
-        );
-      })()}
+                {/* Hero Content */}
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCategoryClick(heroPost.category || "");
+                    }}
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:underline mb-3"
+                  >
+                    {heroPost.category ? getCategoryTranslation(heroPost.category, language) : ""}
+                  </button>
 
-      {/* Articles Grid - 3 Columns */}
-      <div>
-        <h2 className="text-xl font-bold text-foreground mb-6">
-          {selectedCategory ? `${selectedCategory} Articles` : t("blog.allPublications")}
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+                    <Link
+                      href={`/blog/${heroPost.slug}`}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {heroPost.title}
+                    </Link>
+                  </h2>
+
+                  <p className="text-lg text-muted-foreground mb-6 line-clamp-3">
+                    {heroPost.excerpt}
+                  </p>
+
+                  {/* Author & Meta Info */}
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+                    {heroPost.author && (
+                      <div className="flex items-center gap-2">
+                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-xs font-semibold text-primary">
+                            {heroPost.author.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{heroPost.author}</p>
+                          {heroPost.author_credentials && (
+                            <p className="text-xs">{heroPost.author_credentials}</p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-4">
+                      {heroPost.reading_time && (
+                        <span className="flex items-center gap-1">
+                          <Eye className="h-4 w-4" />
+                          {heroPost.reading_time}
+                        </span>
+                      )}
+                      {heroPost.views !== null && heroPost.views !== undefined && heroPost.views > 0 && (
+                        <span>{heroPost.views.toLocaleString()} clicks</span>
+                      )}
+                      {heroPost.citations !== null && heroPost.citations !== undefined && heroPost.citations > 0 && (
+                        <span className="flex items-center gap-1">
+                          <Quote className="h-4 w-4" />
+                          {heroPost.citations} citations
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <Link
+                    href={`/blog/${heroPost.slug}`}
+                    onClick={() => trackPostClick(heroPost.id)}
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors w-fit"
+                  >
+                    Read Full Article
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          );
+        })()}
+
+        {/* Articles Grid - 3 Columns */}
+        <div>
+          <h2 className="text-xl font-bold text-foreground mb-6">
+            {selectedCategory ? `${selectedCategory} Articles` : t("blog.allPublications")}
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {pagedPosts.map((post) => (
               <article
                 key={post.slug}
@@ -596,40 +597,38 @@ export default function BlogIndexPage() {
                 </div>
               </article>
             ))}
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-10 flex items-center justify-center gap-3">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, safePage - 1))}
-              disabled={safePage === 1}
-              className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${
-                safePage === 1 ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              ← {t("blog.previous")}
-            </button>
-
-            <span className="text-sm text-muted-foreground">
-              {t("blog.page")} {safePage} {t("blog.of")} {totalPages}
-            </span>
-
-            <button
-              onClick={() =>
-                setCurrentPage(Math.min(totalPages, safePage + 1))
-              }
-              disabled={safePage === totalPages}
-              className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${
-                safePage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {t("blog.next")} →
-            </button>
           </div>
-        )}
-      </div>
-    </section>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-3">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, safePage - 1))}
+                disabled={safePage === 1}
+                className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${safePage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+              >
+                ← {t("blog.previous")}
+              </button>
+
+              <span className="text-sm text-muted-foreground">
+                {t("blog.page")} {safePage} {t("blog.of")} {totalPages}
+              </span>
+
+              <button
+                onClick={() =>
+                  setCurrentPage(Math.min(totalPages, safePage + 1))
+                }
+                disabled={safePage === totalPages}
+                className={`inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:border-primary transition-colors ${safePage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+              >
+                {t("blog.next")} →
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }

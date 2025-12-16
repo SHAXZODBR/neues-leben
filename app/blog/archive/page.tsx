@@ -4,9 +4,11 @@ import Link from "next/link";
 import { CalendarDays, FileText, ArrowLeft, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { useEffect, useState, useCallback } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 
 export const dynamic = "force-dynamic";
+
+const supabase = createClient();
 
 type PostSummary = {
   id: string;
