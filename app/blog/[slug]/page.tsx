@@ -12,7 +12,7 @@ import { getCategoryTranslation } from "@/lib/category-translations";
 const supabase = createClient();
 
 type BlogPostPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 type DbPost = {
@@ -172,7 +172,8 @@ export async function generateStaticParams() {
 export const generateMetadata = async ({
   params,
 }: BlogPostPageProps): Promise<Metadata> => {
-  const post = await fetchPost(params.slug);
+  const { slug } = await params;
+  const post = await fetchPost(slug);
 
   if (!post) {
     return {
@@ -221,7 +222,8 @@ export const generateMetadata = async ({
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await fetchPost(params.slug);
+  const { slug } = await params;
+  const post = await fetchPost(slug);
 
   if (!post) {
     notFound();
