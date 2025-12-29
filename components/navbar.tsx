@@ -3,9 +3,15 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Logo from "@/components/logo";
 import LanguageSelector from "@/components/language-selector";
 import { useLanguage } from "@/contexts/language-context";
@@ -71,19 +77,27 @@ export default function Navbar() {
     }
   };
 
-  const navItems = [
+  // Primary nav items (always visible) - reduced to essential items
+  const primaryNavItems = [
     { key: "nav.about", id: "about" },
     { key: "nav.products", id: "products" },
+    { key: "nav.team", id: "team" },
+    { key: "nav.contact", id: "contact" },
+  ];
+
+  // Secondary items for "More" dropdown
+  const moreNavItems = [
     { key: "nav.mission", id: "mission" },
     { key: "nav.values", id: "values" },
-    { key: "nav.team", id: "team" },
     { key: "nav.culture", id: "culture" },
     { key: "nav.achievements", id: "achievements" },
     { key: "nav.partners", id: "partners" },
     { key: "nav.infrastructure", id: "infrastructure" },
     { key: "nav.coverage", id: "coverage" },
-    { key: "nav.contact", id: "contact" },
   ];
+
+  // All items for mobile menu
+  const allNavItems = [...primaryNavItems, ...moreNavItems];
 
   return (
     <motion.header
@@ -120,9 +134,10 @@ export default function Navbar() {
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
-
-
               </motion.div>
+              <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                NEUES LEBEN
+              </span>
             </motion.button>
           ) : (
             <Link href="/" className="flex items-center gap-2 group">
@@ -132,35 +147,38 @@ export default function Navbar() {
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
-
-
               </motion.div>
+              <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                NEUES LEBEN
+              </span>
             </Link>
           )}
         </div>
 
-        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-3">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
           {isHome ? (
             <button
               onClick={scrollToTop}
-              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
             >
               {t("nav.home")}
             </button>
           ) : (
             <Link
               href="/"
-              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+              className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
             >
               {t("nav.home")}
             </Link>
           )}
-          {navItems.map((item) =>
+
+          {/* Primary nav items */}
+          {primaryNavItems.map((item) =>
             isHome ? (
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
               >
                 {t(item.key)}
               </button>
@@ -168,15 +186,45 @@ export default function Navbar() {
               <Link
                 key={item.key}
                 href={`/#${item.id}`}
-                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+                className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
               >
                 {t(item.key)}
               </Link>
             )
           )}
+
+          {/* More dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5 flex items-center gap-1">
+                {t("nav.more") || "More"}
+                <ChevronDown className="h-3.5 w-3.5" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="w-48">
+              {moreNavItems.map((item) => (
+                <DropdownMenuItem key={item.key} asChild>
+                  {isHome ? (
+                    <button
+                      onClick={() => scrollToSection(item.id)}
+                      className="w-full text-left cursor-pointer"
+                    >
+                      {t(item.key)}
+                    </button>
+                  ) : (
+                    <Link href={`/#${item.id}`} className="w-full cursor-pointer">
+                      {t(item.key)}
+                    </Link>
+                  )}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Blog link */}
           <button
             onClick={handleBlogClick}
-            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2 py-1"
+            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
           >
             {t("nav.blog")}
           </button>
@@ -220,7 +268,7 @@ export default function Navbar() {
                     {t("nav.home")}
                   </Link>
                 )}
-                {navItems.map((item) =>
+                {allNavItems.map((item) =>
                   isHome ? (
                     <button
                       key={item.key}

@@ -26,10 +26,40 @@ export const metadata: Metadata = {
   title: "NEUES LEBEN | Pharmaceutical Distribution",
   description:
     "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. Quality, Timely Delivery, Reliable Partnership.",
+  keywords: ["pharmaceutical", "distribution", "Uzbekistan", "NEUES LEBEN", "medical", "healthcare", "drugs", "medicine"],
+  authors: [{ name: "NEUES LEBEN LLC" }],
+  creator: "NEUES LEBEN LLC",
+  publisher: "NEUES LEBEN LLC",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://neuesleben.uz'),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "NEUES LEBEN | Pharmaceutical Distribution",
+    description: "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. Quality, Timely Delivery, Reliable Partnership.",
+    siteName: "NEUES LEBEN",
+    images: [
+      {
+        url: "/icon.png",
+        width: 512,
+        height: 512,
+        alt: "NEUES LEBEN Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "NEUES LEBEN | Pharmaceutical Distribution",
+    description: "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan.",
+    images: ["/icon.png"],
+  },
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png" }],
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
 };
 
@@ -62,7 +92,7 @@ export default async function RootLayout({
         <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/icon.png" />
       </head>
-      <body className={`${inter.variable} ${josefinSans.variable} font-sans`}>
+      <body className={`${inter.variable} ${josefinSans.variable} font-sans`} suppressHydrationWarning>
         <SupabaseProvider initialSession={session}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
             <LanguageProvider>

@@ -36,10 +36,10 @@ export interface Product {
   };
 }
 
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Initialize Supabase client (only if credentials are available)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 // Cache for products
 let cachedProducts: Product[] | null = null;
@@ -96,6 +96,13 @@ export async function loadProducts(): Promise<Product[]> {
     return cachedProducts;
   }
 
+  // Throw error if Supabase is not configured
+  if (!supabase) {
+    const error = 'Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.';
+    console.error(error);
+    throw new Error(error);
+  }
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -105,7 +112,7 @@ export async function loadProducts(): Promise<Product[]> {
 
     if (error) {
       console.error('Error loading products from Supabase:', error);
-      return [];
+      throw error;
     }
 
     if (!data || data.length === 0) {
@@ -118,7 +125,7 @@ export async function loadProducts(): Promise<Product[]> {
     return products;
   } catch (error) {
     console.error('Error loading products:', error);
-    return [];
+    throw error;
   }
 }
 
@@ -129,7 +136,9 @@ export function getProducts(): Product[] {
 
 // Initialize products on module load (client-side only)
 if (typeof window !== 'undefined') {
-  loadProducts();
+  loadProducts().catch(err => {
+    console.error('Failed to load products on initialization:', err);
+  });
 }
 
 export const productCategories = {
@@ -147,5 +156,7 @@ if (typeof window !== 'undefined') {
   loadProducts().then(loadedProducts => {
     products.length = 0;
     products.push(...loadedProducts);
+  }).catch(err => {
+    console.error('Failed to populate products array:', err);
   });
 }

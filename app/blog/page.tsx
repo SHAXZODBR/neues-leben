@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { ArrowUpRight, Search, Eye, Quote, Bookmark } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { MedicalDisclaimerModal } from "@/components/medical-disclaimer-modal";
 import { getLocalizedField } from "@/lib/i18n-helpers";
 import { getCategoryTranslation } from "@/lib/category-translations";
-
-const supabase = createClient();
 
 
 type PostSummary = {
@@ -94,17 +92,11 @@ const formatDate = (isoDate: string, language: string) => {
   });
 };
 
-// Track post clicks
-const trackPostClick = async (postId: string) => {
-  try {
-    await supabase.rpc('increment_post_views', { post_id: postId });
-  } catch (error) {
-    console.error('Failed to track click:', error);
-  }
-};
-
 export default function BlogIndexPage() {
   const { t, language } = useLanguage();
+
+  // Create supabase client inside component
+  const supabase = useMemo(() => createClient(), []);
 
   const [allPosts, setAllPosts] = useState<PostSummary[]>([]);
   const [popularPosts, setPopularPosts] = useState<PostSummary[]>([]);
@@ -122,6 +114,16 @@ export default function BlogIndexPage() {
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const PAGE_SIZE = 12;
+
+  // Track post clicks
+  const trackPostClick = useCallback(async (postId: string) => {
+    if (!supabase) return;
+    try {
+      await supabase.rpc('increment_post_views', { post_id: postId });
+    } catch (error) {
+      console.error('Failed to track click:', error);
+    }
+  }, [supabase]);
 
   // Check if user has already confirmed
   useEffect(() => {
@@ -141,6 +143,12 @@ export default function BlogIndexPage() {
   const fetchPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) {
+      setError("Database connection not available");
+      setLoading(false);
+      return;
+    }
 
     const { data, error } = await supabase
       .from("posts")

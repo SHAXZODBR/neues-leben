@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { CalendarDays, FileText, ArrowLeft, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export const dynamic = "force-dynamic";
-
-const supabase = createClient();
 
 type PostSummary = {
   id: string;
@@ -99,6 +97,10 @@ const getMonthName = (date: Date, language: string) => {
 
 export default function BlogArchivePage() {
   const { t, language } = useLanguage();
+
+  // Create supabase client inside component
+  const supabase = useMemo(() => createClient(), []);
+
   const [posts, setPosts] = useState<PostSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -106,6 +108,12 @@ export default function BlogArchivePage() {
   const fetchPosts = useCallback(async () => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) {
+      setError("Database connection not available");
+      setLoading(false);
+      return;
+    }
 
     const { data, error } = await supabase
       .from("posts")
@@ -122,7 +130,7 @@ export default function BlogArchivePage() {
     const normalized = (data as DbPost[] | null)?.map(normalizePost) ?? [];
     setPosts(normalized);
     setLoading(false);
-  }, []);
+  }, [supabase]);
 
   useEffect(() => {
     fetchPosts();

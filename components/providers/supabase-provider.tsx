@@ -2,10 +2,10 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { Session, User } from "@supabase/supabase-js";
+import { Session, User, SupabaseClient } from "@supabase/supabase-js";
 
 type SupabaseContextType = {
-  supabase: ReturnType<typeof createClient>;
+  supabase: SupabaseClient | null;
   session: Session | null;
   user: User | null;
 };
@@ -24,6 +24,9 @@ export function SupabaseProvider({
   const [user, setUser] = useState<User | null>(initialSession?.user ?? null);
 
   useEffect(() => {
+    // Skip auth listener if supabase client is not available
+    if (!supabase) return;
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_, _session) => {
@@ -50,5 +53,3 @@ export const useSupabase = () => {
   }
   return context;
 };
-
-

@@ -39,6 +39,7 @@ const translations = {
     "nav.coverage": "Coverage",
     "nav.contact": "Contact",
     "nav.blog": "Medical Journal",
+    "nav.more": "More",
 
     // Blog/Medical Journal
     "blog.title": "Medical Research & Clinical Insights",
@@ -344,6 +345,9 @@ const translations = {
       "Explore our complete catalog of pharmaceutical products, carefully selected to meet the highest quality standards.",
     "products.searchPlaceholder": "Search products...",
     "products.noResults": "No products found matching your criteria.",
+    "products.error": "Error Loading Products",
+    "products.retry": "Retry",
+    "products.loading": "Loading Products...",
 
     // Testimonials section
     "testimonials.badge": "Testimonials",
@@ -368,6 +372,7 @@ const translations = {
     "nav.coverage": "Qamrov",
     "nav.contact": "Aloqa",
     "nav.blog": "Tibbiy Jurnal",
+    "nav.more": "Boshqalar",
 
     // Blog/Medical Journal
     "blog.title": "Tibbiy Tadqiqotlar va Klinik Tushunchalar",
@@ -677,6 +682,9 @@ const translations = {
       "Eng yuqori sifat standartlariga javob berish uchun ehtiyotkorlik bilan tanlangan farmatsevtika mahsulotlarining to'liq katalogini ko'ring.",
     "products.searchPlaceholder": "Mahsulotlarni qidirish...",
     "products.noResults": "Sizning mezonlaringizga mos mahsulotlar topilmadi.",
+    "products.error": "Mahsulotlarni yuklashda xatolik",
+    "products.retry": "Qayta urinish",
+    "products.loading": "Mahsulotlar yuklanmoqda...",
 
     // Testimonials section
     "testimonials.badge": "Fikrlar",
@@ -700,6 +708,7 @@ const translations = {
     "nav.coverage": "Покрытие",
     "nav.contact": "Контакты",
     "nav.blog": "Медицинский Журнал",
+    "nav.more": "Ещё",
 
     // Blog/Medical Journal
     "blog.title": "Медицинские Исследования и Клинические Обзоры",
@@ -1007,6 +1016,9 @@ const translations = {
     "products.searchPlaceholder": "Поиск продуктов...",
     "products.noResults":
       "Продукты, соответствующие вашим критериям, не найдены.",
+    "products.error": "Ошибка загрузки продуктов",
+    "products.retry": "Повторить",
+    "products.loading": "Загрузка продуктов...",
 
     // Testimonials section
     "testimonials.badge": "Отзывы",
@@ -1031,6 +1043,7 @@ const translations = {
     "nav.coverage": "Abdeckung",
     "nav.contact": "Kontakt",
     "nav.blog": "Medizinisches Journal",
+    "nav.more": "Mehr",
 
     // Blog/Medical Journal
     "blog.title": "Medizinische Forschung & Klinische Erkenntnisse",
@@ -1338,6 +1351,9 @@ const translations = {
     "products.searchPlaceholder": "Produkte suchen...",
     "products.noResults":
       "Keine Produkte gefunden, die Ihren Kriterien entsprechen.",
+    "products.error": "Fehler beim Laden der Produkte",
+    "products.retry": "Erneut versuchen",
+    "products.loading": "Produkte werden geladen...",
 
     // Testimonials section
     "testimonials.badge": "Erfahrungsberichte",

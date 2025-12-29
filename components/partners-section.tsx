@@ -3,7 +3,8 @@
 import { useLanguage } from "@/contexts/language-context"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Globe, Handshake } from "lucide-react"
+import { Globe, Handshake, Sparkles } from "lucide-react"
+import Image from "next/image"
 
 export default function PartnersSection() {
   const { t } = useLanguage()
@@ -13,10 +14,10 @@ export default function PartnersSection() {
   })
 
   const partners = [
-    { country: t("partners.southKorea"), code: "KR" },
-    { country: t("partners.poland"), code: "PL" },
-    { country: t("partners.china"), code: "CN" },
-    { country: t("partners.india"), code: "IN" },
+    { country: t("partners.southKorea"), code: "KR", flagUrl: "https://flagcdn.com/w80/kr.png" },
+    { country: t("partners.poland"), code: "PL", flagUrl: "https://flagcdn.com/w80/pl.png" },
+    { country: t("partners.china"), code: "CN", flagUrl: "https://flagcdn.com/w80/cn.png" },
+    { country: t("partners.india"), code: "IN", flagUrl: "https://flagcdn.com/w80/in.png" },
   ]
 
   return (
@@ -67,18 +68,34 @@ export default function PartnersSection() {
               <div className="relative bg-card rounded-2xl p-8 border border-border shadow-lg hover:shadow-2xl hover:border-primary/50 transition-all duration-300 overflow-hidden">
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
+
+                {/* Sparkle decoration */}
+                <Sparkles className="absolute top-3 right-3 h-4 w-4 text-primary/40 group-hover:text-primary transition-colors" />
+
                 <div className="relative flex flex-col items-center text-center space-y-4">
+                  {/* Flag Image */}
                   <motion.div
-                    className="text-6xl"
-                    whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.2 }}
-                    transition={{ duration: 0.5 }}
+                    className="relative w-16 h-12 rounded overflow-hidden shadow-md"
+                    whileHover={{ scale: 1.15, rotate: [-2, 2, -2, 0] }}
+                    transition={{ duration: 0.3 }}
                   >
-                    {getCountryFlag(partner.code)}
+                    <img
+                      src={partner.flagUrl}
+                      alt={`${partner.country} flag`}
+                      className="w-full h-full object-cover"
+                    />
                   </motion.div>
-                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+
+                  {/* Country Code badge */}
+                  <span className="text-xs font-semibold text-muted-foreground/60 bg-muted/50 px-2 py-0.5 rounded">
+                    {partner.code}
+                  </span>
+
+                  {/* Translated country name */}
+                  <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {partner.country}
                   </h3>
+
                   {/* Decorative line */}
                   <div className="h-1 w-8 bg-primary/30 group-hover:w-full group-hover:bg-primary transition-all duration-300 rounded-full" />
                 </div>
@@ -107,15 +124,4 @@ export default function PartnersSection() {
       </div>
     </section>
   )
-}
-
-function getCountryFlag(countryCode: string) {
-  const flags: { [key: string]: string } = {
-    KR: "🇰🇷",
-    PL: "🇵🇱",
-    CN: "🇨🇳",
-    IN: "🇮🇳",
-  }
-
-  return flags[countryCode] || countryCode
 }

@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/language-context";
 import { loadProducts, productCategories, Product } from "@/lib/products-data";
 import { motion } from "framer-motion";
-import { Search, Filter } from "lucide-react";
+import { Search, Package } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import ProductModal from "@/components/product-modal";
 
@@ -18,10 +19,23 @@ export default function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Load products on mount
   useEffect(() => {
-    loadProducts().then(setProducts);
+    setLoading(true);
+    setError(null);
+    loadProducts()
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load products:', err);
+        setError(err.message || 'Failed to load products');
+        setLoading(false);
+      });
   }, []);
 
   // Always default to the first category (All Products) whenever language changes
@@ -35,7 +49,7 @@ export default function ProductsPage() {
     const matchesCategory =
       selectedCategory === categories[0] ||
       product.category[language as keyof typeof product.category] === selectedCategory;
-    
+
     const matchesSearch =
       searchQuery === "" ||
       product.name[language as keyof typeof product.name]
@@ -102,7 +116,99 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <section className="py-16">
         <div className="container px-4 md:px-6">
-          {filteredProducts.length === 0 ? (
+          {loading ? (
+            /* Loading Skeletons */
+            <div className="space-y-8">
+              <div className="flex flex-col items-center justify-center py-8">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-primary/5 blur-xl"
+                  />
+                  <div className="relative bg-card border-2 border-primary/20 rounded-2xl p-5">
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Package className="h-10 w-10 text-primary" />
+                    </motion.div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-4 text-center"
+                >
+                  <p className="text-base font-medium text-foreground">{t("products.loading") || "Loading Products..."}</p>
+                  <div className="flex items-center justify-center gap-1.5 mt-2">
+                    {[0, 1, 2].map((i) => (
+                      <motion.span
+                        key={i}
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                        className="h-2 w-2 rounded-full bg-primary"
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(6)].map((_, index) => (
+                  <div key={index} className="bg-card rounded-2xl overflow-hidden border border-border">
+                    <Skeleton className="h-72 w-full" />
+                    <div className="p-5 space-y-3">
+                      <Skeleton className="h-6 w-3/4" />
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-2/3" />
+                      <div className="flex gap-2">
+                        <Skeleton className="h-6 w-20 rounded-full" />
+                        <Skeleton className="h-6 w-24 rounded-full" />
+                      </div>
+                      <Skeleton className="h-10 w-full rounded-lg" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <div className="max-w-md mx-auto space-y-4">
+                <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6">
+                  <p className="text-destructive font-semibold text-lg mb-2">
+                    {t("products.error") || "Error Loading Products"}
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    {error}
+                  </p>
+                </div>
+                <Button
+                  onClick={() => {
+                    setLoading(true);
+                    setError(null);
+                    loadProducts()
+                      .then((data) => {
+                        setProducts(data);
+                        setLoading(false);
+                      })
+                      .catch((err) => {
+                        setError(err.message || 'Failed to load products');
+                        setLoading(false);
+                      });
+                  }}
+                  variant="outline"
+                >
+                  {t("products.retry") || "Retry"}
+                </Button>
+              </div>
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-muted-foreground text-lg">{t("products.noResults")}</p>
             </div>
@@ -139,12 +245,12 @@ export default function ProductsPage() {
                       <h3 className="text-lg font-bold text-foreground line-clamp-2 h-14 leading-7 group-hover:text-primary transition-colors">
                         {product.name[language as keyof typeof product.name]}
                       </h3>
-                      
+
                       {/* Description - Fixed height */}
                       <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed h-16 mt-2">
                         {product.description[language as keyof typeof product.description]}
                       </p>
-                      
+
                       {/* Features - Fixed height container */}
                       <div className="flex flex-wrap gap-1.5 mt-3 h-16 overflow-hidden content-start">
                         {product.features[language as keyof typeof product.features].slice(0, 3).map((feature, idx) => (

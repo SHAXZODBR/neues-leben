@@ -94,6 +94,8 @@ async function getLanguageFromCookies(): Promise<string> {
 }
 
 async function fetchPost(slug: string): Promise<Post | null> {
+  if (!supabase) return null;
+
   const language = await getLanguageFromCookies();
 
   const { data, error } = await supabase
@@ -114,6 +116,8 @@ async function fetchRelatedPosts(
   category: string | null,
   slug: string
 ): Promise<Post[]> {
+  if (!supabase) return [];
+
   const language = await getLanguageFromCookies();
 
   const query = supabase
@@ -158,6 +162,8 @@ export const revalidate = 60;
 
 // Pre-generate static pages for all published posts at build time
 export async function generateStaticParams() {
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("posts")
     .select("slug")
