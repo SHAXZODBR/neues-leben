@@ -13,14 +13,19 @@ import InfrastructureSection from "@/components/infrastructure-section";
 import CoverageSection from "@/components/coverage-section";
 import ContactSection from "@/components/contact-section";
 import ScrollToTop from "@/components/scroll-to-top";
+import { loadProducts } from "@/lib/products-data";
 
-export default function Home() {
+export const revalidate = 3600; // Revalidate every hour
+
+export default async function Home() {
+  const products = await loadProducts();
+
   return (
     <div className="flex flex-col items-center justify-center">
       <HeroSection />
       <MedicalJournalCTA />
       <AboutSection />
-      <ProductsSection />
+      <ProductsSection products={products} />
       <MissionSection />
       <ValuesSection />
       <TeamSection />

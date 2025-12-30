@@ -3,16 +3,19 @@
 import { useLanguage } from "@/contexts/language-context";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { loadProducts, Product } from "@/lib/products-data";
+import { Product } from "@/lib/products-data";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import ProductModal from "@/components/product-modal";
 
+interface ProductsSectionProps {
+  products: Product[];
+}
 
-export default function ProductsSection() {
+export default function ProductsSection({ products }: ProductsSectionProps) {
   const { t, language } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -21,12 +24,7 @@ export default function ProductsSection() {
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
-
-  // Load products on mount
-  useEffect(() => {
-    loadProducts().then(setProducts);
-  }, []);
+  // Removed internal state for products since it's passed as prop
 
   const handleProductClick = useCallback((product: Product) => {
     console.log("Product clicked:", product.id);
@@ -120,7 +118,6 @@ export default function ProductsSection() {
                           width={400}
                           height={400}
                           className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-110"
-                          unoptimized
                         />
                       </div>
                     </div>

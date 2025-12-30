@@ -134,12 +134,6 @@ export function getProducts(): Product[] {
   return cachedProducts || [];
 }
 
-// Initialize products on module load (client-side only)
-if (typeof window !== 'undefined') {
-  loadProducts().catch(err => {
-    console.error('Failed to load products on initialization:', err);
-  });
-}
 
 export const productCategories = {
   en: ["All Products", "Cardiology", "Pulmonology", "Pain Relief", "Endocrinology", "Neurology", "Gastroenterology"],
@@ -148,15 +142,3 @@ export const productCategories = {
   de: ["Alle Produkte", "Kardiologie", "Pneumologie", "Schmerzlinderung", "Endokrinologie", "Neurologie", "Gastroenterologie"],
 };
 
-// Legacy export for backward compatibility - will be populated after loadProducts() is called
-export const products: Product[] = [];
-
-// Auto-populate products array when loaded
-if (typeof window !== 'undefined') {
-  loadProducts().then(loadedProducts => {
-    products.length = 0;
-    products.push(...loadedProducts);
-  }).catch(err => {
-    console.error('Failed to populate products array:', err);
-  });
-}
