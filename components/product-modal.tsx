@@ -17,14 +17,14 @@ interface ProductModalProps {
 // Auto-format plain text medical info into clean HTML
 function formatMedicalText(text: string): string {
   if (!text) return '';
-  
+
   const lines = text.split('\n');
   let html = '';
   let inList = false;
-  
+
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i].trim();
-    
+
     if (!line) {
       if (inList) {
         html += '</ul>';
@@ -32,7 +32,7 @@ function formatMedicalText(text: string): string {
       }
       continue;
     }
-    
+
     // Check if line starts with bullet point markers
     const bulletMatch = line.match(/^[•\-\*—]\s*/);
     if (bulletMatch) {
@@ -61,25 +61,30 @@ function formatMedicalText(text: string): string {
       html += `<p class="my-0 text-gray-900 dark:text-gray-100 text-sm leading-tight">${line}</p>`;
     }
   }
-  
+
   if (inList) {
     html += '</ul>';
   }
-  
+
   return html;
 }
-
-
 
 export default function ProductModal({ product, open, onOpenChange }: ProductModalProps) {
   const { language } = useLanguage();
 
-  console.log('Product modal opened:', product?.id, 'Language:', language);
-  console.log('Product medicalInfo:', product?.medicalInfo);
+  // Only process if product exists
+  if (!product) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-0 bg-white dark:bg-gray-900">
+          <DialogTitle className="sr-only">Loading...</DialogTitle>
+          <div className="p-8 text-center text-muted-foreground">Loading product...</div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
-  const medicalInfo = product?.medicalInfo?.[language as keyof typeof product.medicalInfo];
-  console.log('Selected medical info for language:', medicalInfo ? 'Found' : 'Not found');
-  
+  const medicalInfo = product.medicalInfo?.[language as keyof typeof product.medicalInfo];
   const formattedMedicalInfo = medicalInfo ? formatMedicalText(medicalInfo) : '';
 
   return (
@@ -140,7 +145,7 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                   transition={{ delay: 0.1 }}
                   className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
                 >
-                  <div 
+                  <div
                     className="prose prose-lg max-w-none dark:prose-invert
                       prose-headings:text-red-700 dark:prose-headings:text-red-400
                       prose-p:text-gray-900 dark:prose-p:text-gray-100 prose-p:text-lg

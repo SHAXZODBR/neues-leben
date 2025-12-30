@@ -13,6 +13,7 @@ import { NavigationLoader } from "@/components/navigation-loader";
 import SnowfallBg from "@/components/snowfall-bg";
 import ChristmasLights from "@/components/christmas-lights";
 
+// Note: force-dynamic is required here because createClient() uses cookies()
 export const dynamic = "force-dynamic";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });

@@ -70,7 +70,7 @@ export default function ProductsSection() {
         <div className="relative overflow-hidden">
           {/* Products Row - Scrollable */}
           <div
-            className="flex gap-8 pb-4 overflow-x-auto scrollbar-hide px-4"
+            className="flex gap-4 md:gap-8 pb-4 overflow-x-auto scrollbar-hide px-2 md:px-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {featuredProducts.slice(0, 6).map((product, index) => {
@@ -83,35 +83,23 @@ export default function ProductsSection() {
                   key={product.id}
                   initial={{
                     opacity: 0,
-                    rotateY: initialRotateY,
-                    scale: 0.8,
+                    y: 30,
                   }}
                   animate={inView ? {
                     opacity: 1,
-                    rotateY: 0,
-                    scale: 1,
+                    y: 0,
                   } : {}}
                   transition={{
-                    duration: 1.0,
-                    delay: index * 0.12,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring",
-                    stiffness: 50,
-                    damping: 12
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut"
                   }}
                   whileHover={{
-                    y: -12,
-                    scale: 1.03,
-                    rotateY: isLeftPage ? 8 : -8,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                    transition: { duration: 0.4, ease: "easeOut" }
+                    y: -8,
+                    scale: 1.02,
+                    transition: { duration: 0.3, ease: "easeOut" }
                   }}
-                  className="group relative flex-shrink-0 w-[380px] h-[580px]"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    perspective: "1000px",
-                    transformOrigin: isLeftPage ? "right center" : "left center"
-                  }}
+                  className="group relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[380px] h-[480px] sm:h-[520px] md:h-[580px]"
                 >
                   {/* Book spine shadow effect */}
                   <div
@@ -123,9 +111,9 @@ export default function ProductsSection() {
                   />
 
                   <div className="relative h-full bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col">
-                    {/* Product Image - Larger */}
-                    <div className="relative h-64 flex-shrink-0 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
-                      <div className="relative w-[90%] h-[90%] bg-background rounded-xl shadow-md flex items-center justify-center p-4">
+                    {/* Product Image */}
+                    <div className="relative h-48 sm:h-56 md:h-64 flex-shrink-0 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
+                      <div className="relative w-[90%] h-[90%] bg-background rounded-xl shadow-md flex items-center justify-center p-2 sm:p-4">
                         <Image
                           src={product.image}
                           alt={product.name[language as keyof typeof product.name]}
@@ -138,25 +126,25 @@ export default function ProductsSection() {
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-6 pb-8 flex flex-col flex-grow">
+                    <div className="p-4 sm:p-5 md:p-6 pb-6 sm:pb-8 flex flex-col flex-grow">
                       {/* Title */}
-                      <h3 className="text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[3.5rem] leading-7">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem] leading-6 sm:leading-7">
                         {product.name[language as keyof typeof product.name]}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed min-h-[4rem] mt-3">
+                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3 leading-relaxed min-h-[2.5rem] sm:min-h-[4rem] mt-2 sm:mt-3">
                         {product.description[language as keyof typeof product.description]}
                       </p>
 
                       {/* Features */}
-                      <div className="flex flex-wrap gap-2 mt-4 min-h-[3rem] overflow-hidden content-start">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4 h-[3.5rem] sm:h-[4.5rem] overflow-hidden content-start">
                         {product.features[language as keyof typeof product.features]
                           .slice(0, 3)
                           .map((feature, idx) => (
                             <span
                               key={idx}
-                              className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium h-fit"
+                              className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium h-fit"
                             >
                               {feature}
                             </span>
@@ -164,11 +152,15 @@ export default function ProductsSection() {
                       </div>
 
                       {/* Learn More Button */}
-                      <div className="mt-auto pt-6">
+                      <div className="mt-auto pt-4 sm:pt-6">
                         <Button
                           variant="outline"
-                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-semibold py-3"
-                          onClick={() => handleProductClick(product)}
+                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-semibold py-2 sm:py-3 text-sm sm:text-base"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product);
+                          }}
+                          onPointerDown={(e) => e.stopPropagation()}
                           type="button"
                         >
                           {t("products.learnMore")}

@@ -12,7 +12,9 @@ const colors = [
 ];
 
 export default function ChristmasLights() {
-    const lightCount = 20;
+    // Fewer lights on mobile for better performance
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const lightCount = isMobile ? 10 : 20;
 
     return (
         <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 pointer-events-none overflow-hidden">
@@ -41,7 +43,7 @@ export default function ChristmasLights() {
                         <motion.div
                             key={i}
                             className="relative"
-                            style={{ marginTop: `${Math.sin(i * 0.5) * 8 + 8}px` }}
+                            style={{ marginTop: '8px' }}
                         >
                             {/* Bulb cap */}
                             <div className="w-2 h-2 bg-gray-600 rounded-sm mx-auto" />
@@ -51,7 +53,7 @@ export default function ChristmasLights() {
                                 className="w-4 h-6 rounded-b-full mx-auto"
                                 style={{
                                     backgroundColor: color,
-                                    boxShadow: `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`,
+                                    boxShadow: `0 0 6px ${color}`,
                                 }}
                                 animate={{
                                     opacity: [0.4, 1, 0.4],
