@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/contexts/language-context";
 import { productCategories, Product } from "@/lib/products-data";
 import { motion } from "framer-motion";
@@ -16,12 +17,26 @@ interface ProductsCatalogProps {
 
 export default function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
     const { t, language } = useLanguage();
+    const searchParams = useSearchParams();
     const categories = productCategories[language as keyof typeof productCategories];
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [products] = useState<Product[]>(initialProducts);
+
+    // Handle product ID from URL query parameter (for QR code deep links)
+    useEffect(() => {
+        const productId = searchParams.get("product");
+        if (productId && products.length > 0) {
+            // Compare as strings to handle both number and string IDs
+            const product = products.find(p => String(p.id) === String(productId));
+            if (product) {
+                setSelectedProduct(product);
+                setModalOpen(true);
+            }
+        }
+    }, [searchParams, products]);
 
     // Always default to the first category (All Products) whenever language changes
     useEffect(() => {
