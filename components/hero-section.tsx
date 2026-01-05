@@ -19,7 +19,7 @@ export default function HeroSection() {
     <section className="w-full min-h-[90vh] py-12 md:py-24 lg:py-32 relative overflow-hidden flex items-center">
 
 
-      {/* Animated gradient background - tweaked for festive vibe */}
+      {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-slate-50/30 to-zinc-50/50 dark:from-slate-950 dark:via-slate-900/30 dark:to-neutral-900 pointer-events-none"></div>
 
       {/* Floating particles */}
@@ -130,7 +130,7 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column - Logo with Santa Hat */}
+          {/* Right Column - Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -151,7 +151,7 @@ export default function HeroSection() {
                 }}
               />
 
-              {/* Logo with Santa Hat */}
+              {/* Logo */}
               <motion.div
                 animate={{
                   rotate: [0, 3, -3, 0],
@@ -163,37 +163,6 @@ export default function HeroSection() {
                   ease: "easeInOut",
                 }}
                 className="relative z-10 w-full h-full flex items-center justify-center p-8">
-                {/* Beautiful Santa Hat SVG */}
-                <svg
-                  className="absolute top-2 sm:top-0 md:-top-2 left-1/2 z-30 w-20 h-16 sm:w-28 sm:h-24 md:w-36 md:h-28 drop-shadow-xl"
-                  style={{ transform: "translateX(-50%) rotate(12deg)" }}
-                  viewBox="0 0 100 80"
-                  fill="none"
-                >
-                  {/* Hat body - main red part */}
-                  <path
-                    d="M15 60 C15 60 25 20 50 15 C75 10 95 30 95 50 C95 55 90 58 85 55 C82 52 80 45 78 42 C76 39 74 38 72 40 C68 45 65 50 60 50"
-                    fill="#DC2626"
-                  />
-                  <path
-                    d="M15 60 C20 35 40 20 50 18 C35 25 25 45 22 58"
-                    fill="#B91C1C"
-                    opacity="0.5"
-                  />
-                  {/* White fur trim band */}
-                  <ellipse cx="45" cy="62" rx="35" ry="9" fill="#F5F5F5" />
-                  <ellipse cx="45" cy="62" rx="33" ry="7" fill="white" />
-                  {/* Fluffy bumps on trim */}
-                  <circle cx="15" cy="62" r="6" fill="white" />
-                  <circle cx="28" cy="64" r="5" fill="white" />
-                  <circle cx="42" cy="65" r="5" fill="white" />
-                  <circle cx="56" cy="64" r="5" fill="white" />
-                  <circle cx="70" cy="62" r="6" fill="white" />
-                  {/* Pompom ball */}
-                  <circle cx="78" cy="42" r="9" fill="#F5F5F5" />
-                  <circle cx="78" cy="42" r="7" fill="white" />
-                  <circle cx="75" cy="39" r="2" fill="#F5F5F5" opacity="0.8" />
-                </svg>
                 <Logo className="w-full h-full max-w-[400px] max-h-[400px] drop-shadow-2xl" />
               </motion.div>
             </div>

@@ -11,6 +11,9 @@ import Image from "next/image";
 import { useState, useCallback } from "react";
 import ProductModal from "@/components/product-modal";
 
+// Placeholder image for when product images fail to load
+const PLACEHOLDER_IMAGE = "/icon.png";
+
 interface ProductsSectionProps {
   products: Product[];
 }
@@ -24,7 +27,11 @@ export default function ProductsSection({ products }: ProductsSectionProps) {
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  // Removed internal state for products since it's passed as prop
+  const [brokenImages, setBrokenImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = useCallback((productId: string) => {
+    setBrokenImages(prev => new Set(prev).add(productId));
+  }, []);
 
   const handleProductClick = useCallback((product: Product) => {
     console.log("Product clicked:", product.id);
@@ -113,11 +120,13 @@ export default function ProductsSection({ products }: ProductsSectionProps) {
                     <div className="relative h-48 sm:h-56 md:h-64 flex-shrink-0 bg-gradient-to-br from-primary/8 to-primary/3 overflow-hidden flex items-center justify-center">
                       <div className="relative w-[90%] h-[90%] bg-background rounded-xl shadow-md flex items-center justify-center p-2 sm:p-4">
                         <Image
-                          src={product.image}
+                          src={brokenImages.has(product.id) ? PLACEHOLDER_IMAGE : product.image}
                           alt={product.name[language as keyof typeof product.name]}
                           width={400}
                           height={400}
                           className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-110"
+                          onError={() => handleImageError(product.id)}
+                          unoptimized={brokenImages.has(product.id)}
                         />
                       </div>
                     </div>

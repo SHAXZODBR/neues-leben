@@ -228,6 +228,14 @@ export default function Navbar() {
           >
             {t("nav.blog")}
           </button>
+
+          {/* Training link */}
+          <Link
+            href="/training"
+            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
+          >
+            {t("nav.training")}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -294,6 +302,13 @@ export default function Navbar() {
                 >
                   {t("nav.blog")}
                 </button>
+                <Link
+                  href="/training"
+                  className="text-sm font-medium transition-colors hover:text-primary text-left"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("nav.training")}
+                </Link>
                 <div className="flex items-center gap-4 pt-4 sm:hidden">
                   <ThemeToggle />
                   <LanguageSelector />

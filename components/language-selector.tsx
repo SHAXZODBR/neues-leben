@@ -2,20 +2,21 @@
 
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Globe } from "lucide-react"
 import { useLanguage, type Language } from "@/contexts/language-context"
+import Image from "next/image"
 
 type LanguageOption = {
   code: Language
   name: string
   nativeName: string
+  countryCode: string
 }
 
 const languages: LanguageOption[] = [
-  { code: "ru", name: "Russian", nativeName: "Русский" },
-  { code: "en", name: "English", nativeName: "English" },
-  { code: "uz", name: "Uzbek", nativeName: "O'zbek" },
-  { code: "de", name: "German", nativeName: "Deutsch" },
+  { code: "ru", name: "Russian", nativeName: "Русский", countryCode: "ru" },
+  { code: "en", name: "English", nativeName: "English", countryCode: "gb" },
+  { code: "uz", name: "Uzbek", nativeName: "O'zbek", countryCode: "uz" },
+  { code: "de", name: "German", nativeName: "Deutsch", countryCode: "de" },
 ]
 
 export default function LanguageSelector() {
@@ -31,7 +32,13 @@ export default function LanguageSelector() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="gap-2 bg-transparent">
-          <Globe className="h-4 w-4" />
+          <Image
+            src={`https://flagcdn.com/w20/${currentLanguage.countryCode}.png`}
+            alt={currentLanguage.name}
+            width={20}
+            height={15}
+            className="rounded-sm"
+          />
           <span>{currentLanguage.nativeName}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -40,8 +47,15 @@ export default function LanguageSelector() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className={language === lang.code ? "bg-muted" : ""}
+            className={`gap-2 ${language === lang.code ? "bg-muted" : ""}`}
           >
+            <Image
+              src={`https://flagcdn.com/w20/${lang.countryCode}.png`}
+              alt={lang.name}
+              width={20}
+              height={15}
+              className="rounded-sm"
+            />
             {lang.nativeName}
           </DropdownMenuItem>
         ))}

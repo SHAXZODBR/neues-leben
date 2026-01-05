@@ -10,8 +10,6 @@ import Footer from "@/components/footer";
 import { createClient } from "@/lib/supabase/server";
 import { SupabaseProvider } from "@/components/providers/supabase-provider";
 import { NavigationLoader } from "@/components/navigation-loader";
-import SnowfallBg from "@/components/snowfall-bg";
-import ChristmasLights from "@/components/christmas-lights";
 
 // Note: force-dynamic is required here because createClient() uses cookies()
 export const dynamic = "force-dynamic";
@@ -100,8 +98,6 @@ export default async function RootLayout({
               <NavigationLoader />
               <div className="flex min-h-screen flex-col">
                 <Navbar />
-                <SnowfallBg />
-                <ChristmasLights />
                 <main className="flex-1">{children}</main>
                 <Footer />
               </div>
