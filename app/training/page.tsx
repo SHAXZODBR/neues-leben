@@ -43,7 +43,7 @@ export default function TrainingPage() {
 
     const stats = [
         { value: "500+", label: t("training.stats.trainees"), icon: UserCheck },
-        { value: "95%", label: t("training.stats.rate"), icon: TrendingUp },
+        { value: "94%", label: t("training.stats.rate"), icon: TrendingUp },
         { value: "25+", label: t("training.stats.partners"), icon: Building2 },
         { value: "6+", label: t("training.stats.years"), icon: Clock },
     ];
