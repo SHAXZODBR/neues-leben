@@ -10,6 +10,7 @@ import Footer from "@/components/footer";
 import { createClient } from "@/lib/supabase/server";
 import { SupabaseProvider } from "@/components/providers/supabase-provider";
 import { NavigationLoader } from "@/components/navigation-loader";
+import GoogleAnalytics from "@/components/google-analytics";
 
 // Note: force-dynamic is required here because createClient() uses cookies()
 export const dynamic = "force-dynamic";
@@ -87,6 +88,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
+        <GoogleAnalytics />
         <link rel="icon" href="/icon.png" sizes="any" />
         <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/icon.png" />
