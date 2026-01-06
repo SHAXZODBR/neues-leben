@@ -360,6 +360,42 @@ const teamMembers: TeamMember[] = [
     image: "/Team/Баходир Усманов Шамсиевич Бухоро РМ.jpg",
   },
   {
+    id: 24,
+    name: "Ибрагимов Сарваржон Ражаббой угли",
+    nameLatin: "IBRAGIMOV SARVARBEK RAJABBOY O'G'LI",
+    position: {
+      en: "Regional Manager for Khorezm Region",
+      uz: "Xorazm viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Хорезмской области",
+      de: "Regionalmanager für die Region Khorezm",
+    },
+    description: {
+      en: "Specialist in regional sales and client relationship development. Responsible for meeting sales targets, strengthening company positions, and maintaining long-term partnerships in the Bukhara region, ensuring high customer service levels.",
+      uz: "Mintaqaviy savdo va mijozlar bilan munosabatlarni rivojlantirish bo'yicha mutaxassis. Buxoro viloyati hududida savdo rejalarini bajarish, kompaniya mavqeini mustahkamlash va uzoq muddatli hamkorlik aloqalarini saqlash, mijozlarga yuqori darajadagi xizmat ko'rsatishni ta'minlashga javobgar.",
+      ru: "Специалист по региональным продажам и развитию клиентских отношений. Отвечает за выполнение планов продаж, укрепление позиций компании и поддержание долгосрочных партнёрских связей на территории Бухарской области, обеспечивая высокий уровень обслуживания клиентов.",
+      de: "Spezialist für regionalen Vertrieb und Kundenbeziehungsentwicklung. Verantwortlich für die Erfüllung von Verkaufszielen, Stärkung der Unternehmensposition und Pflege langfristiger Partnerschaften in der Region Buchara sowie Sicherstellung eines hohen Kundenserviceniveaus.",
+    },
+    image: "/Team/Сарвар.png",
+  },
+  {
+    id: 25,
+    name: "Жакшибаева Махлийохон Хусниддиновна",
+    nameLatin: "Jakshibaeva Mahliyoxon Husniddinovna",
+    position: {
+      en: "Regional Manager for Andijan Region",
+      uz: "Andijon viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Андижанской области",
+      de: "Regionalmanager für die Region Andijan",
+    },
+    description: {
+      en: "Specialist in regional sales and client relationship development. Responsible for meeting sales targets, strengthening company positions, and maintaining long-term partnerships in the Bukhara region, ensuring high customer service levels.",
+      uz: "Mintaqaviy savdo va mijozlar bilan munosabatlarni rivojlantirish bo'yicha mutaxassis. Buxoro viloyati hududida savdo rejalarini bajarish, kompaniya mavqeini mustahkamlash va uzoq muddatli hamkorlik aloqalarini saqlash, mijozlarga yuqori darajadagi xizmat ko'rsatishni ta'minlashga javobgar.",
+      ru: "Специалист по региональным продажам и развитию клиентских отношений. Отвечает за выполнение планов продаж, укрепление позиций компании и поддержание долгосрочных партнёрских связей на территории Бухарской области, обеспечивая высокий уровень обслуживания клиентов.",
+      de: "Spezialist für regionalen Vertrieb und Kundenbeziehungsentwicklung. Verantwortlich für die Erfüllung von Verkaufszielen, Stärkung der Unternehmensposition und Pflege langfristiger Partnerschaften in der Region Buchara sowie Sicherstellung eines hohen Kundenserviceniveaus.",
+    },
+    image: "/Team/Maxliyo.jpg",
+  },
+  {
     id: 19,
     name: "Ачилов Толмас Тоштемирович",
     nameLatin: "Achilov Tolmas Toshtemirovich",
