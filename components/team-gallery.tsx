@@ -153,7 +153,7 @@ const teamMembers: TeamMember[] = [
       ru: "Профессионал в области внешнеэкономической деятельности с опытом организации международных поставок и сотрудничества с зарубежными партнёрами. Отвечает за координацию внешнеторговых операций, соблюдение нормативных требований, логистику и эффективное взаимодействие с международными контрагентами.",
       de: "Profi im Bereich Außenwirtschaft mit Erfahrung in der Organisation internationaler Lieferungen und Zusammenarbeit mit ausländischen Partnern. Verantwortlich für die Koordination von Außenhandelsgeschäften, Einhaltung regulatorischer Anforderungen, Logistik und effektive Interaktion mit internationalen Geschäftspartnern.",
     },
-    image: "/Team/УмаровЗафарРашидовичНачальникотделаВЭД.jpg",
+    image: "/Team/ZAFARUMAROV.png",
   },
   {
     id: 8,
