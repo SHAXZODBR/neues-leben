@@ -30,8 +30,8 @@ type TeamMember = {
 const teamMembers: TeamMember[] = [
   {
     id: 5,
-    name: "Хўжаев Жаҳонгир",
-    nameLatin: "Xo'jayev Jahongir",
+    name: "Хўжаев Жаҳонгир Миршариф Угли",
+    nameLatin: "Xo'jayev Jahongir Mirsharif o'gli",
     position: {
       en: "Founder",
       uz: "Asoschi",
