@@ -65,6 +65,24 @@ const teamMembers: TeamMember[] = [
     image: "/Team/АхтамовОзотАзимбоевичДиректор.jpg",
   },
   {
+    id: 27,
+    name: "Хужаев Жавохиир Жамшидхон Угли",
+    nameLatin: "Xo'jayev Javohir Jamshidkhon",
+    position: {
+      en: "Financial Director",
+      uz: "Moliyachi",
+      ru: "Финансист",
+      de: "Finanzier",
+    },
+    description: {
+      en: "Experienced finance professional with a systematic approach to managing financial flows and a deep understanding of economic processes. Ensures financial stability, transparent reporting, and effective resource planning. Focused on achieving strategic goals, optimizing costs, and creating long-term value for businesses, partners, and clients.",
+      uz: "Moliyaviy oqimlarni boshqarishda tizimli yondashuvga ega va iqtisodiy jarayonlarni chuqur tushunadigan tajribali moliyachi. Moliyaviy barqarorlikni, hisobotlarning shaffofligini va resurslardan samarali rejalashtirishni ta’minlaydi. Strategik maqsadlarga erishish, xarajatlarni optimallashtirish hamda biznes, hamkorlar va mijozlar uchun uzoq muddatli qiymat yaratishga yo‘naltirilgan.",
+      ru: "Опытный финансист с системным подходом к управлению финансовыми потоками и глубоким пониманием экономических процессов. Обеспечивает финансовую устойчивость, прозрачность отчётности и эффективное планирование ресурсов. Ориентирован на достижение стратегических целей, оптимизацию затрат и создание долгосрочной ценности для бизнеса, партнёров и клиентов.",
+      de: "Erfahrener Finanzexperte mit einem systematischen Ansatz im Management von Finanzströmen und einem tiefen Verständnis wirtschaftlicher Prozesse. Gewährleistet finanzielle Stabilität, transparente Berichterstattung und eine effiziente Ressourcenplanung. Fokussiert auf das Erreichen strategischer Ziele, Kostenoptimierung und die Schaffung langfristiger Werte für Unternehmen, Partner und Kunden.",
+    },
+    image: "/Team/Javohir.jpg",
+  },
+  {
     id: 3,
     name: "Шатемирова Дилфуза Каюмовна",
     nameLatin: "Shatemirova Dilfuza Kayumovna",
