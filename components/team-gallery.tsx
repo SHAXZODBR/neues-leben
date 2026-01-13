@@ -66,7 +66,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 27,
-    name: "Хужаев Жавохиир Жамшидхон Угли",
+    name: "Хужаев Жавохир Жамшидхон Угли",
     nameLatin: "Xo'jayev Javohir Jamshidkhon",
     position: {
       en: "Financial Director",
