@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import Logo from "@/components/logo";
 import { useState } from "react";
 
@@ -31,21 +31,31 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus("sending");
 
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Open email client
-    window.location.href = `mailto:info@neuesleben.uz?subject=${subject}&body=${body}`;
+      const result = await response.json();
 
-    // Show success after a short delay
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        console.error("Failed to send message:", result.error);
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
-    }, 500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -143,7 +153,12 @@ export default function ContactSection() {
                     ) : status === "success" ? (
                       <>
                         <CheckCircle className="mr-2 h-4 w-4" />
-                        Message Sent!
+                        {t("contact.form.success") || "Message Sent!"}
+                      </>
+                    ) : status === "error" ? (
+                      <>
+                        <AlertCircle className="mr-2 h-4 w-4" />
+                        {t("contact.form.error") || "Failed to send"}
                       </>
                     ) : (
                       <>

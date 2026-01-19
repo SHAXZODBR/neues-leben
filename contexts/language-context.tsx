@@ -296,6 +296,8 @@ const translations = {
     "contact.form.message": "Message",
     "contact.form.messagePlaceholder": "Your message",
     "contact.form.submit": "Send Message",
+    "contact.form.success": "Message Sent!",
+    "contact.form.error": "Failed to send",
     "contact.info.title": "Contact Information",
     "contact.info.address.title": "Address",
     "contact.info.address.value":
@@ -674,6 +676,8 @@ const translations = {
     "contact.form.message": "Xabar",
     "contact.form.messagePlaceholder": "Xabaringiz",
     "contact.form.submit": "Xabar yuborish",
+    "contact.form.success": "Xabar yuborildi!",
+    "contact.form.error": "Yuborishda xatolik",
     "contact.info.title": "Aloqa ma'lumotlari",
     "contact.info.address.title": "Manzil",
     "contact.info.address.value":
@@ -1047,6 +1051,8 @@ const translations = {
     "contact.form.message": "Сообщение",
     "contact.form.messagePlaceholder": "Ваше сообщение",
     "contact.form.submit": "Отправить сообщение",
+    "contact.form.success": "Сообщение отправлено!",
+    "contact.form.error": "Ошибка отправки",
     "contact.info.title": "Контактная информация",
     "contact.info.address.title": "Адрес",
     "contact.info.address.value":
@@ -1421,6 +1427,8 @@ const translations = {
     "contact.form.message": "Nachricht",
     "contact.form.messagePlaceholder": "Ihre Nachricht",
     "contact.form.submit": "Nachricht senden",
+    "contact.form.success": "Nachricht gesendet!",
+    "contact.form.error": "Senden fehlgeschlagen",
     "contact.info.title": "Kontaktinformationen",
     "contact.info.address.title": "Adresse",
     "contact.info.address.value":
