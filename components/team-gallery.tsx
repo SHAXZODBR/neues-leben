@@ -720,79 +720,76 @@ export default function TeamGallery() {
         open={!!selectedMember}
         onOpenChange={(open) => !open && handleCloseModal()}
       >
-        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white dark:bg-gray-900 ">
+        <DialogContent className="max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl p-0 overflow-hidden bg-white dark:bg-gray-900 border-0 shadow-2xl">
           <DialogTitle className="sr-only">
             {selectedMember
               ? `Profile details for ${getDisplayName(selectedMember)}`
               : "Team member details"}
           </DialogTitle>
-          <div className="relative ">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-1 right-1 z-10 rounded-full bg-black/20 hover:bg-black/40 text-white "
-              onClick={handleCloseModal}
-            >
-              <X className="h-5 w-5" />
-            </Button>
 
-            <div className="flex flex-col md:flex-row">
-              <div className="relative h-98 w-full md:w-1/2 aspect-square md:aspect-auto">
-                {selectedMember && (
-                  <Image
-                    src={selectedMember.image || "/placeholder.svg"}
-                    alt={selectedMember.name}
-                    fill
-                    className="object-cover"
-                  />
-                )}
+          {/* Modern Card Layout */}
+          <div className="relative">
+            {/* Image Section with Gradient Overlay */}
+            <div className="relative w-full h-[280px] sm:h-[320px] md:h-[380px] overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900">
+              {selectedMember && (
+                <Image
+                  src={selectedMember.image || "/placeholder.svg"}
+                  alt={selectedMember.name}
+                  fill
+                  className="object-contain object-center"
+                  priority
+                />
+              )}
+
+              {/* Navigation Arrows - positioned on image */}
+              <div className="absolute inset-y-0 left-2 flex items-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700"
+                  onClick={handlePrevious}
+                >
+                  <ChevronLeft className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                </Button>
               </div>
 
-              <div className="p-16 w-full  flex flex-col justify-center">
-                {selectedMember && (
-                  <>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
-                      {getDisplayName(selectedMember)}
-                    </h3>
-                    <p className="text-lg text-primary mb-4">
-                      {
-                        selectedMember.position[
-                        language as keyof typeof selectedMember.position
-                        ]
-                      }
-                    </p>
-                    <p className="text-muted-foreground">
-                      {
-                        selectedMember.description[
-                        language as keyof typeof selectedMember.description
-                        ]
-                      }
-                    </p>
-                  </>
-                )}
+              <div className="absolute inset-y-0 right-2 flex items-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700"
+                  onClick={handleNext}
+                >
+                  <ChevronRight className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                </Button>
               </div>
             </div>
 
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 flex space-x-2 p-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-black/20 hover:bg-black/40 text-white"
-                onClick={handlePrevious}
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-            </div>
+            {/* Content Section */}
+            <div className="p-5 sm:p-6 md:p-8">
+              {selectedMember && (
+                <div className="space-y-3 sm:space-y-4">
+                  {/* Name with accent bar */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-1 h-12 sm:h-14 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full flex-shrink-0" />
+                    <div>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                        {getDisplayName(selectedMember)}
+                      </h3>
+                      <p className="text-base sm:text-lg font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
+                        {selectedMember.position[language as keyof typeof selectedMember.position]}
+                      </p>
+                    </div>
+                  </div>
 
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 flex space-x-2 p-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-black/20 hover:bg-black/40 text-white"
-                onClick={handleNext}
-              >
-                <ChevronRight className="h-5 w-5" />
-              </Button>
+                  {/* Description */}
+                  <div className="max-h-[30vh] overflow-y-auto pr-2">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {selectedMember.description[language as keyof typeof selectedMember.description]}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </DialogContent>

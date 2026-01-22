@@ -113,6 +113,37 @@ html {
     box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
     transform: translateY(-5px);
   }
+
+  /* Mobile Performance Optimizations */
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Prevent text overflow on mobile */
+  .mobile-text-wrap {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Smooth scrolling for mobile */
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent overscroll bounce on iOS */
+  .no-overscroll {
+    overscroll-behavior: contain;
+  }
+
+  /* Touch-friendly tap targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 @layer base {

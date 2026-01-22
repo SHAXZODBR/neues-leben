@@ -208,8 +208,7 @@ export default function RegulatoryServicesPage() {
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
 
-                    {/* Subtle grid */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
 
                     <GradientOrb className="w-[500px] h-[500px] -top-32 -left-32 bg-gradient-to-r from-primary/30 to-blue-600/20" />
                     <GradientOrb className="w-[400px] h-[400px] top-1/3 -right-20 bg-gradient-to-r from-emerald-500/20 to-cyan-500/15" delay={4} />

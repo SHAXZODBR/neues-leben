@@ -41,10 +41,9 @@ export default function Navbar() {
 
   const handleScroll = () => {
     const offset = window.scrollY;
-    if (offset > 10) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
+    const isScrolled = offset > 10;
+    if (isScrolled !== scrolled) {
+      setScrolled(isScrolled);
     }
   };
 
@@ -101,21 +100,20 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${scrolled ? "border-border/30 shadow-2xl" : "border-border/10"
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? "border-border/30 shadow-lg" : "border-border/10"
         }`}
       style={{
+        willChange: "transform",
+        transform: "translateZ(0)",
         background: scrolled
-          ? "rgba(255, 255, 255, 0.05)"
-          : "rgba(255, 255, 255, 0.02)",
-        backdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%) brightness(1.1)",
-        boxShadow: scrolled
-          ? "0 8px 32px 0 rgba(0, 0, 0, 0.15)"
-          : "0 4px 16px 0 rgba(0, 0, 0, 0.05)",
+          ? "rgba(255, 255, 255, 0.85)"
+          : "rgba(255, 255, 255, 0.7)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="container flex h-14 sm:h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
@@ -130,7 +128,8 @@ export default function Navbar() {
                 animate={{
                   rotate: scrolled ? 360 : 0,
                 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ transform: "translateZ(0)" }}
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
@@ -143,7 +142,8 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-2 group">
               <motion.div
                 whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ transform: "translateZ(0)" }}
                 className="relative"
               >
                 <Logo className="h-9 w-auto sm:h-10 transition-all group-hover:drop-shadow-lg" />
@@ -265,7 +265,11 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="overflow-y-auto w-[280px] sm:w-[350px]"
+              className="overflow-y-auto w-[280px] sm:w-[350px] overscroll-contain"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+              }}
             >
               <div className="flex flex-col gap-6 pt-6">
                 {isHome ? (
