@@ -84,7 +84,7 @@ export default function TeamSection() {
                 {t("team.employeeCount")}
               </span>
               <span className="text-2xl sm:text-3xl font-bold text-primary">
-                135
+                154
               </span>
               <span className="text-xl sm:text-2xl font-bold text-foreground">
                 {t("team.employeeSuffix")}
