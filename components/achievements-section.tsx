@@ -12,8 +12,8 @@ export default function AchievementsSection() {
     threshold: 0.1,
   })
 
-  const years = [2019, 2020, 2021, 2022, 2023, 2024, 2025]
-  const employees = [14, 32, 54, 76, 92, 121, 135]
+  const years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+  const employees = [14, 32, 54, 76, 92, 121, 135, 154]
 
   return (
     <section id="achievements" className="w-full py-20">
@@ -112,7 +112,7 @@ export default function AchievementsSection() {
 
             <div className="absolute bottom-20 left-0 right-0 flex justify-between px-6 items-end">
               {employees.map((count, index) => {
-                const height = (count / 135) * 250
+                const height = (count / 154) * 250
                 return (
                   <div key={index} className="flex items-end justify-center w-8">
                     <motion.div
