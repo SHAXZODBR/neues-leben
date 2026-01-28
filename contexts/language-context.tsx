@@ -222,7 +222,7 @@ const translations = {
       "For the past four years, our team has held leading positions in the pharmaceutical industry, annually receiving the 'Sales Leader of the Year' award in the INSO group of companies.",
     "achievements.growth": "Team Growth",
     "achievements.growthDescription":
-      "The growth of our team from 14 to 135 people is clear evidence of the success of our activities in the pharmaceutical industry and the growing demand for our products.",
+      "The growth of our team from 14 to 154 people is clear evidence of the success of our activities in the pharmaceutical industry and the growing demand for our products.",
     "achievements.growthChart": "Team Growth Dynamics",
     "achievements.award1.title": "Sales Leader 2022",
     "achievements.award1.year": "INSO Group",
@@ -682,7 +682,7 @@ const translations = {
       "So'nggi to'rt yil davomida jamoamiz farmatsevtika sohasida yetakchi o'rinlarni egallab, INSO kompaniyalari guruhida har yili 'Yilning sotish lideri' mukofotini olmoqda.",
     "achievements.growth": "Jamoa o'sishi",
     "achievements.growthDescription":
-      "Jamoamizning 14 dan 135 kishigacha o'sishi farmatsevtika sohasidagi faoliyatimiz muvaffaqiyati va mahsulotlarimizga bo'lgan talabning o'sib borayotganining yaqqol dalilidir.",
+      "Jamoamizning 14 dan 154 kishigacha o'sishi farmatsevtika sohasidagi faoliyatimiz muvaffaqiyati va mahsulotlarimizga bo'lgan talabning o'sib borayotganining yaqqol dalilidir.",
     "achievements.growthChart": "Jamoa o'sishi dinamikasi",
     "achievements.award1.title": "Sotish lideri 2022",
     "achievements.award1.year": "INSO guruhi",
@@ -1140,7 +1140,7 @@ const translations = {
       "На протяжении последних четырех лет наша команда занимает лидирующие позиции по продажам в фармацевтической отрасли в группе холдинга ООО «Inso Farm Deluxe», ежегодно получая награду «Лидер года по продажам».",
     "achievements.growth": "Рост нашей команды",
     "achievements.growthDescription":
-      "Рост нашей команды с 14 до 135 человек – наглядное подтверждение успеха нашей деятельности в фармацевтической отрасли и растущего спроса на наши продукты.",
+      "Рост нашей команды с 14 до 154 человек – наглядное подтверждение успеха нашей деятельности в фармацевтической отрасли и растущего спроса на наши продукты.",
     "achievements.growthChart": "Динамика роста команды",
     "achievements.award1.title": "Лидер продаж 2022",
     "achievements.award1.year": "Группа INSO",
@@ -1598,7 +1598,7 @@ const translations = {
       "In den letzten vier Jahren hatte unser Team führende Positionen im Vertrieb der Pharmaindustrie in der Holdinggruppe Inso Farm Deluxe LLC inne und wurde jährlich mit der Auszeichnung Sales Leader of the Year ausgezeichnet.",
     "achievements.growth": "Unser Teamwachstum",
     "achievements.growthDescription":
-      "Unser Teamwachstum von 14 auf 135 Mitarbeiter ist ein klarer Beleg für den Erfolg unserer Aktivitäten in der Pharmaindustrie und die steigende Nachfrage nach unseren Produkten.",
+      "Unser Teamwachstum von 14 auf 154 Mitarbeiter ist ein klarer Beleg für den Erfolg unserer Aktivitäten in der Pharmaindustrie und die steigende Nachfrage nach unseren Produkten.",
     "achievements.growthChart": "Teamwachstumsdynamik",
     "achievements.award1.title": "Vertriebsleiter 2022",
     "achievements.award1.year": "INSO Group",
