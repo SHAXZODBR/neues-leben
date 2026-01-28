@@ -30,7 +30,7 @@ export default function CoverageSection() {
 
   const stats = [
     { number: "13+", label: t("coverage.stats.regions") },
-    { number: "135+", label: t("coverage.stats.team") },
+    { number: "154+", label: t("coverage.stats.team") },
     { number: "24/7", label: t("coverage.stats.network") },
   ];
 
