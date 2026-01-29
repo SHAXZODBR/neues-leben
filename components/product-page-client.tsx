@@ -92,7 +92,41 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium break-words">
                                 {product.category[lang]}
                             </p>
+
+                            {/* SEO: Show all language names for Google indexing */}
+                            <div className="mt-2 flex flex-wrap gap-2">
+                                {product.name.en !== product.name[lang] && (
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">
+                                        {product.name.en}
+                                    </span>
+                                )}
+                                {product.name.ru !== product.name[lang] && (
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">
+                                        {product.name.ru}
+                                    </span>
+                                )}
+                                {product.name.uz !== product.name[lang] && product.name.uz !== product.name.en && product.name.uz !== product.name.ru && (
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">
+                                        {product.name.uz}
+                                    </span>
+                                )}
+                                {product.name.de !== product.name[lang] && product.name.de !== product.name.en && (
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">
+                                        {product.name.de}
+                                    </span>
+                                )}
+                            </div>
                         </div>
+                    </div>
+
+                    {/* Hidden SEO text - All language descriptions for Google */}
+                    <div className="sr-only" aria-hidden="true">
+                        <p>{product.name.en} - {product.name.ru} - {product.name.uz} - {product.name.de}</p>
+                        <p>{product.description.en}</p>
+                        <p>{product.description.ru}</p>
+                        <p>{product.description.uz}</p>
+                        <p>{product.description.de}</p>
+                        <p>{product.category.en} - {product.category.ru} - {product.category.uz} - {product.category.de}</p>
                     </div>
 
                     {/* Content - exactly like modal */}
