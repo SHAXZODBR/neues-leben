@@ -45,7 +45,7 @@ export const testimonials: Testimonial[] = [
       ru: "NEUES LEBEN постоянно поставляет высококачественные фармацевтические продукты. Их стремление к совершенству и своевременная доставка сделали их нашим предпочтительным партнером.",
       de: "NEUES LEBEN liefert konsequent hochwertige pharmazeutische Produkte. Ihr Engagement für Exzellenz und pünktliche Lieferung hat sie zu unserem bevorzugten Partner gemacht.",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
   {
@@ -69,7 +69,7 @@ export const testimonials: Testimonial[] = [
       ru: "Работа с NEUES LEBEN была исключительной. Их ассортимент продукции всеобъемлющий, а обслуживание клиентов выдающееся. Настоятельно рекомендую!",
       de: "Die Zusammenarbeit mit NEUES LEBEN war außergewöhnlich. Ihr Produktsortiment ist umfassend und ihr Kundenservice hervorragend. Sehr empfehlenswert!",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
   {
@@ -93,7 +93,7 @@ export const testimonials: Testimonial[] = [
       ru: "Сердечно-сосудистые препараты от NEUES LEBEN показали замечательную эффективность у наших пациентов. Их контроль качества безупречен.",
       de: "Die kardiovaskulären Medikamente von NEUES LEBEN haben bei unseren Patienten bemerkenswerte Wirksamkeit gezeigt. Ihre Qualitätskontrolle ist tadellos.",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
   {
@@ -117,7 +117,7 @@ export const testimonials: Testimonial[] = [
       ru: "Преданность NEUES LEBEN фармацевтическому совершенству очевидна в каждом продукте. Они являются надежным именем в здравоохранении.",
       de: "Das Engagement von NEUES LEBEN für pharmazeutische Exzellenz ist in jedem Produkt offensichtlich. Sie sind ein vertrauenswürdiger Name im Gesundheitswesen.",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
   {
@@ -141,7 +141,7 @@ export const testimonials: Testimonial[] = [
       ru: "Наши пациенты значительно выиграли от продуктов респираторной помощи NEUES LEBEN. Качество и эффективность не имеют себе равных.",
       de: "Unsere Patienten haben stark von den Atemwegspflegeprodukten von NEUES LEBEN profitiert. Qualität und Wirksamkeit sind unübertroffen.",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
   {
@@ -165,7 +165,7 @@ export const testimonials: Testimonial[] = [
       ru: "NEUES LEBEN был надежным партнером для нашей системы здравоохранения. Их профессионализм и качество продукции превосходят ожидания.",
       de: "NEUES LEBEN war ein zuverlässiger Partner für unser Gesundheitssystem. Ihre Professionalität und Produktqualität übertreffen die Erwartungen.",
     },
-    avatar: "/placeholder-user.jpg",
+    avatar: "",
     rating: 5,
   },
 ];

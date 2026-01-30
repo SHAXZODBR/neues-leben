@@ -16,7 +16,7 @@ import {
     Building2,
     FileCheck,
     ArrowRight,
-    Sparkles,
+
     Star,
     Zap,
     Trophy,
@@ -121,7 +121,7 @@ export default function TrainingPage() {
                             transition={{ delay: 0.2 }}
                             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 mb-10"
                         >
-                            <Sparkles className="h-5 w-5 text-yellow-300" />
+                            <Award className="h-5 w-5 text-yellow-300" />
                             <span className="text-white font-medium">{t("nav.training")}</span>
                             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                         </motion.div>
@@ -221,7 +221,7 @@ export default function TrainingPage() {
                         className="text-center mb-16"
                     >
                         <span className="inline-flex items-center gap-2 text-primary font-semibold mb-4">
-                            <Sparkles className="h-5 w-5" />
+                            <GraduationCap className="h-5 w-5" />
                             {t("training.overview.title")}
                         </span>
                         <h2 className="text-4xl lg:text-6xl font-bold">{t("training.overview.title")}</h2>

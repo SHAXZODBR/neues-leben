@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/language-context";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { BookOpen, Microscope, Stethoscope, GraduationCap, ArrowRight, Sparkles } from "lucide-react";
+import { BookOpen, Microscope, Stethoscope, GraduationCap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function MedicalJournalCTA() {
@@ -112,7 +112,7 @@ export default function MedicalJournalCTA() {
                 <div className="relative h-full bg-card rounded-2xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                   {/* Gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                  
+
                   {/* Icon */}
                   <motion.div
                     className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${feature.color} mb-4`}
@@ -121,7 +121,7 @@ export default function MedicalJournalCTA() {
                   >
                     <feature.icon className="h-8 w-8 text-white" />
                   </motion.div>
-                  
+
                   {/* Title */}
                   <h3 className="text-xl font-bold text-foreground mb-2">
                     {t(`blog.${feature.title.toLowerCase()}`)}
@@ -150,7 +150,7 @@ export default function MedicalJournalCTA() {
                   size="lg"
                   className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-lg"
                 >
-                  <Sparkles className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+                  <BookOpen className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                   {t("blog.browseArchive")}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>

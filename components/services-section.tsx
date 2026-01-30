@@ -24,7 +24,7 @@ export default function ServicesSection() {
             </CardHeader>
             <CardContent className="flex-1">
               <Image
-                src="/placeholder.svg?height=200&width=350"
+                src="/icon.png"
                 width={350}
                 height={200}
                 alt="Health Information"
@@ -47,7 +47,7 @@ export default function ServicesSection() {
             </CardHeader>
             <CardContent className="flex-1">
               <Image
-                src="/placeholder.svg?height=200&width=350"
+                src="/icon.png"
                 width={350}
                 height={200}
                 alt="Wellness Programs"
@@ -69,7 +69,7 @@ export default function ServicesSection() {
             </CardHeader>
             <CardContent className="flex-1">
               <Image
-                src="/placeholder.svg?height=200&width=350"
+                src="/icon.png"
                 width={350}
                 height={200}
                 alt="Educational Resources"

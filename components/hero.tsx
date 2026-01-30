@@ -41,7 +41,7 @@ export default function Hero() {
           </div>
           <div className="flex items-center justify-center">
             <Image
-              src="/placeholder.svg?height=550&width=550"
+              src="/icon.png"
               width={550}
               height={550}
               alt="Hero Image"

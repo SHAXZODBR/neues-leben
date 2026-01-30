@@ -554,7 +554,7 @@ export default function TeamGallery() {
           >
             <div className="aspect-[3/4] relative overflow-hidden">
               <Image
-                src={member.image || "/placeholder.svg"}
+                src={member.image || ""}
                 alt={member.name}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -624,7 +624,7 @@ export default function TeamGallery() {
                   {/* Image Section */}
                   <div className="relative h-80 overflow-hidden">
                     <Image
-                      src={member.image || "/placeholder.svg"}
+                      src={member.image || ""}
                       alt={member.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -675,7 +675,7 @@ export default function TeamGallery() {
             >
               <div className="aspect-[3/4] relative overflow-hidden">
                 <Image
-                  src={member.image || "/placeholder.svg"}
+                  src={member.image || ""}
                   alt={member.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -733,7 +733,7 @@ export default function TeamGallery() {
             <div className="relative w-full h-[280px] sm:h-[320px] md:h-[380px] overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900">
               {selectedMember && (
                 <Image
-                  src={selectedMember.image || "/placeholder.svg"}
+                  src={selectedMember.image || ""}
                   alt={selectedMember.name}
                   fill
                   className="object-contain object-center"

@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts/language-context"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Globe, Handshake, Sparkles } from "lucide-react"
+import { Globe, Handshake } from "lucide-react"
 import Image from "next/image"
 
 export default function PartnersSection() {
@@ -69,8 +69,7 @@ export default function PartnersSection() {
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Sparkle decoration */}
-                <Sparkles className="absolute top-3 right-3 h-4 w-4 text-primary/40 group-hover:text-primary transition-colors" />
+                <div className="absolute top-3 right-3 h-2 w-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
 
                 <div className="relative flex flex-col items-center text-center space-y-4">
                   {/* Flag Image */}
