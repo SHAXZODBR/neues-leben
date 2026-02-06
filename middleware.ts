@@ -2,13 +2,16 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-    // Redirect www to non-www for SEO (prevents duplicate content)
     const url = request.nextUrl;
     const hostname = request.headers.get('host') || '';
 
-    if (hostname.startsWith('www.')) {
-        const newHostname = hostname.replace('www.', '');
-        const redirectUrl = new URL(url.pathname + url.search, `https://${newHostname}`);
+    // Only redirect www to non-www in production, and only for actual www subdomain
+    // Check that we're actually on www subdomain to avoid redirect loops
+    if (
+        hostname === 'www.neuesleben.uz' &&
+        process.env.NODE_ENV === 'production'
+    ) {
+        const redirectUrl = new URL(url.pathname + url.search, 'https://neuesleben.uz');
         return NextResponse.redirect(redirectUrl, 301);
     }
 
