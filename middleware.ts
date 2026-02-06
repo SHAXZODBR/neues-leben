@@ -2,6 +2,16 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
+    // Redirect www to non-www for SEO (prevents duplicate content)
+    const url = request.nextUrl;
+    const hostname = request.headers.get('host') || '';
+
+    if (hostname.startsWith('www.')) {
+        const newHostname = hostname.replace('www.', '');
+        const redirectUrl = new URL(url.pathname + url.search, `https://${newHostname}`);
+        return NextResponse.redirect(redirectUrl, 301);
+    }
+
     let supabaseResponse = NextResponse.next({
         request,
     })
@@ -9,7 +19,7 @@ export async function middleware(request: NextRequest) {
     // Skip Supabase auth if environment variables are not configured
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    
+
     if (!supabaseUrl || !supabaseAnonKey) {
         return supabaseResponse;
     }
