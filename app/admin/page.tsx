@@ -125,6 +125,11 @@ export default function AdminPage() {
   const pagedPosts = sortedPosts.slice(startIndex, startIndex + PAGE_SIZE);
 
   async function fetchPosts() {
+    if (!supabase) {
+      setStatus("Error: Supabase client not initialized.");
+      setLoadingPosts(false);
+      return;
+    }
     setLoadingPosts(true);
     const { data, error } = await supabase
       .from("posts")
@@ -134,7 +139,7 @@ export default function AdminPage() {
     if (error) {
       setStatus(`Error fetching posts: ${error.message}`);
     } else {
-      setPosts((data as PostRecord[]) ?? []);
+      setPosts(data || []);
     }
     setLoadingPosts(false);
   }
@@ -144,6 +149,7 @@ export default function AdminPage() {
 
     const ext = file.name.split(".").pop();
     const fileName = `${Date.now()}.${ext}`;
+    if (!supabase) throw new Error("Supabase client not initialized");
     const { error } = await supabase.storage
       .from(BUCKET_NAME)
       .upload(fileName, file);
@@ -152,6 +158,7 @@ export default function AdminPage() {
       throw new Error(error.message);
     }
 
+    if (!supabase) throw new Error("Supabase client not initialized.");
     const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(fileName);
     return data.publicUrl;
   }
@@ -168,6 +175,20 @@ export default function AdminPage() {
     setStatus("Saving post...");
 
     try {
+      if (!supabase) throw new Error("Supabase client not initialized.");
+      // 1. Slug Conflict Check: Before saving, verify no other post has this slug
+      const { data: existingPost, error: checkError } = await supabase
+        .from("posts")
+        .select("id")
+        .eq("slug", slug || slugify(titleI18n.en || title))
+        .single();
+
+      if (!checkError && existingPost && existingPost.id !== editingId) {
+        setStatus("Error: This slug (URL) is already in use. Please use a unique title or manually change the slug.");
+        setSaving(false);
+        return;
+      }
+
       const uploadedUrl = await uploadImageIfNeeded(imageUrl);
 
       // Build i18n objects, only including non-empty values
@@ -197,6 +218,7 @@ export default function AdminPage() {
       };
 
       if (editingId) {
+        if (!supabase) throw new Error("Supabase client not initialized.");
         const { error } = await supabase
           .from("posts")
           .update(payload)
@@ -204,6 +226,7 @@ export default function AdminPage() {
         if (error) throw error;
         setStatus("Post updated.");
       } else {
+        if (!supabase) throw new Error("Supabase client not initialized.");
         const { error } = await supabase.from("posts").insert([payload]);
         if (error) throw error;
         setStatus("Post published successfully!");
@@ -291,6 +314,7 @@ export default function AdminPage() {
     );
     if (!confirmDelete) return;
 
+    if (!supabase) return;
     const { error } = await supabase.from("posts").delete().eq("id", postId);
     if (error) {
       setStatus(`Delete failed: ${error.message}`);
@@ -305,7 +329,7 @@ export default function AdminPage() {
   }
 
   async function handleSignOut() {
-    await supabase.auth.signOut();
+    if (supabase) await supabase.auth.signOut();
     router.push("/login");
   }
 
@@ -362,8 +386,8 @@ export default function AdminPage() {
                 type="button"
                 onClick={() => setCurrentLang(lang)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${currentLang === lang
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
                   }`}
               >
                 {getLanguageDisplayName(lang)}
@@ -392,6 +416,7 @@ export default function AdminPage() {
               className="w-full rounded-lg border border-border bg-background px-4 py-2 outline-none focus:ring-2 focus:ring-primary"
               placeholder={`Article title in ${getLanguageDisplayName(currentLang)}`}
               required={currentLang === "en"}
+              autoComplete="off"
             />
           </div>
           <div className="space-y-2">
@@ -401,6 +426,7 @@ export default function AdminPage() {
               onChange={(e) => setSlug(e.target.value)}
               className="w-full rounded-lg border border-border bg-background px-4 py-2 outline-none focus:ring-2 focus:ring-primary"
               placeholder="auto-generated-from-title"
+              autoComplete="off"
             />
           </div>
         </div>
