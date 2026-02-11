@@ -152,7 +152,7 @@ export default function BlogPageClient() {
 
     const { data, error } = await supabase
       .from("posts")
-      .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n")
+      .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, featured, views, citations, author, author_credentials, reading_time")
       .eq("published", true)
       .order("created_at", { ascending: false });
 
@@ -289,16 +289,10 @@ export default function BlogPageClient() {
   const isFiltering = !!(searchQuery || selectedCategory);
 
   const gridPosts = isFiltering ? filteredPosts : (() => {
+    // If not filtering, the first post (or featured one) is shown in the Hero section.
+    // The grid should show everything else.
     const heroPost = filteredPosts.find((post) => post.featured) ?? filteredPosts[0];
-    const secondaryPosts = filteredPosts
-      .filter((post) => post.slug !== heroPost?.slug)
-      .slice(0, 2);
-
-    return filteredPosts.filter(
-      (post) =>
-        post.slug !== heroPost?.slug &&
-        !secondaryPosts.some((secondary) => secondary.slug === post.slug)
-    );
+    return filteredPosts.filter((post) => post.slug !== heroPost?.slug);
   })();
 
   const totalPages = Math.max(1, Math.ceil(gridPosts.length / PAGE_SIZE));
