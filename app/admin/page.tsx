@@ -8,7 +8,7 @@ import type { Language } from "@/contexts/language-context";
 import { getAvailableLanguages, getLanguageDisplayName } from "@/lib/i18n-helpers";
 
 type PostRecord = {
-  id: string;
+  id: string | number;
   title: string;
   slug: string;
   summary: string | null;
@@ -85,7 +85,7 @@ export default function AdminPage() {
   const [published, setPublished] = useState(true);
   const [file, setFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | number | null>(null);
 
   const PAGE_SIZE = 30;
 
@@ -239,14 +239,18 @@ export default function AdminPage() {
         setStatus("Post updated.");
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
-        // For new posts, generate a unique ID and try both casings to match the DB
-        const newId = crypto.randomUUID();
-        const insertPayload = { ...payload, id: newId, Id: newId };
+        // For new posts, generate a unique INTEGER ID to avoid "Id=0" collision
+        // and match the integer type requirement (22P02 error).
+        // Using seconds since epoch fits in a 32-bit integer (max ~2.1B).
+        const newIntId = Math.floor(Date.now() / 1000);
+
+        // Try both casings because the error message mentioned "Id" (capitalized)
+        const insertPayload = { ...payload, id: newIntId, Id: newIntId };
 
         const { error } = await supabase
           .from("posts")
           .insert([insertPayload])
-          .select("id, Id");
+          .select("id, Id" as any);
         if (error) {
           console.error("Insert failed:", error);
           throw new Error(`Publishing failed: ${error.message} (Code: ${error.code}). ${error.details || ''}`);
@@ -330,7 +334,7 @@ export default function AdminPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  async function handleDelete(postId: string) {
+  async function handleDelete(postId: string | number) {
     const confirmDelete = window.confirm(
       "Delete this post? This action cannot be undone."
     );
