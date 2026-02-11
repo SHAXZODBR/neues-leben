@@ -100,7 +100,7 @@ async function fetchPost(slug: string): Promise<Post | null> {
 
   const { data, error } = await supabase
     .from("posts")
-    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, featured, views, citations, author, author_credentials, reading_time")
+    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, views, citations, Id")
     .eq("slug", slug)
     .eq("published", true)
     .maybeSingle();
@@ -147,7 +147,7 @@ async function fetchRelatedPosts(
   // fallback to latest posts if not enough in same category
   const { data: fallbackData, error: fallbackError } = await supabase
     .from("posts")
-    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, featured, views, citations, author, author_credentials, reading_time")
+    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, views, citations, Id")
     .eq("published", true)
     .neq("slug", slug)
     .order("created_at", { ascending: false })

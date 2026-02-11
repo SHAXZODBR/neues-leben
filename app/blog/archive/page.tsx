@@ -117,7 +117,7 @@ export default function BlogArchivePage() {
 
     const { data, error } = await supabase
       .from("posts")
-      .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, featured, views, citations, author, author_credentials, reading_time")
+      .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, views, citations, Id")
       .eq("published", true)
       .order("created_at", { ascending: false });
 
