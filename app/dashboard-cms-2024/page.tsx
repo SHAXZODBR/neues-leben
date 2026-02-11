@@ -193,9 +193,7 @@ export default function AdminPage() {
         }
       }
 
-      const uploadedUrl = await uploadImageIfNeeded(imageUrl);
-
-      // Build i18n objects, only including non-empty values
+      // 2. Build i18n objects, only including non-empty values
       const title_i18n: Record<string, string> = {};
       const summary_i18n: Record<string, string> = {};
       const content_i18n: Record<string, string> = {};
@@ -206,8 +204,12 @@ export default function AdminPage() {
         if (contentI18n[lang].trim()) content_i18n[lang] = contentI18n[lang];
       });
 
-      const payload = {
-        title: titleI18n.en || title, // Fallback to legacy title
+      // 3. Upload image only after slug check passes
+      setStatus("Uploading image...");
+      const uploadedUrl = await uploadImageIfNeeded(imageUrl);
+
+      const payload: any = {
+        title: titleI18n.en || title,
         slug: slug || slugify(titleI18n.en || title),
         summary: summaryI18n.en || summary || null,
         content: contentI18n.en || content,
@@ -218,7 +220,7 @@ export default function AdminPage() {
         category: category || CATEGORY_OPTIONS[0],
         specialty: specialty || null,
         published,
-        updated_at: new Date().toISOString(),
+        // Removed manual updated_at to let DB handle it and avoid 409 lt: conflicts
       };
 
       if (editingId) {
