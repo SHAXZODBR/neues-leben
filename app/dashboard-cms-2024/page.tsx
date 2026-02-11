@@ -133,7 +133,7 @@ export default function AdminPage() {
     setLoadingPosts(true);
     const { data, error } = await supabase
       .from("posts")
-      .select("*")
+      .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n")
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -227,7 +227,8 @@ export default function AdminPage() {
         const { error } = await supabase
           .from("posts")
           .update(payload)
-          .eq("id", editingId);
+          .eq("id", editingId)
+          .select("id"); // Explicit select to avoid returning non-existent columns from cache
         if (error) {
           console.error("Update failed:", error);
           if (error.code === '409' || error.message.includes('conflict')) {
@@ -238,7 +239,10 @@ export default function AdminPage() {
         setStatus("Post updated.");
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
-        const { error } = await supabase.from("posts").insert([payload]);
+        const { error } = await supabase
+          .from("posts")
+          .insert([payload])
+          .select("id"); // Explicit select to avoid returning non-existent columns from cache
         if (error) {
           console.error("Insert failed:", error);
           throw new Error(`Publishing failed: ${error.message} (Code: ${error.code}). ${error.details || ''}`);
