@@ -220,9 +220,6 @@ export default function AdminPage() {
         category: category || CATEGORY_OPTIONS[0],
         specialty: specialty || null,
         published,
-        // Add author info from session if present to avoid NOT NULL failures
-        author: session?.user?.email || "Admin",
-        author_credentials: "Staff",
       };
 
       if (editingId) {
