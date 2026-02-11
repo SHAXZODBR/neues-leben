@@ -239,13 +239,17 @@ export default function AdminPage() {
         setStatus("Post updated.");
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
-        // For new posts, generate a unique INTEGER ID to avoid "Id=0" collision
-        // and match the integer type requirement (22P02 error).
-        // Using seconds since epoch fits in a 32-bit integer (max ~2.1B).
+
+        // DEEP ANALYSIS FIX: The table has both 'id' (UUID) and 'Id' (Integer).
+        // Sending both to satisfy all constraints and types.
+        const newUuid = crypto.randomUUID();
         const newIntId = Math.floor(Date.now() / 1000);
 
-        // Try both casings because the error message mentioned "Id" (capitalized)
-        const insertPayload = { ...payload, id: newIntId, Id: newIntId };
+        const insertPayload = {
+          ...payload,
+          id: newUuid,   // Satisfies the UUID requirement for 'id'
+          Id: newIntId   // Satisfies the Integer requirement and unique constraint for 'Id'
+        };
 
         const { error } = await supabase
           .from("posts")
