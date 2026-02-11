@@ -122,7 +122,7 @@ async function fetchRelatedPosts(
 
   const query = supabase
     .from("posts")
-    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, featured, views, citations, author, author_credentials, reading_time")
+    .select("id, title, slug, summary, content, image_url, category, specialty, published, created_at, title_i18n, summary_i18n, content_i18n, views, citations, Id")
     .eq("published", true)
     .neq("slug", slug)
     .order("created_at", { ascending: false })
