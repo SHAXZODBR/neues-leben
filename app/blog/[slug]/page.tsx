@@ -103,7 +103,7 @@ async function fetchPost(slug: string): Promise<Post | null> {
     .select("*")
     .eq("slug", slug)
     .eq("published", true)
-    .single();
+    .maybeSingle();
 
   if (error || !data) {
     return null;

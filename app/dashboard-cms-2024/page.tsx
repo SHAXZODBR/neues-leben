@@ -176,17 +176,21 @@ export default function AdminPage() {
 
     try {
       if (!supabase) throw new Error("Supabase client not initialized.");
-      // 1. Slug Conflict Check: Before saving, verify no other post has this slug
-      const { data: existingPost, error: checkError } = await supabase
+      // 1. Slug Conflict Check: More robust check avoiding .single() to prevent 406
+      const { data: existingPosts, error: checkError } = await supabase
         .from("posts")
         .select("id")
-        .eq("slug", slug || slugify(titleI18n.en || title))
-        .single();
+        .eq("slug", slug || slugify(titleI18n.en || title));
 
-      if (!checkError && existingPost && existingPost.id !== editingId) {
-        setStatus("Error: This slug (URL) is already in use. Please use a unique title or manually change the slug.");
-        setSaving(false);
-        return;
+      if (checkError) {
+        console.warn("Slug check encountered an error:", checkError);
+      } else if (existingPosts && existingPosts.length > 0) {
+        const conflict = existingPosts.find((p: any) => p.id !== editingId);
+        if (conflict) {
+          setStatus("Error: This slug (URL) is already in use. Please use a unique title or manually change the slug.");
+          setSaving(false);
+          return;
+        }
       }
 
       const uploadedUrl = await uploadImageIfNeeded(imageUrl);
@@ -223,7 +227,13 @@ export default function AdminPage() {
           .from("posts")
           .update(payload)
           .eq("id", editingId);
-        if (error) throw error;
+        if (error) {
+          console.error("Update failed:", error);
+          if (error.code === '409' || error.message.includes('conflict')) {
+            throw new Error(`Conflict detected (409): The slug or id might be in use, or there's a concurrency issue. Details: ${JSON.stringify(error)}`);
+          }
+          throw error;
+        }
         setStatus("Post updated.");
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
