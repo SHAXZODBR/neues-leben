@@ -228,7 +228,7 @@ export default function AdminPage() {
           .from("posts")
           .update(payload)
           .eq("id", editingId)
-          .select("id"); // Explicit select to avoid returning non-existent columns from cache
+          .select("id"); // Try lowercase id first for update
         if (error) {
           console.error("Update failed:", error);
           if (error.code === '409' || error.message.includes('conflict')) {
@@ -239,10 +239,14 @@ export default function AdminPage() {
         setStatus("Post updated.");
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
+        // For new posts, generate a unique ID and try both casings to match the DB
+        const newId = crypto.randomUUID();
+        const insertPayload = { ...payload, id: newId, Id: newId };
+
         const { error } = await supabase
           .from("posts")
-          .insert([payload])
-          .select("id"); // Explicit select to avoid returning non-existent columns from cache
+          .insert([insertPayload])
+          .select("id, Id");
         if (error) {
           console.error("Insert failed:", error);
           throw new Error(`Publishing failed: ${error.message} (Code: ${error.code}). ${error.details || ''}`);
