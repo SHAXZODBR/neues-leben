@@ -220,7 +220,9 @@ export default function AdminPage() {
         category: category || CATEGORY_OPTIONS[0],
         specialty: specialty || null,
         published,
-        // Removed manual updated_at to let DB handle it and avoid 409 lt: conflicts
+        // Add author info from session if present to avoid NOT NULL failures
+        author: session?.user?.email || "Admin",
+        author_credentials: "Staff",
       };
 
       if (editingId) {
@@ -240,7 +242,10 @@ export default function AdminPage() {
       } else {
         if (!supabase) throw new Error("Supabase client not initialized.");
         const { error } = await supabase.from("posts").insert([payload]);
-        if (error) throw error;
+        if (error) {
+          console.error("Insert failed:", error);
+          throw new Error(`Publishing failed: ${error.message} (Code: ${error.code}). ${error.details || ''}`);
+        }
         setStatus("Post published successfully!");
       }
 
