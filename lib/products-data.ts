@@ -27,6 +27,8 @@ export interface Product {
     de: string[];
   };
   image: string;
+  image_back?: string;
+  image_side?: string;
   featured: boolean;
   medicalInfo?: {
     en?: string;
@@ -79,6 +81,8 @@ function transformSupabaseProduct(row: any): Product {
       de: parseFeatures(row.features_de),
     },
     image: row.image,
+    image_back: row.image_back,
+    image_side: row.image_side,
     featured: row.featured || false,
     medicalInfo: {
       en: row.medical_info_en || undefined,

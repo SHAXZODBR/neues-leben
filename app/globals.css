@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Professional medical/pharmaceutical theme */
 :root {
   --background: 0 0% 100%;
@@ -24,6 +28,12 @@
   --input: 220 15% 90%;
   --ring: 168 65% 38%;
   --radius: 0.5rem;
+
+  /* Liquid glass navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.55);
+  --navbar-bg-scrolled: rgba(255, 255, 255, 0.72);
+  --navbar-border: rgba(200, 200, 200, 0.2);
+  --navbar-border-scrolled: rgba(200, 200, 200, 0.35);
 }
 
 .dark {
@@ -46,6 +56,12 @@
   --border: 220 15% 18%;
   --input: 220 15% 18%;
   --ring: 168 55% 48%;
+
+  /* Liquid glass navbar - dark */
+  --navbar-bg: rgba(10, 15, 25, 0.55);
+  --navbar-bg-scrolled: rgba(10, 15, 25, 0.75);
+  --navbar-border: rgba(255, 255, 255, 0.06);
+  --navbar-border-scrolled: rgba(255, 255, 255, 0.1);
 }
 
 /* Smooth theme transition */
@@ -57,9 +73,11 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   h1,
   h2,
   h3,

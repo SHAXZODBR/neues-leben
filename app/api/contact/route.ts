@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import nodemailer from "nodemailer";
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+function getSupabaseClient() {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) {
+        throw new Error("Supabase environment variables are not configured");
+    }
+    return createClient(url, key);
+}
 
 // Create SMTP transporter
 const transporter = process.env.SMTP_HOST ? nodemailer.createTransport({
@@ -20,6 +24,7 @@ const transporter = process.env.SMTP_HOST ? nodemailer.createTransport({
 
 export async function POST(request: NextRequest) {
     try {
+        const supabase = getSupabaseClient();
         const body = await request.json();
         const { name, email, message } = body;
 

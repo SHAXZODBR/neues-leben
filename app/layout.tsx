@@ -77,8 +77,10 @@ export default async function RootLayout({
 
     if (supabaseUrl && supabaseAnonKey) {
       const supabase = await createClient();
-      const { data: { session: appSession } } = await supabase.auth.getSession();
-      session = appSession;
+      if (supabase) {
+        const { data } = await supabase.auth.getSession();
+        session = data?.session || null;
+      }
     }
   } catch (error) {
     console.warn("Supabase initialization failed:", error);

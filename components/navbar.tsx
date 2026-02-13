@@ -39,6 +39,11 @@ export default function Navbar() {
     router.push("/blog");
   };
 
+  const handleNewsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push("/news");
+  };
+
   const handleScroll = () => {
     const offset = window.scrollY;
     const isScrolled = offset > 10;
@@ -78,7 +83,6 @@ export default function Navbar() {
 
   // Primary nav items (always visible) - reduced to essential items
   const primaryNavItems = [
-    { key: "nav.about", id: "about" },
     { key: "nav.products", id: "products" },
     { key: "nav.team", id: "team" },
     { key: "nav.contact", id: "contact" },
@@ -86,6 +90,7 @@ export default function Navbar() {
 
   // Secondary items for "More" dropdown
   const moreNavItems = [
+    { key: "nav.about", id: "about" },
     { key: "nav.mission", id: "mission" },
     { key: "nav.values", id: "values" },
     { key: "nav.culture", id: "culture" },
@@ -100,16 +105,21 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? "border-border/30 shadow-lg" : "border-border/10"
-        }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}
       style={{
         willChange: "transform",
         transform: "translateZ(0)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
         background: scrolled
-          ? "rgba(255, 255, 255, 0.85)"
-          : "rgba(255, 255, 255, 0.7)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+          ? "var(--navbar-bg-scrolled, rgba(255, 255, 255, 0.72))"
+          : "var(--navbar-bg, rgba(255, 255, 255, 0.55))",
+        borderBottom: scrolled
+          ? "1px solid var(--navbar-border-scrolled, rgba(255, 255, 255, 0.3))"
+          : "1px solid var(--navbar-border, rgba(255, 255, 255, 0.15))",
+        boxShadow: scrolled
+          ? "0 4px 30px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
+          : "inset 0 1px 0 rgba(255, 255, 255, 0.1)",
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -229,6 +239,14 @@ export default function Navbar() {
             {t("nav.blog")}
           </button>
 
+          {/* News link */}
+          <button
+            onClick={handleNewsClick}
+            className="text-sm whitespace-nowrap font-medium transition-colors hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5"
+          >
+            {t("nav.news")}
+          </button>
+
           {/* Training link */}
           <Link
             href="/training"
@@ -314,6 +332,13 @@ export default function Navbar() {
                 >
                   {t("nav.blog")}
                 </button>
+                <Link
+                  href="/news"
+                  className="text-sm font-medium transition-colors hover:text-primary text-left"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("nav.news")}
+                </Link>
                 <Link
                   href="/training"
                   className="text-sm font-medium transition-colors hover:text-primary text-left"
