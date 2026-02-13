@@ -292,13 +292,13 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                                 </AnimatePresence>
 
                                 {(product.image_side || product.image_back) && (
-                                    <div className="absolute bottom-4 right-4 flex items-center gap-3 text-emerald-600 dark:text-emerald-400">
+                                    <div className="mt-4 sm:absolute sm:bottom-4 sm:right-4 flex flex-wrap items-center justify-end gap-2 sm:gap-3 text-emerald-600 dark:text-emerald-400">
                                         {!effectiveIsAutoPlaying && (
-                                            <div className="bg-amber-500/10 backdrop-blur-md border border-amber-500/30 px-3 py-1.5 rounded-full text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest animate-pulse">
+                                            <div className="bg-amber-500/10 backdrop-blur-md border border-amber-500/30 px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest animate-pulse">
                                                 {t.manualMode}
                                             </div>
                                         )}
-                                        <div className="bg-emerald-600/20 dark:bg-emerald-400/20 backdrop-blur-md border border-emerald-600/40 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
+                                        <div className="bg-emerald-600/10 sm:bg-emerald-600/20 dark:bg-emerald-400/10 sm:bg-emerald-400/20 backdrop-blur-md border border-emerald-600/40 px-3 py-2 sm:px-4 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
                                             {effectiveViewMode === 'main' ? t.viewDetails : t.backToMain}
                                         </div>
                                     </div>
