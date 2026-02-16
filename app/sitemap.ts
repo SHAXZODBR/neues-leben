@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { loadProducts } from "@/lib/products-data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://neuesleben.uz";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.neuesleben.uz";
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [
