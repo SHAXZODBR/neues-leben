@@ -1,10 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Product } from "@/lib/products-data";
 import { useLanguage } from "@/contexts/language-context";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -102,6 +102,15 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [prevProductId, setPrevProductId] = useState<string | null>(null);
   const [lastOpen, setLastOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Get current image URL for fullscreen viewer
+  const getCurrentImageUrl = useCallback(() => {
+    if (!product) return '';
+    if (viewMode === 'back') return product.image_back || product.image;
+    if (viewMode === 'side') return product.image_side || product.image;
+    return product.image;
+  }, [product, viewMode]);
 
   // --- DERIVED STATE / RESET LOGIC ---
   // We use a local variable to override state during the INITIAL frame of a switch.
@@ -293,21 +302,84 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                     )}
                   </AnimatePresence>
 
-                  {/* UI Hint / Playback status indicator */}
-                  {(product.image_side || product.image_back) && (
-                    <div className="mt-4 sm:absolute sm:bottom-4 sm:right-4 flex flex-wrap items-center justify-end gap-2 sm:gap-3 text-emerald-600 dark:text-emerald-400">
-                      {!effectiveIsAutoPlaying && (
-                        <div className="bg-amber-500/10 backdrop-blur-md border border-amber-500/30 px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest animate-pulse">
-                          {t.manualMode}
-                        </div>
-                      )}
-                      <div className="bg-emerald-600/10 sm:bg-emerald-600/20 dark:bg-emerald-400/10 sm:bg-emerald-400/20 backdrop-blur-md border border-emerald-600/40 px-3 py-2 sm:px-4 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
-                        {effectiveViewMode === 'main' ? t.viewDetails : t.backToMain}
-                      </div>
-                    </div>
-                  )}
+                  {/* Fullscreen zoom button - large and obvious on mobile */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsFullscreen(true);
+                    }}
+                    className="absolute bottom-3 right-3 z-10 bg-emerald-600 dark:bg-emerald-500 text-white rounded-full px-4 py-2.5 sm:px-3 sm:py-2 shadow-lg flex items-center gap-2 hover:bg-emerald-700 dark:hover:bg-emerald-400 transition-colors"
+                    aria-label="Fullscreen"
+                  >
+                    <Maximize2 className="h-5 w-5 sm:h-4 sm:w-4" />
+                    <span className="text-sm font-semibold sm:hidden">Увеличить</span>
+                  </button>
                 </div>
+
+                {/* View mode indicator - BELOW image on mobile as a button, float on desktop */}
+                {(product.image_side || product.image_back) && (
+                  <div className="mt-3 flex flex-wrap items-center justify-center sm:justify-end gap-2">
+                    {!effectiveIsAutoPlaying && (
+                      <div className="bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-full text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest animate-pulse">
+                        {t.manualMode}
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (effectiveViewMode === 'main') {
+                          if (product.image_back) handleManualInteraction('back');
+                          else if (product.image_side) handleManualInteraction('side');
+                        } else {
+                          handleManualInteraction('main');
+                        }
+                      }}
+                      className="bg-emerald-600/10 border border-emerald-600/40 px-4 py-2 rounded-full text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest hover:bg-emerald-600/20 transition-colors"
+                    >
+                      {effectiveViewMode === 'main' ? t.viewDetails : t.backToMain}
+                    </button>
+                  </div>
+                )}
               </div>
+
+              {/* Fullscreen Image Viewer Overlay */}
+              <AnimatePresence>
+                {isFullscreen && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+                    onClick={() => setIsFullscreen(false)}
+                  >
+                    {/* Close button */}
+                    <button
+                      type="button"
+                      onClick={() => setIsFullscreen(false)}
+                      className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-md rounded-full p-3 text-white hover:bg-white/30 transition-colors"
+                      aria-label="Close fullscreen"
+                    >
+                      <X className="h-6 w-6" />
+                    </button>
+
+                    {/* Zoomable image container */}
+                    <div
+                      className="w-full h-full overflow-auto"
+                      style={{ touchAction: "pan-x pan-y pinch-zoom" }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <img
+                        src={getCurrentImageUrl()}
+                        alt={product.name[language as keyof typeof product.name]}
+                        className="w-full h-full object-contain"
+                        style={{ touchAction: "pinch-zoom" }}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
 
               {/* Medical Information */}

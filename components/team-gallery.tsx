@@ -30,8 +30,8 @@ type TeamMember = {
 const teamMembers: TeamMember[] = [
   {
     id: 5,
-    name: "Хўжаев Жаҳонгир Миршариф Угли",
-    nameLatin: "Xo'jayev Jahongir Mirsharif o'gli",
+    name: "Хўжаев Жаҳонгир Миршарифович",
+    nameLatin: "Xo'jayev Jahongir Mirsharifovich",
     position: {
       en: "Founder",
       uz: "Asoschi",
@@ -66,8 +66,8 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 27,
-    name: "Хужаев Жавохир Жамшидхон Угли",
-    nameLatin: "Xo'jayev Javohir Jamshidkhon",
+    name: "Хужаев Жавохир Жамшидхонович",
+    nameLatin: "Xo'jayev Javohir Jamshidkhonovich",
     position: {
       en: "Financial Director",
       uz: "Moliyachi",
@@ -379,8 +379,8 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 24,
-    name: "Ибрагимов Сарваржон Ражаббой угли",
-    nameLatin: "IBRAGIMOV SARVARBEK RAJABBOY O'G'LI",
+    name: "Ибрагимов Сарваржон Ражаббович",
+    nameLatin: "Ibragimov Sarvarbek Rajabboyovich",
     position: {
       en: "Regional Manager for Khorezm Region",
       uz: "Xorazm viloyati bo'yicha mintaqaviy menejer",
@@ -434,8 +434,8 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 20,
-    name: "Сайдуллаев Абдулхай Абдишукир угли",
-    nameLatin: "Saydullaev Abdulxay Abdishukur oʻgʻli",
+    name: "Сайдуллаев Абдулхай Абдишукирович",
+    nameLatin: "Saydullaev Abdulxay Abdishukurovich",
     position: {
       en: "Pharmacovigilance Specialist",
       uz: "Farmakonazor bo'yicha mutaxassis",

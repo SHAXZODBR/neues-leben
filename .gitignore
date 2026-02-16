@@ -34,3 +34,4 @@ yarn-error.log*
 # Optional: coverage and test outputs
 coverage
 jest-html-reporters-*
+.env.local
