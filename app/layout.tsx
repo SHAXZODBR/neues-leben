@@ -23,20 +23,39 @@ const josefinSans = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "NEUES LEBEN | Pharmaceutical Distribution",
+  title: {
+    default: "NEUES LEBEN | Pharmaceutical Distribution in Uzbekistan",
+    template: "%s | NEUES LEBEN",
+  },
   description:
-    "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. Quality, Timely Delivery, Reliable Partnership.",
-  keywords: ["pharmaceutical", "distribution", "Uzbekistan", "NEUES LEBEN", "medical", "healthcare", "drugs", "medicine"],
+    "NEUES LEBEN LLC — фармацевтическая дистрибьюторская компания в Узбекистане. Качество, Своевременная Доставка, Надежное Партнерство. Pharmaceutical distribution company in Uzbekistan.",
+  keywords: [
+    // English
+    "NEUES LEBEN", "pharmaceutical distribution", "Uzbekistan", "medical", "healthcare", "drugs", "medicine",
+    "pharmaceutical company Uzbekistan", "drug distribution Tashkent",
+    // Russian
+    "Нойес Лебен", "фармацевтика Узбекистан", "лекарства", "дистрибуция лекарств", "фармацевтическая компания",
+    "медикаменты Ташкент", "аптека", "дистрибьютор лекарств Узбекистан", "фармацевтические препараты",
+    // Uzbek
+    "dori vositalari", "farmatsevtika", "dori taqsimoti", "Toshkent", "O'zbekiston dori",
+    "tibbiy mahsulotlar", "dori distribyutsiya",
+    // German
+    "pharmazeutische Vertrieb", "Usbekistan", "Arzneimittel",
+  ],
   authors: [{ name: "NEUES LEBEN LLC" }],
   creator: "NEUES LEBEN LLC",
   publisher: "NEUES LEBEN LLC",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://neuesleben.uz'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.neuesleben.uz'),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ru_RU",
+    alternateLocale: ["en_US", "uz_UZ", "de_DE"],
     url: "/",
-    title: "NEUES LEBEN | Pharmaceutical Distribution",
-    description: "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan. Quality, Timely Delivery, Reliable Partnership.",
+    title: "NEUES LEBEN | Фармацевтическая Дистрибуция в Узбекистане",
+    description: "NEUES LEBEN LLC — дистрибьюторская компания, работающая в фармацевтической отрасли Узбекистана. Качество, Своевременная Доставка, Надежное Партнерство.",
     siteName: "NEUES LEBEN",
     images: [
       {
@@ -50,8 +69,19 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "NEUES LEBEN | Pharmaceutical Distribution",
-    description: "NEUES LEBEN LLC is a distribution company operating in the pharmaceutical industry in Uzbekistan.",
+    description: "NEUES LEBEN LLC — pharmaceutical distribution company in Uzbekistan. Quality medicines and healthcare products.",
     images: ["/icon.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: [
