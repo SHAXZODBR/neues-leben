@@ -234,9 +234,9 @@ export default function NewsAdminPage() {
                 return `<figure><img src="${block.value}" alt="${block.caption || ""}" style="max-width:100%;border-radius:12px;margin:1rem 0" />${block.caption ? `<figcaption>${block.caption}</figcaption>` : ""}</figure>`;
             }
             if (block.type === "video") {
-                const ytMatch = block.value.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                const ytMatch = block.value.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
                 if (ytMatch) {
-                    return `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:1rem 0"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute;top:0;left:0;width:100%;height:100%" frameborder="0" allowfullscreen></iframe></div>${block.caption ? `<p><em>${block.caption}</em></p>` : ""}`;
+                    return `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:1rem 0"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute;top:0;left:0;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${block.caption ? `<p><em>${block.caption}</em></p>` : ""}`;
                 }
                 return `<video src="${block.value}" controls style="max-width:100%;border-radius:12px;margin:1rem 0"></video>${block.caption ? `<p><em>${block.caption}</em></p>` : ""}`;
             }

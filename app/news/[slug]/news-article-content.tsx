@@ -33,14 +33,14 @@ type NewsPost = {
 
 function getYouTubeEmbedUrl(url: string): string | null {
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     );
-    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+    return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=0&rel=0` : null;
 }
 
 function getYouTubeThumbnail(url: string): string | null {
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     );
     return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
@@ -84,10 +84,13 @@ export default function NewsArticleContent({
         // Add media from content blocks
         if (post.content_blocks) {
             post.content_blocks.forEach(block => {
-                if (block.type === "image" || block.type === "video") {
+                if (block.type === "image") {
+                    media.push({ type: "image", url: block.value, caption: block.caption });
+                } else if (block.type === "video") {
+                    const embedUrl = getYouTubeEmbedUrl(block.value);
                     media.push({
-                        type: block.type,
-                        url: block.type === "video" && getYouTubeEmbedUrl(block.value) ? getYouTubeEmbedUrl(block.value)! : block.value,
+                        type: "video",
+                        url: embedUrl || block.value,
                         caption: block.caption
                     });
                 }

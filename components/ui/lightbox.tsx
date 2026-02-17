@@ -106,12 +106,22 @@ export function Lightbox({ isOpen, onClose, media, initialIndex = 0 }: LightboxP
                                 />
                             </div>
                         ) : (
-                            <div className={`relative ${isFullScreen ? "w-screen h-screen" : "w-[80vw] aspect-video"} transition-all duration-300 bg-black`}>
-                                <iframe
-                                    src={currentMedia.url.includes("youtube") ? currentMedia.url : `https://www.youtube.com/embed/${currentMedia.url}`}
-                                    className="absolute inset-0 w-full h-full"
-                                    allowFullScreen
-                                />
+                            <div className={`relative ${isFullScreen ? "w-screen h-screen" : "w-[85vw] md:w-[70vw] aspect-video"} transition-all duration-300 bg-black rounded-lg overflow-hidden`}>
+                                {currentMedia.url.includes("youtube.com/embed") ? (
+                                    <iframe
+                                        src={currentMedia.url}
+                                        className="absolute inset-0 w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <video
+                                        src={currentMedia.url}
+                                        controls
+                                        autoPlay
+                                        className="absolute inset-0 w-full h-full object-contain"
+                                    />
+                                )}
                             </div>
                         )}
 
