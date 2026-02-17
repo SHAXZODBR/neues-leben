@@ -51,9 +51,9 @@ export function Lightbox({ isOpen, onClose, media, initialIndex = 0 }: LightboxP
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [handleKeyDown]);
 
-    const currentMedia = useMemo(() => media[currentIndex], [media, currentIndex]);
+    const currentMedia = useMemo(() => media[currentIndex] || media[0], [media, currentIndex]);
 
-    if (!isOpen || !currentMedia) return null;
+    if (!isOpen || !media || media.length === 0 || !currentMedia) return null;
 
     return (
         <AnimatePresence>
