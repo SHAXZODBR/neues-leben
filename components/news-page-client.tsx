@@ -21,6 +21,7 @@ type NewsPost = {
     title_i18n?: Record<string, string> | null;
     summary_i18n?: Record<string, string> | null;
     content_i18n?: Record<string, string> | null;
+    content_blocks?: { type: string; value: string; caption?: string }[] | null;
 };
 
 const NEWS_CATEGORIES = [
@@ -149,7 +150,21 @@ export default function NewsPageClient() {
 
     function getPostImage(post: NewsPost): string | null {
         if (post.image_url) return post.image_url;
+
+        // Fallback to first image in content blocks
+        if (post.content_blocks) {
+            const firstImage = post.content_blocks.find(block => block.type === "image");
+            if (firstImage) return firstImage.value;
+        }
+
         if (post.video_url) return getYouTubeThumbnail(post.video_url);
+
+        // Fallback to first video thumbnail in content blocks
+        if (post.content_blocks) {
+            const firstVideo = post.content_blocks.find(block => block.type === "video");
+            if (firstVideo) return getYouTubeThumbnail(firstVideo.value);
+        }
+
         return null;
     }
 
