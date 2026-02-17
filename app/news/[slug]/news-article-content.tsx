@@ -32,15 +32,17 @@ type NewsPost = {
 };
 
 function getYouTubeEmbedUrl(url: string): string | null {
+    if (!url) return null;
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|shorts|live)\/|\S*?[?&]v=)|youtu\.be\/|^)([a-zA-Z0-9_-]{11})/
     );
     return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=0&rel=0` : null;
 }
 
 function getYouTubeThumbnail(url: string): string | null {
+    if (!url) return null;
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|shorts|live)\/|\S*?[?&]v=)|youtu\.be\/|^)([a-zA-Z0-9_-]{11})/
     );
     return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
@@ -195,14 +197,13 @@ export default function NewsArticleContent({
                                         <Maximize2 className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={32} />
                                     </div>
                                 </div>
-                                {imageOnlyMedia.slice(1, imageOnlyMedia.length > 3 ? 2 : 3).map((img, idx) => (
+                                {imageOnlyMedia.length >= 2 && (
                                     <div
-                                        key={idx}
                                         className="relative rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-lg cursor-zoom-in group"
-                                        onClick={() => openLightbox(galleryMedia.findIndex(m => m.url === img.url))}
+                                        onClick={() => openLightbox(galleryMedia.findIndex(m => m.url === imageOnlyMedia[1].url))}
                                     >
                                         <Image
-                                            src={img.url}
+                                            src={imageOnlyMedia[1].url}
                                             alt=""
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -210,23 +211,27 @@ export default function NewsArticleContent({
                                         />
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                                     </div>
-                                ))}
-                                {imageOnlyMedia.length > 3 && (
+                                )}
+                                {imageOnlyMedia.length >= 3 && (
                                     <div
-                                        className="relative rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-lg cursor-pointer group"
-                                        onClick={() => openLightbox(galleryMedia.findIndex(m => m.url === imageOnlyMedia[3].url))}
+                                        className={`relative rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-lg cursor-pointer group ${imageOnlyMedia.length > 3 ? "" : "cursor-zoom-in"}`}
+                                        onClick={() => openLightbox(galleryMedia.findIndex(m => m.url === imageOnlyMedia[2].url))}
                                     >
                                         <Image
-                                            src={imageOnlyMedia[3].url}
+                                            src={imageOnlyMedia[2].url}
                                             alt=""
                                             fill
-                                            className="object-cover blur-[2px] brightness-50 transition-all group-hover:scale-110 group-hover:blur-0 group-hover:brightness-75"
+                                            className={`object-cover transition-all duration-700 group-hover:scale-105 ${imageOnlyMedia.length > 3 ? "blur-[1px] brightness-[0.4]" : ""}`}
                                             sizes="300px"
                                         />
-                                        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2">
-                                            <span className="text-2xl md:text-3xl font-bold">+{imageOnlyMedia.length - 3}</span>
-                                            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-wider opacity-80">{t("news.morePhotos")}</span>
-                                        </div>
+                                        {imageOnlyMedia.length > 3 ? (
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/20 group-hover:bg-black/40 transition-colors">
+                                                <span className="text-2xl md:text-3xl font-bold">+{imageOnlyMedia.length - 2}</span>
+                                                <span className="text-[10px] md:text-xs font-semibold uppercase tracking-wider opacity-80">{t("news.morePhotos")}</span>
+                                            </div>
+                                        ) : (
+                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                                        )}
                                     </div>
                                 )}
                             </div>

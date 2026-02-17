@@ -59,8 +59,9 @@ function translateCategory(category: string, language: string): string {
 const POSTS_PER_PAGE = 9;
 
 function getYouTubeThumbnail(url: string): string | null {
+    if (!url) return null;
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|shorts|live)\/|\S*?[?&]v=)|youtu\.be\/|^)([a-zA-Z0-9_-]{11})/
     );
     return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
