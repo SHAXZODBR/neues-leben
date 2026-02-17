@@ -15,7 +15,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (session) {
-      router.replace("/dashboard-cms-2024");
+      const searchParams = new URLSearchParams(window.location.search);
+      const returnUrl = searchParams.get("returnUrl") || "/dashboard-cms-2024";
+      router.replace(returnUrl);
     }
   }, [session, router]);
 
@@ -42,7 +44,10 @@ export default function LoginPage() {
     }
 
     setStatus("Logged in! Redirecting…");
-    router.replace("/dashboard-cms-2024");
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const returnUrl = searchParams.get("returnUrl") || "/dashboard-cms-2024";
+    router.replace(returnUrl);
   }
 
   return (
