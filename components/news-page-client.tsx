@@ -59,9 +59,9 @@ const POSTS_PER_PAGE = 9;
 
 function getYouTubeThumbnail(url: string): string | null {
     const match = url.match(
-        /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     );
-    return match ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : null;
+    return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
 
 function formatDate(dateStr: string | null, language: string): string {
