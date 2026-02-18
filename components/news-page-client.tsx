@@ -319,7 +319,7 @@ export default function NewsPageClient() {
 
                             return (
                                 <Link
-                                    href={`/news/${featuredPost.slug}`}
+                                    href={`/news/${featuredPost.slug || featuredPost.id}`}
                                     className="group relative block mb-12 rounded-3xl overflow-hidden border border-border/50 dark:border-white/5 bg-card hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
                                 >
                                     <div className="grid md:grid-cols-2 gap-0">
@@ -392,7 +392,7 @@ export default function NewsPageClient() {
                                 return (
                                     <Link
                                         key={post.id}
-                                        href={`/news/${post.slug}`}
+                                        href={`/news/${post.slug || post.id}`}
                                         className="group relative flex flex-col rounded-2xl overflow-hidden border border-border/50 dark:border-white/5 bg-card hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500"
                                     >
                                         {/* Card Image */}

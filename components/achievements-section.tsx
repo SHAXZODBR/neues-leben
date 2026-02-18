@@ -45,6 +45,7 @@ export default function AchievementsSection() {
               </div>
               <h3 className="text-2xl font-bold text-foreground">{t("achievements.award")}</h3>
             </div>
+
             <p className="text-lg text-muted-foreground">{t("achievements.description")}</p>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg flex items-center">

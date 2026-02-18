@@ -1,9 +1,7 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import NewsArticleContent from "./news-article-content";
-
-const supabase = createClient();
 
 type NewsPost = {
     id: string;
@@ -22,22 +20,39 @@ type NewsPost = {
 };
 
 async function fetchPost(slug: string): Promise<NewsPost | null> {
+    const supabase = await createClient();
     if (!supabase) return null;
-    const { data, error } = await supabase
+
+    // First try by slug
+    const { data: bySlug, error: slugError } = await supabase
         .from("company_news")
         .select("*")
         .eq("slug", slug)
         .eq("published", true)
         .single();
 
-    if (error || !data) return null;
-    return data;
+    if (!slugError && bySlug) return bySlug;
+
+    // Fallback try by ID (if slug looks like a UUID)
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-12a-f]{12}$/i.test(slug);
+    if (isUuid) {
+        const { data: byId, error: idError } = await supabase
+            .from("company_news")
+            .select("*")
+            .eq("id", slug)
+            .eq("published", true)
+            .single();
+        if (!idError && byId) return byId;
+    }
+
+    return null;
 }
 
 async function fetchRelatedPosts(
     currentId: string,
     category: string | null
 ): Promise<NewsPost[]> {
+    const supabase = await createClient();
     if (!supabase) return [];
     let query = supabase
         .from("company_news")
@@ -56,6 +71,7 @@ async function fetchRelatedPosts(
 }
 
 export async function generateStaticParams() {
+    const supabase = await createClient();
     if (!supabase) return [];
     const { data } = await supabase
         .from("company_news")

@@ -50,13 +50,22 @@ const CATEGORY_ICONS: Record<string, string> = {
     "Community": "🌍",
 };
 
-const slugify = (text: string) =>
-    text
+const slugify = (text: string) => {
+    const cyrillicToLatin: Record<string, string> = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+        'ў': 'o', 'қ': 'q', 'ғ': 'g', 'ҳ': 'h'
+    };
+
+    return text
         .toLowerCase()
+        .split('')
+        .map(char => cyrillicToLatin[char] || char)
+        .join('')
         .replace(/\s+/g, "-")
         .replace(/[^\w-]+/g, "")
         .replace(/--+/g, "-")
         .replace(/^-+|-+$/g, "");
+};
 
 export default function NewsAdminPage() {
     const { session, supabase } = useSupabase();
