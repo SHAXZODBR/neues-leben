@@ -82,10 +82,10 @@ function formatDate(dateStr: string | null, language: string): string {
     });
 }
 
-export default function NewsPageClient() {
+export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: NewsPost[] }) {
     const { language, t } = useLanguage();
-    const [posts, setPosts] = useState<NewsPost[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState<NewsPost[]>(initialPosts);
+    const [loading, setLoading] = useState(initialPosts.length === 0);
     const [error, setError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -116,8 +116,10 @@ export default function NewsPageClient() {
     }, []);
 
     useEffect(() => {
-        fetchPosts();
-    }, [fetchPosts]);
+        if (posts.length === 0) {
+            fetchPosts();
+        }
+    }, [fetchPosts, posts.length]);
 
     const filteredPosts = useMemo(() => {
         return posts.filter((post) => {
