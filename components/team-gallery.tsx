@@ -364,10 +364,10 @@ const teamMembers: TeamMember[] = [
     name: "Усманов Баходир Шамсиевич",
     nameLatin: "Usmonov Bahodir Shamsiyevich",
     position: {
-      en: "Regional Manager for Khorezm Region",
-      uz: "Xorazm viloyati bo'yicha mintaqaviy menejer",
-      ru: "Региональный менеджер по Хорезмской области",
-      de: "Regionalmanager für die Region Xorazm",
+      en: "Regional Manager for Bukhara Region",
+      uz: "Buxoro viloyati bo'yicha mintaqaviy menejer",
+      ru: "Региональный менеджер по Бухарской области",
+      de: "Regionalmanager für die Region Buchara",
     },
     description: {
       en: "Specialist in regional sales and client relationship development. Responsible for meeting sales targets, strengthening company positions, and maintaining long-term partnerships in the Khorezm region, ensuring high customer service levels.",
