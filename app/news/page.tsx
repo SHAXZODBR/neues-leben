@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NewsPageClient from "@/components/news-page-client";
-import { createClient } from "@/lib/supabase/server";
+import { createStaticClient } from "@/lib/supabase/static";
 
 export const metadata: Metadata = {
     title: "Company News | NEUES LEBEN",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     let initialPosts = [];
 
     if (supabase) {

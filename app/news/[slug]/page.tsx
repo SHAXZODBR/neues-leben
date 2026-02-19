@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createStaticClient } from "@/lib/supabase/static";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import NewsArticleContent from "./news-article-content";
@@ -20,7 +20,7 @@ type NewsPost = {
 };
 
 async function fetchPost(slug: string): Promise<NewsPost | null> {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     if (!supabase) return null;
 
     // First try by slug
@@ -52,7 +52,7 @@ async function fetchRelatedPosts(
     currentId: string,
     category: string | null
 ): Promise<NewsPost[]> {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     if (!supabase) return [];
     let query = supabase
         .from("company_news")
@@ -71,7 +71,7 @@ async function fetchRelatedPosts(
 }
 
 export async function generateStaticParams() {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     if (!supabase) return [];
     const { data } = await supabase
         .from("company_news")
