@@ -322,13 +322,16 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                             const postImage = getPostImage(featuredPost);
 
                             return (
-                                <Link
-                                    href={`/news/${featuredPost.slug || featuredPost.id}`}
+                                <div
+                                    key={featuredPost.id}
                                     className="group relative block mb-12 rounded-3xl overflow-hidden border border-border/50 dark:border-white/5 bg-card hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
                                 >
                                     <div className="grid md:grid-cols-2 gap-0">
-                                        {/* Image */}
-                                        <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden">
+                                        {/* Image wrapper link */}
+                                        <Link
+                                            href={`/news/${featuredPost.slug || featuredPost.id}`}
+                                            className="relative aspect-[16/10] md:aspect-auto overflow-hidden block"
+                                        >
                                             {postImage ? (
                                                 <Image
                                                     src={postImage}
@@ -354,35 +357,40 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                                             )}
                                             {/* Gradient Overlay on Mobile */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
-                                        </div>
+                                        </Link>
 
                                         {/* Content */}
                                         <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center">
-                                            <div className="flex items-center gap-3 mb-4 flex-wrap">
-                                                <span className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 dark:bg-primary/20 px-3 py-1 text-xs font-semibold text-primary">
-                                                    {CATEGORY_ICONS[featuredPost.category || ""] || "📢"} {translateCategory(featuredPost.category || "News", language)}
-                                                </span>
-                                                <span className="text-xs text-muted-foreground">
-                                                    {formatDate(featuredPost.created_at, language)}
-                                                </span>
-                                            </div>
-                                            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
-                                                {localTitle}
-                                            </h2>
+                                            <Link href={`/news/${featuredPost.slug || featuredPost.id}`} className="group/title">
+                                                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                                                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 dark:bg-primary/20 px-3 py-1 text-xs font-semibold text-primary">
+                                                        {CATEGORY_ICONS[featuredPost.category || ""] || "📢"} {translateCategory(featuredPost.category || "News", language)}
+                                                    </span>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {formatDate(featuredPost.created_at, language)}
+                                                    </span>
+                                                </div>
+                                                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 group-hover/title:text-primary transition-colors duration-300 leading-tight">
+                                                    {localTitle}
+                                                </h2>
+                                            </Link>
                                             {localSummary && (
                                                 <p className="text-muted-foreground leading-relaxed line-clamp-3 mb-6">
                                                     {localSummary}
                                                 </p>
                                             )}
-                                            <div className="inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                                            <Link
+                                                href={`/news/${featuredPost.slug || featuredPost.id}`}
+                                                className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:translate-x-1 transition-transform"
+                                            >
                                                 <span>{t("news.readMore")}</span>
-                                                <svg className="h-4 w-4 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5-5 5M6 12h12" />
                                                 </svg>
-                                            </div>
+                                            </Link>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             );
                         })()}
 
@@ -394,19 +402,21 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                                 const postImage = getPostImage(post);
 
                                 return (
-                                    <Link
+                                    <div
                                         key={post.id}
-                                        href={`/news/${post.slug || post.id}`}
                                         className="group relative flex flex-col rounded-2xl overflow-hidden border border-border/50 dark:border-white/5 bg-card hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500"
                                     >
-                                        {/* Card Image */}
-                                        <div className="relative aspect-[16/10] overflow-hidden bg-muted dark:bg-white/5">
+                                        {/* Card Image Wrapper Link */}
+                                        <Link
+                                            href={`/news/${post.slug || post.id}`}
+                                            className="relative aspect-[16/10] overflow-hidden bg-muted dark:bg-white/5 block group/img"
+                                        >
                                             {postImage ? (
                                                 <Image
                                                     src={postImage}
                                                     alt={localTitle}
                                                     fill
-                                                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                                                    className="object-cover group-hover/img:scale-110 transition-transform duration-700 ease-out"
                                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                                 />
                                             ) : (
@@ -418,14 +428,14 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                                             )}
                                             {post.video_url && (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="rounded-full bg-black/40 backdrop-blur-sm p-3 group-hover:bg-primary/80 transition-colors duration-300">
+                                                    <div className="rounded-full bg-black/40 backdrop-blur-sm p-3 group-hover/img:bg-primary/80 transition-colors duration-300">
                                                         <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                                                     </div>
                                                 </div>
                                             )}
                                             {/* Subtle gradient */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        </div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
+                                        </Link>
 
                                         {/* Card Content */}
                                         <div className="flex flex-col flex-1 p-5">
@@ -437,9 +447,11 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                                                     {formatDate(post.created_at, language)}
                                                 </span>
                                             </div>
-                                            <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-snug">
-                                                {localTitle}
-                                            </h3>
+                                            <Link href={`/news/${post.slug || post.id}`} className="group/title">
+                                                <h3 className="text-base font-bold text-foreground mb-2 group-hover/title:text-primary transition-colors duration-300 line-clamp-2 leading-snug">
+                                                    {localTitle}
+                                                </h3>
+                                            </Link>
                                             {localSummary && !expandedPosts[post.id] && (
                                                 <p className="text-sm text-muted-foreground line-clamp-2 flex-1 leading-relaxed">
                                                     {localSummary}
@@ -494,7 +506,7 @@ export default function NewsPageClient({ initialPosts = [] }: { initialPosts?: N
                                                 </Link>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </div>
                                 );
                             })}
                         </div>
