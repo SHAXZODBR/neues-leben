@@ -102,6 +102,9 @@ export async function generateMetadata({
             type: "article",
             ...(post.image_url && { images: [{ url: post.image_url }] }),
         },
+        alternates: {
+            canonical: `https://www.neuesleben.uz/news/${slug}`,
+        },
     };
 }
 

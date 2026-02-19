@@ -16,6 +16,9 @@ export const metadata: Metadata = {
         type: "website",
         locale: "ru_RU",
     },
+    alternates: {
+        canonical: "https://www.neuesleben.uz/news",
+    },
 };
 
 export default function NewsPage() {

@@ -499,6 +499,7 @@ const translations = {
     "news.backToNews": "Back to News",
     "news.share": "Share this article",
     "news.relatedNews": "Related News",
+    "news.showLess": "Show Less",
   },
 
   uz: {
@@ -979,6 +980,7 @@ const translations = {
     "news.backToNews": "Yangiliklarsa qaytish",
     "news.share": "Ushbu maqolani ulashing",
     "news.relatedNews": "Tegishli yangiliklar",
+    "news.showLess": "Kamroq ko'rsatish",
   },
   ru: {
     // Navigation
@@ -1456,6 +1458,7 @@ const translations = {
     "news.backToNews": "Назад к новостям",
     "news.share": "Поделиться статьёй",
     "news.relatedNews": "Похожие новости",
+    "news.showLess": "Свернуть",
   },
 
   de: {
@@ -1934,6 +1937,7 @@ const translations = {
     "news.backToNews": "Zurück zu Nachrichten",
     "news.share": "Diesen Artikel teilen",
     "news.relatedNews": "Weitere Nachrichten",
+    "news.showLess": "weniger anzeigen",
   },
 };
 

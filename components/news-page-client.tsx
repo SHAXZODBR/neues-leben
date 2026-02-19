@@ -90,6 +90,7 @@ export default function NewsPageClient() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [expandedPosts, setExpandedPosts] = useState<Record<string, boolean>>({});
 
     const fetchPosts = useCallback(async () => {
         setLoading(true);
@@ -107,7 +108,8 @@ export default function NewsPageClient() {
             if (fetchError) throw fetchError;
             setPosts(data || []);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to load news");
+            console.error("News fetch error:", err);
+            setError(err instanceof Error ? `Error: ${err.message}` : "Failed to load news. Please check your connection.");
         } finally {
             setLoading(false);
         }
@@ -436,18 +438,58 @@ export default function NewsPageClient() {
                                             <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-snug">
                                                 {localTitle}
                                             </h3>
-                                            {localSummary && (
+                                            {localSummary && !expandedPosts[post.id] && (
                                                 <p className="text-sm text-muted-foreground line-clamp-2 flex-1 leading-relaxed">
                                                     {localSummary}
                                                 </p>
                                             )}
+
+                                            {expandedPosts[post.id] && (
+                                                <div className="mt-4 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                                    {post.content_blocks && post.content_blocks.length > 0 ? (
+                                                        post.content_blocks.map((block, idx) => (
+                                                            <div key={idx} className="text-sm">
+                                                                {block.type === "text" && (
+                                                                    <div className="prose prose-sm dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: block.value }} />
+                                                                )}
+                                                                {block.type === "image" && (
+                                                                    <div className="relative aspect-video rounded-lg overflow-hidden my-2 border border-border/50">
+                                                                        <Image src={block.value} alt={block.caption || ""} fill className="object-cover" sizes="(max-width: 640px) 100vw, 300px" />
+                                                                    </div>
+                                                                )}
+                                                                {block.type === "video" && (
+                                                                    <div className="relative aspect-video rounded-lg overflow-hidden my-2 bg-black flex items-center justify-center">
+                                                                        <span className="text-[10px] text-white">Video available in full article</span>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        ))
+                                                    ) : (
+                                                        <div className="prose prose-sm dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+                                                    )}
+                                                </div>
+                                            )}
+
                                             <div className="mt-4 pt-3 border-t border-border/30 dark:border-white/5 flex items-center justify-between">
-                                                <span className="text-xs font-semibold text-primary flex items-center gap-1.5">
-                                                    {t("news.readMore")}
-                                                    <svg className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5-5 5M6 12h12" />
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        setExpandedPosts(prev => ({ ...prev, [post.id]: !prev[post.id] }));
+                                                    }}
+                                                    className="text-xs font-semibold text-primary flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                                                >
+                                                    {expandedPosts[post.id] ? t("news.showLess") || "Show Less" : t("news.readMore")}
+                                                    <svg className={`h-3.5 w-3.5 transition-transform duration-300 ${expandedPosts[post.id] ? "rotate-180" : "group-hover:translate-x-1"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                                                     </svg>
-                                                </span>
+                                                </button>
+                                                <Link
+                                                    href={`/news/${post.slug || post.id}`}
+                                                    className="text-[10px] font-medium text-muted-foreground hover:text-primary transition-colors"
+                                                >
+                                                    Full Page →
+                                                </Link>
                                             </div>
                                         </div>
                                     </Link>

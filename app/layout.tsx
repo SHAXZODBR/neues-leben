@@ -46,9 +46,6 @@ export const metadata: Metadata = {
   creator: "NEUES LEBEN LLC",
   publisher: "NEUES LEBEN LLC",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.neuesleben.uz'),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "ru_RU",
