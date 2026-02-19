@@ -72,29 +72,32 @@ export default function NewsArticleContent({
     // Extract all media for the gallery
     const galleryMedia = useMemo(() => {
         const media: { type: "image" | "video"; url: string; caption?: string }[] = [];
+        const seenUrls = new Set<string>();
+
+        const addUniqueMedia = (type: "image" | "video", url: string, caption?: string) => {
+            if (!url || seenUrls.has(url)) return;
+            seenUrls.add(url);
+            media.push({ type, url, caption });
+        };
 
         // Add cover image if it exists
         if (post.image_url) {
-            media.push({ type: "image", url: post.image_url });
+            addUniqueMedia("image", post.image_url);
         }
 
         // Add cover video if it exists
         if (post.video_url) {
-            media.push({ type: "video", url: post.video_url });
+            addUniqueMedia("video", post.video_url);
         }
 
         // Add media from content blocks
         if (post.content_blocks) {
             post.content_blocks.forEach(block => {
                 if (block.type === "image") {
-                    media.push({ type: "image", url: block.value, caption: block.caption });
+                    addUniqueMedia("image", block.value, block.caption);
                 } else if (block.type === "video") {
                     const embedUrl = getYouTubeEmbedUrl(block.value);
-                    media.push({
-                        type: "video",
-                        url: embedUrl || block.value,
-                        caption: block.caption
-                    });
+                    addUniqueMedia("video", embedUrl || block.value, block.caption);
                 }
             });
         }
@@ -266,8 +269,11 @@ export default function NewsArticleContent({
                                 );
                             }
                             if (block.type === "image") {
-                                // Skip images already shown in the top gallery grid if you prefer, 
-                                // or show them full width here for deep reading
+                                // Skip images already shown in the top gallery grid as requested by user
+                                if (imageOnlyMedia.some(m => m.url === block.value)) {
+                                    return null;
+                                }
+
                                 return (
                                     <figure key={index} className="space-y-3 group">
                                         <div

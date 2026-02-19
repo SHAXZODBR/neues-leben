@@ -95,7 +95,7 @@ export function Lightbox({ isOpen, onClose, media, initialIndex = 0 }: LightboxP
                         className="relative max-w-full max-h-full aspect-auto flex flex-col items-center"
                     >
                         {currentMedia.type === "image" ? (
-                            <div className={`relative ${isFullScreen ? "w-screen h-screen" : "max-w-[90vw] max-h-[80vh]"} transition-all duration-300`}>
+                            <div className={`relative ${isFullScreen ? "w-screen h-screen" : "w-[90vw] h-[75vh] max-w-full max-h-[80vh]"} transition-all duration-300`}>
                                 <Image
                                     src={currentMedia.url}
                                     alt={currentMedia.caption || "Gallery image"}
