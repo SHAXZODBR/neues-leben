@@ -34,7 +34,7 @@ async function fetchPost(slug: string): Promise<NewsPost | null> {
     if (!slugError && bySlug) return bySlug;
 
     // Fallback try by ID (if slug looks like a UUID)
-    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-12a-f]{12}$/i.test(slug);
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug);
     if (isUuid) {
         const { data: byId, error: idError } = await supabase
             .from("company_news")
