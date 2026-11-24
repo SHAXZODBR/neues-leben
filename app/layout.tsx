@@ -19,7 +19,6 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
   variable: "--font-josefin-sans",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
